@@ -3,1677 +3,413 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AlongsideYou.care — Supporting the Personalised Care Workforce</title>
+<title>AlongsideYou.care — Personalised Care Workforce Platform</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --sage: #5a7a6a;
-    --sage-light: #8aab97;
-    --sage-pale: #eef4f0;
-    --teal: #2d6a6a;
-    --teal-light: #e8f2f2;
-    --amber: #c8813a;
-    --amber-pale: #fdf4ec;
-    --lavender: #7a6b9a;
-    --lavender-pale: #f2eef8;
-    --warm-white: #faf9f7;
-    --stone: #e8e4de;
-    --ink: #1e2a24;
-    --ink-mid: #4a5c52;
-    --ink-light: #8a9e94;
-    --radius: 16px;
-    --radius-sm: 10px;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--warm-white);
-    color: var(--ink);
-    overflow-x: hidden;
-  }
-
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 0 5%;
-    height: 68px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(250,249,247,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--stone);
-  }
-
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-  }
-
-  .nav-logo-mark {
-    width: 36px; height: 36px;
-    background: var(--sage);
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .nav-logo-mark::before {
-    content: '';
-    position: absolute;
-    width: 18px; height: 18px;
-    border: 2.5px solid white;
-    border-radius: 50%;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -55%);
-  }
-
-  .nav-logo-mark::after {
-    content: '';
-    position: absolute;
-    width: 22px; height: 10px;
-    border: 2.5px solid white;
-    border-radius: 0 0 12px 12px;
-    border-top: none;
-    bottom: 7px; left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .nav-logo-text {
-    font-family: 'Lora', serif;
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--ink);
-  }
-
-  .nav-logo-text span { color: var(--sage); }
-
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 32px;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-size: 0.88rem;
-    font-weight: 500;
-    color: var(--ink-mid);
-    text-decoration: none;
-    letter-spacing: 0.01em;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--sage); }
-
-  .nav-cta {
-    background: var(--sage) !important;
-    color: white !important;
-    padding: 9px 22px;
-    border-radius: 100px;
-    font-weight: 600 !important;
-    transition: background 0.2s, transform 0.15s !important;
-  }
-
-  .nav-cta:hover {
-    background: var(--teal) !important;
-    transform: translateY(-1px);
-  }
-
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 100px 5% 60px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 70% 60% at 70% 40%, rgba(90,122,106,0.08) 0%, transparent 70%),
-      radial-gradient(ellipse 50% 40% at 20% 80%, rgba(200,129,58,0.06) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 50% at 80% 80%, rgba(122,107,154,0.05) 0%, transparent 60%);
-  }
-
-  .hero-bg-circles {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-
-  .hero-bg-circles::before {
-    content: '';
-    position: absolute;
-    width: 480px; height: 480px;
-    border: 1px solid rgba(90,122,106,0.12);
-    border-radius: 50%;
-    top: 10%; right: 8%;
-    animation: drift 12s ease-in-out infinite;
-  }
-
-  .hero-bg-circles::after {
-    content: '';
-    position: absolute;
-    width: 280px; height: 280px;
-    border: 1px solid rgba(200,129,58,0.1);
-    border-radius: 50%;
-    bottom: 15%; right: 20%;
-    animation: drift 16s ease-in-out infinite reverse;
-  }
-
-  @keyframes drift {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-20px) scale(1.02); }
-  }
-
-  .hero-content {
-    position: relative;
-    max-width: 620px;
-    animation: fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) both;
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--sage-pale);
-    color: var(--sage);
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    padding: 7px 16px;
-    border-radius: 100px;
-    margin-bottom: 28px;
-    border: 1px solid rgba(90,122,106,0.2);
-    animation: fadeUp 0.9s 0.1s cubic-bezier(0.22,1,0.36,1) both;
-  }
-
-  .hero-badge-dot {
-    width: 7px; height: 7px;
-    background: var(--sage);
-    border-radius: 50%;
-    animation: pulse 2.5s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.75); }
-  }
-
-  .hero h1 {
-    font-family: 'Lora', serif;
-    font-size: clamp(2.4rem, 5vw, 3.6rem);
-    font-weight: 600;
-    line-height: 1.18;
-    color: var(--ink);
-    margin-bottom: 24px;
-    animation: fadeUp 0.9s 0.15s cubic-bezier(0.22,1,0.36,1) both;
-  }
-
-  .hero h1 em {
-    font-style: italic;
-    color: var(--sage);
-  }
-
-  .hero-sub {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: var(--ink-mid);
-    margin-bottom: 40px;
-    max-width: 520px;
-    font-weight: 300;
-    animation: fadeUp 0.9s 0.2s cubic-bezier(0.22,1,0.36,1) both;
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    animation: fadeUp 0.9s 0.25s cubic-bezier(0.22,1,0.36,1) both;
-  }
-
-  .btn-primary {
-    background: var(--sage);
-    color: white;
-    padding: 14px 30px;
-    border-radius: 100px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-    box-shadow: 0 4px 20px rgba(90,122,106,0.25);
-  }
-
-  .btn-primary:hover {
-    background: var(--teal);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(90,122,106,0.35);
-  }
-
-  .btn-secondary {
-    background: transparent;
-    color: var(--ink-mid);
-    padding: 14px 28px;
-    border-radius: 100px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    text-decoration: none;
-    border: 1.5px solid var(--stone);
-    transition: border-color 0.2s, color 0.2s, transform 0.15s;
-  }
-
-  .btn-secondary:hover {
-    border-color: var(--sage-light);
-    color: var(--sage);
-    transform: translateY(-2px);
-  }
-
-  .hero-trust {
-    margin-top: 56px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    animation: fadeUp 0.9s 0.3s cubic-bezier(0.22,1,0.36,1) both;
-  }
-
-  .hero-trust-text {
-    font-size: 0.82rem;
-    color: var(--ink-light);
-    font-weight: 500;
-    letter-spacing: 0.02em;
-  }
-
-  .trust-pills {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .trust-pill {
-    font-size: 0.78rem;
-    font-weight: 500;
-    color: var(--ink-mid);
-    background: white;
-    border: 1px solid var(--stone);
-    padding: 5px 12px;
-    border-radius: 100px;
-  }
-
-  /* HERO VISUAL */
-  .hero-visual {
-    position: absolute;
-    right: 4%;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 420px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    animation: fadeUp 0.9s 0.35s cubic-bezier(0.22,1,0.36,1) both;
-  }
-
-  @media (max-width: 1000px) {
-    .hero-visual { display: none; }
-    .hero-content { max-width: 100%; }
-  }
-
-  .mini-card {
-    background: white;
-    border-radius: var(--radius);
-    padding: 18px;
-    border: 1px solid var(--stone);
-    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-
-  .mini-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-  }
-
-  .mini-card.tall { grid-row: span 2; }
-
-  .mini-card-icon {
-    width: 36px; height: 36px;
-    border-radius: 10px;
-    display: grid;
-    place-items: center;
-    margin-bottom: 12px;
-    font-size: 1.1rem;
-  }
-
-  .mini-card h4 {
-    font-family: 'Lora', serif;
-    font-size: 0.88rem;
-    font-weight: 600;
-    color: var(--ink);
-    margin-bottom: 6px;
-    line-height: 1.3;
-  }
-
-  .mini-card p {
-    font-size: 0.75rem;
-    color: var(--ink-light);
-    line-height: 1.5;
-  }
-
-  .mini-card .progress-bar {
-    height: 4px;
-    background: var(--stone);
-    border-radius: 4px;
-    margin-top: 14px;
-    overflow: hidden;
-  }
-
-  .mini-card .progress-fill {
-    height: 100%;
-    border-radius: 4px;
-    background: var(--sage);
-    width: 65%;
-    animation: grow 1.5s 1s ease both;
-  }
-
-  @keyframes grow {
-    from { width: 0; }
-  }
-
-  .mini-card .tag {
-    display: inline-block;
-    font-size: 0.7rem;
-    font-weight: 600;
-    padding: 3px 8px;
-    border-radius: 100px;
-    margin-top: 10px;
-  }
-
-  /* SECTIONS SHARED */
-  section { padding: 80px 5%; }
-
-  .section-label {
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--sage);
-    margin-bottom: 14px;
-  }
-
-  .section-title {
-    font-family: 'Lora', serif;
-    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-    font-weight: 600;
-    color: var(--ink);
-    line-height: 1.25;
-    margin-bottom: 16px;
-  }
-
-  .section-title em { font-style: italic; color: var(--sage); }
-
-  .section-sub {
-    font-size: 1rem;
-    color: var(--ink-mid);
-    line-height: 1.7;
-    max-width: 520px;
-    font-weight: 300;
-  }
-
-  /* FOR WHOM */
-  .for-whom {
-    background: var(--sage-pale);
-    border-radius: 24px;
-    margin: 0 3%;
-    padding: 60px 5%;
-  }
-
-  .for-whom-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-  }
-
-  @media (max-width: 768px) {
-    .for-whom-inner { grid-template-columns: 1fr; gap: 40px; }
-  }
-
-  .roles-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 30px;
-  }
-
-  .role-item {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    background: white;
-    border-radius: var(--radius-sm);
-    padding: 16px 20px;
-    border: 1px solid rgba(90,122,106,0.15);
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-
-  .role-item:hover {
-    transform: translateX(4px);
-    box-shadow: 0 4px 16px rgba(90,122,106,0.12);
-  }
-
-  .role-icon {
-    width: 42px; height: 42px;
-    border-radius: 12px;
-    background: var(--sage-pale);
-    display: grid;
-    place-items: center;
-    font-size: 1.2rem;
-    flex-shrink: 0;
-  }
-
-  .role-name {
-    font-weight: 600;
-    font-size: 0.92rem;
-    color: var(--ink);
-  }
-
-  .role-desc {
-    font-size: 0.8rem;
-    color: var(--ink-light);
-    margin-top: 2px;
-  }
-
-  .for-whom-quote {
-    background: white;
-    border-radius: var(--radius);
-    padding: 32px;
-    border-left: 4px solid var(--sage);
-  }
-
-  .for-whom-quote blockquote {
-    font-family: 'Lora', serif;
-    font-style: italic;
-    font-size: 1.15rem;
-    line-height: 1.7;
-    color: var(--ink);
-    margin-bottom: 20px;
-  }
-
-  .quote-attr {
-    font-size: 0.82rem;
-    color: var(--ink-light);
-    font-weight: 500;
-  }
-
-  /* FEATURES */
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    margin-top: 50px;
-  }
-
-  .feature-card {
-    background: white;
-    border-radius: var(--radius);
-    padding: 28px;
-    border: 1px solid var(--stone);
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.25s, box-shadow 0.25s;
-  }
-
-  .feature-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.08);
-  }
-
-  .feature-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-  }
-
-  .feature-card.sage::before { background: var(--sage); }
-  .feature-card.teal::before { background: var(--teal); }
-  .feature-card.amber::before { background: var(--amber); }
-  .feature-card.lavender::before { background: var(--lavender); }
-  .feature-card.sage2::before { background: linear-gradient(90deg, var(--sage), var(--teal)); }
-
-  .feature-icon {
-    width: 48px; height: 48px;
-    border-radius: 14px;
-    display: grid;
-    place-items: center;
-    font-size: 1.4rem;
-    margin-bottom: 18px;
-  }
-
-  .feature-card.sage .feature-icon { background: var(--sage-pale); }
-  .feature-card.teal .feature-icon { background: var(--teal-light); }
-  .feature-card.amber .feature-icon { background: var(--amber-pale); }
-  .feature-card.lavender .feature-icon { background: var(--lavender-pale); }
-  .feature-card.sage2 .feature-icon { background: var(--sage-pale); }
-
-  .feature-card h3 {
-    font-family: 'Lora', serif;
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--ink);
-    margin-bottom: 10px;
-  }
-
-  .feature-card p {
-    font-size: 0.88rem;
-    color: var(--ink-mid);
-    line-height: 1.65;
-    margin-bottom: 16px;
-  }
-
-  .feature-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-
-  .feature-tag {
-    font-size: 0.72rem;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 100px;
-    background: var(--sage-pale);
-    color: var(--sage);
-  }
-
-  .feature-card.teal .feature-tag { background: var(--teal-light); color: var(--teal); }
-  .feature-card.amber .feature-tag { background: var(--amber-pale); color: var(--amber); }
-  .feature-card.lavender .feature-tag { background: var(--lavender-pale); color: var(--lavender); }
-  .feature-card.sage2 .feature-tag { background: var(--sage-pale); color: var(--sage); }
-
-  /* HOW IT WORKS */
-  .how-section {
-    background: var(--ink);
-    color: white;
-    border-radius: 24px;
-    margin: 0 3%;
-    padding: 70px 6%;
-  }
-
-  .how-section .section-label { color: var(--sage-light); }
-  .how-section .section-title { color: white; }
-  .how-section .section-title em { color: var(--sage-light); }
-  .how-section .section-sub { color: rgba(255,255,255,0.6); }
-
-  .steps-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 0;
-    margin-top: 50px;
-    position: relative;
-  }
-
-  .steps-grid::before {
-    content: '';
-    position: absolute;
-    top: 28px; left: 60px; right: 60px;
-    height: 1px;
-    background: rgba(255,255,255,0.1);
-    pointer-events: none;
-  }
-
-  .step {
-    padding: 0 24px 0 0;
-    position: relative;
-  }
-
-  .step-num {
-    width: 56px; height: 56px;
-    background: rgba(90,122,106,0.2);
-    border: 1.5px solid var(--sage-light);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Lora', serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--sage-light);
-    margin-bottom: 22px;
-    position: relative;
-    z-index: 1;
-    background: var(--ink);
-  }
-
-  .step h4 {
-    font-family: 'Lora', serif;
-    font-size: 1rem;
-    font-weight: 600;
-    color: white;
-    margin-bottom: 10px;
-  }
-
-  .step p {
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.55);
-    line-height: 1.65;
-  }
-
-  /* COMPANION AREAS (from screenshots) */
-  .companion-section { padding: 80px 5%; }
-
-  .companion-header {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: end;
-    margin-bottom: 40px;
-    gap: 20px;
-  }
-
-  .companion-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-
-  @media (max-width: 900px) {
-    .companion-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  @media (max-width: 580px) {
-    .companion-grid { grid-template-columns: 1fr; }
-  }
-
-  .companion-card {
-    background: white;
-    border-radius: var(--radius);
-    padding: 24px;
-    border: 1px solid var(--stone);
-    cursor: pointer;
-    transition: transform 0.25s, box-shadow 0.25s, border-color 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .companion-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.09);
-    border-color: var(--sage-light);
-  }
-
-  .companion-card-accent {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 4px;
-  }
-
-  .companion-card h3 {
-    font-family: 'Lora', serif;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--ink);
-    margin-bottom: 6px;
-  }
-
-  .companion-card p {
-    font-size: 0.8rem;
-    color: var(--ink-light);
-    line-height: 1.5;
-    margin-bottom: 18px;
-  }
-
-  .companion-card-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 16px;
-    border-top: 1px solid var(--stone);
-  }
-
-  .companion-card-meta {
-    font-size: 0.75rem;
-    color: var(--ink-light);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .companion-card-arrow {
-    width: 28px; height: 28px;
-    background: var(--sage-pale);
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    font-size: 0.8rem;
-    color: var(--sage);
-    transition: background 0.2s, transform 0.2s;
-  }
-
-  .companion-card:hover .companion-card-arrow {
-    background: var(--sage);
-    color: white;
-    transform: translateX(2px);
-  }
-
-  /* TESTIMONIALS */
-  .testimonials {
-    background: var(--amber-pale);
-    border-radius: 24px;
-    margin: 0 3%;
-    padding: 70px 6%;
-  }
-
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    margin-top: 40px;
-  }
-
-  .testimonial-card {
-    background: white;
-    border-radius: var(--radius);
-    padding: 28px;
-    border: 1px solid rgba(200,129,58,0.15);
-  }
-
-  .testimonial-stars {
-    color: var(--amber);
-    font-size: 0.9rem;
-    margin-bottom: 14px;
-    letter-spacing: 2px;
-  }
-
-  .testimonial-card blockquote {
-    font-family: 'Lora', serif;
-    font-style: italic;
-    font-size: 0.95rem;
-    line-height: 1.65;
-    color: var(--ink);
-    margin-bottom: 20px;
-  }
-
-  .testimonial-attr {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .testimonial-avatar {
-    width: 38px; height: 38px;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    font-weight: 700;
-    font-size: 0.85rem;
-    color: white;
-    flex-shrink: 0;
-  }
-
-  .testimonial-name {
-    font-weight: 600;
-    font-size: 0.85rem;
-    color: var(--ink);
-  }
-
-  .testimonial-role {
-    font-size: 0.75rem;
-    color: var(--ink-light);
-    margin-top: 2px;
-  }
-
-  /* PRICING */
-  .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
-    margin-top: 50px;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .pricing-card {
-    background: white;
-    border-radius: var(--radius);
-    padding: 32px;
-    border: 1.5px solid var(--stone);
-    position: relative;
-    transition: transform 0.25s, box-shadow 0.25s;
-  }
-
-  .pricing-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.08);
-  }
-
-  .pricing-card.featured {
-    border-color: var(--sage);
-    background: var(--ink);
-    color: white;
-  }
-
-  .pricing-badge {
-    position: absolute;
-    top: -13px; left: 50%;
-    transform: translateX(-50%);
-    background: var(--sage);
-    color: white;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 5px 14px;
-    border-radius: 100px;
-    white-space: nowrap;
-  }
-
-  .pricing-tier {
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--sage);
-    margin-bottom: 12px;
-  }
-
-  .pricing-card.featured .pricing-tier { color: var(--sage-light); }
-
-  .pricing-price {
-    font-family: 'Lora', serif;
-    font-size: 2.6rem;
-    font-weight: 600;
-    color: var(--ink);
-    margin-bottom: 4px;
-    line-height: 1;
-  }
-
-  .pricing-card.featured .pricing-price { color: white; }
-
-  .pricing-price span {
-    font-size: 1rem;
-    color: var(--ink-light);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 400;
-  }
-
-  .pricing-card.featured .pricing-price span { color: rgba(255,255,255,0.5); }
-
-  .pricing-desc {
-    font-size: 0.85rem;
-    color: var(--ink-light);
-    margin-bottom: 24px;
-    line-height: 1.5;
-  }
-
-  .pricing-card.featured .pricing-desc { color: rgba(255,255,255,0.55); }
-
-  .pricing-features {
-    list-style: none;
-    margin-bottom: 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .pricing-features li {
-    font-size: 0.85rem;
-    color: var(--ink-mid);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .pricing-card.featured .pricing-features li { color: rgba(255,255,255,0.75); }
-
-  .pricing-features li::before {
-    content: '✓';
-    width: 20px; height: 20px;
-    background: var(--sage-pale);
-    color: var(--sage);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.7rem;
-    font-weight: 700;
-    flex-shrink: 0;
-  }
-
-  .pricing-card.featured .pricing-features li::before {
-    background: rgba(90,122,106,0.25);
-    color: var(--sage-light);
-  }
-
-  .pricing-cta {
-    width: 100%;
-    padding: 13px;
-    border-radius: 100px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-    transition: all 0.2s;
-    text-align: center;
-    display: block;
-    text-decoration: none;
-  }
-
-  .pricing-card:not(.featured) .pricing-cta {
-    background: var(--sage-pale);
-    color: var(--sage);
-  }
-
-  .pricing-card:not(.featured) .pricing-cta:hover {
-    background: var(--sage);
-    color: white;
-  }
-
-  .pricing-card.featured .pricing-cta {
-    background: var(--sage);
-    color: white;
-  }
-
-  .pricing-card.featured .pricing-cta:hover {
-    background: var(--sage-light);
-  }
-
-  /* CTA SECTION */
-  .cta-section {
-    text-align: center;
-    padding: 90px 5%;
-    background:
-      radial-gradient(ellipse 60% 80% at 50% 100%, rgba(90,122,106,0.1) 0%, transparent 70%);
-  }
-
-  .cta-section .section-title { margin: 0 auto 16px; max-width: 600px; }
-  .cta-section .section-sub { margin: 0 auto 36px; text-align: center; }
-
-  /* FOOTER */
-  footer {
-    background: var(--ink);
-    color: rgba(255,255,255,0.6);
-    padding: 50px 5% 30px;
-  }
-
-  .footer-inner {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 40px;
-  }
-
-  @media (max-width: 768px) {
-    .footer-inner { grid-template-columns: 1fr 1fr; }
-  }
-
-  .footer-brand p {
-    font-size: 0.85rem;
-    line-height: 1.7;
-    margin-top: 14px;
-    max-width: 280px;
-    color: rgba(255,255,255,0.45);
-  }
-
-  .footer-col h5 {
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
-    margin-bottom: 16px;
-  }
-
-  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-
-  .footer-col ul li a {
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.55);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .footer-col ul li a:hover { color: white; }
-
-  .footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 24px;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    font-size: 0.78rem;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .footer-bottom-links { display: flex; gap: 20px; }
-  .footer-bottom-links a { color: rgba(255,255,255,0.4); text-decoration: none; }
-  .footer-bottom-links a:hover { color: rgba(255,255,255,0.7); }
-
-  /* NHS BADGE */
-  .nhs-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(0,94,184,0.12);
-    color: #5fa8d3;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    padding: 6px 14px;
-    border-radius: 100px;
-    margin-top: 14px;
-    border: 1px solid rgba(0,94,184,0.2);
-  }
-
-  /* SCROLL ANIMATIONS */
-  .reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+:root{
+  --blue:#2d6480;--blue-l:#4a88a8;--blue-d:#1c4d63;
+  --blue-bg:#eef5f9;--blue-mid:#d4e8f2;
+  --amber:#c47a3a;--amber-bg:#fdf3e8;
+  --teal:#2a8a7a;--teal-bg:#eaf5f2;
+  --ink:#0c1c28;--ink-2:#2a3f50;--ink-3:#5a7080;--ink-4:#92aab8;
+  --surface:#ffffff;--bg:#f5f7f9;--border:#dde5ea;--border-d:#b8c8d5;
+  --r:12px;--r-lg:18px;
+}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--surface);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;height:62px;padding:0 6%;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(255,255,255,0.94);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);transition:box-shadow 0.3s;
+}
+nav.scrolled{box-shadow:0 1px 24px rgba(0,0,0,0.06);}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none;}
+.lm{width:30px;height:30px;border-radius:50%;background:var(--blue);flex-shrink:0;display:grid;place-items:center;position:relative;overflow:hidden;}
+.lm::before{content:'';position:absolute;width:13px;height:13px;border:2px solid white;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-58%);}
+.lm::after{content:'';position:absolute;width:16px;height:7px;border:2px solid white;border-radius:0 0 8px 8px;border-top:none;bottom:5px;left:50%;transform:translateX(-50%);}
+.lt{font-size:0.88rem;font-weight:600;color:var(--ink);letter-spacing:-0.01em;}
+.lt span{color:var(--blue);}
+.nav-links{list-style:none;display:flex;align-items:center;gap:26px;}
+.nav-links a{font-size:0.82rem;font-weight:500;color:var(--ink-3);text-decoration:none;transition:color 0.15s;}
+.nav-links a:hover{color:var(--ink);}
+.nav-cta{background:var(--blue)!important;color:white!important;padding:7px 18px;border-radius:100px;font-size:0.82rem!important;font-weight:600!important;transition:background 0.2s,transform 0.15s!important;box-shadow:0 2px 10px rgba(45,100,128,0.25);}
+.nav-cta:hover{background:var(--blue-d)!important;transform:translateY(-1px);}
+
+/* HERO */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:96px 6% 72px;position:relative;background:var(--surface);overflow:hidden;
+}
+.hero::before{content:'';position:absolute;width:1000px;height:600px;background:radial-gradient(ellipse,rgba(45,100,128,0.06) 0%,transparent 70%);top:-120px;left:50%;transform:translateX(-50%);pointer-events:none;}
+.hero::after{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(45,100,128,0.08) 1px,transparent 1px);background-size:30px 30px;mask-image:radial-gradient(ellipse 65% 65% at 50% 50%,black 10%,transparent 80%);pointer-events:none;}
+.hi{position:relative;z-index:1;max-width:740px;margin:0 auto;}
+.htag{display:inline-flex;align-items:center;gap:7px;background:var(--blue-bg);border:1px solid var(--blue-mid);border-radius:100px;padding:5px 14px;font-size:0.7rem;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:var(--blue-d);margin-bottom:28px;animation:up 0.65s 0.1s cubic-bezier(0.22,1,0.36,1) both;}
+.tdot{width:6px;height:6px;border-radius:50%;background:var(--blue);animation:blink 2.5s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+h1{font-family:'Instrument Serif',serif;font-size:clamp(2.6rem,5.2vw,4.6rem);font-weight:400;line-height:1.07;letter-spacing:-0.025em;color:var(--ink);margin-bottom:22px;animation:up 0.65s 0.15s cubic-bezier(0.22,1,0.36,1) both;}
+h1 em{font-style:italic;color:var(--blue);}
+.hsub{font-size:1.05rem;line-height:1.72;color:var(--ink-3);font-weight:300;max-width:540px;margin:0 auto 38px;animation:up 0.65s 0.2s cubic-bezier(0.22,1,0.36,1) both;}
+.hbtns{display:flex;gap:11px;justify-content:center;flex-wrap:wrap;animation:up 0.65s 0.25s cubic-bezier(0.22,1,0.36,1) both;}
+.bp{background:var(--blue);color:white;padding:13px 28px;border-radius:100px;font-size:0.87rem;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:background 0.2s,transform 0.15s,box-shadow 0.2s;box-shadow:0 4px 18px rgba(45,100,128,0.28);}
+.bp:hover{background:var(--blue-d);transform:translateY(-2px);box-shadow:0 8px 26px rgba(45,100,128,0.38);}
+.bs{background:white;color:var(--ink-2);padding:13px 24px;border-radius:100px;font-size:0.87rem;font-weight:500;text-decoration:none;border:1.5px solid var(--border-d);transition:all 0.2s;}
+.bs:hover{border-color:var(--blue-l);color:var(--blue);transform:translateY(-2px);}
+.hstats{display:flex;margin-top:52px;border:1px solid var(--border);border-radius:var(--r-lg);background:white;overflow:hidden;box-shadow:0 2px 14px rgba(0,0,0,0.05);animation:up 0.65s 0.3s cubic-bezier(0.22,1,0.36,1) both;}
+.stat{flex:1;padding:20px;border-right:1px solid var(--border);text-align:center;}
+.stat:last-child{border-right:none;}
+.sn{font-family:'Instrument Serif',serif;font-size:1.8rem;color:var(--blue);line-height:1;margin-bottom:5px;}
+.sl{font-size:0.7rem;color:var(--ink-4);font-weight:500;line-height:1.4;}
+.hby{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:28px;flex-wrap:wrap;animation:up 0.65s 0.35s cubic-bezier(0.22,1,0.36,1) both;}
+.byl{font-size:0.7rem;font-weight:500;color:var(--ink-4);letter-spacing:0.05em;text-transform:uppercase;}
+.byps{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;}
+.byp{font-size:0.73rem;font-weight:500;color:var(--ink-3);background:var(--bg);border:1px solid var(--border);padding:4px 11px;border-radius:100px;}
+@keyframes up{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+
+/* SHARED */
+section{padding:84px 6%;}
+.ey{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);margin-bottom:10px;}
+.sh{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3vw,2.7rem);font-weight:400;line-height:1.12;letter-spacing:-0.02em;color:var(--ink);margin-bottom:12px;}
+.sh em{font-style:italic;color:var(--blue);}
+.sp{font-size:0.92rem;color:var(--ink-3);line-height:1.75;font-weight:300;max-width:480px;}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity 0.6s cubic-bezier(0.22,1,0.36,1),transform 0.6s cubic-bezier(0.22,1,0.36,1);}
+.reveal.visible{opacity:1;transform:none;}
+.d1{transition-delay:0.08s;}.d2{transition-delay:0.16s;}.d3{transition-delay:0.24s;}
+
+/* FOR WHOM */
+.fw{background:var(--bg);}
+.fwg{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start;margin-top:44px;}
+.rl{display:flex;flex-direction:column;gap:9px;}
+.rr{display:flex;align-items:center;gap:14px;background:white;border-radius:var(--r);padding:13px 16px;border:1px solid var(--border);transition:border-color 0.2s,transform 0.2s;}
+.rr:hover{border-color:var(--blue-l);transform:translateX(3px);}
+.ri{width:36px;height:36px;border-radius:9px;background:var(--blue-bg);display:grid;place-items:center;font-size:1rem;flex-shrink:0;}
+.rn{font-size:0.83rem;font-weight:600;color:var(--ink);}
+.rd{font-size:0.73rem;color:var(--ink-4);margin-top:1px;}
+.qcard{background:white;border-radius:var(--r-lg);padding:28px;border:1px solid var(--border);position:sticky;top:78px;}
+.qcard blockquote{font-family:'Instrument Serif',serif;font-style:italic;font-size:1.05rem;line-height:1.65;color:var(--ink);margin-bottom:16px;}
+.qa{font-size:0.76rem;color:var(--ink-4);margin-bottom:16px;}
+.nhst{display:inline-flex;align-items:center;gap:6px;background:var(--blue-bg);border:1px solid var(--blue-mid);border-radius:100px;padding:5px 13px;font-size:0.73rem;font-weight:600;color:var(--blue-d);}
+
+/* FEATURES */
+.fg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:44px;}
+.fc{background:white;border-radius:var(--r-lg);padding:26px;border:1px solid var(--border);position:relative;overflow:hidden;transition:transform 0.22s,box-shadow 0.22s;}
+.fc:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,0.07);}
+.fa{position:absolute;top:0;left:0;right:0;height:3px;}
+.fi{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;font-size:1.25rem;margin-bottom:14px;}
+.fc h3{font-family:'Instrument Serif',serif;font-size:1rem;font-weight:400;color:var(--ink);margin-bottom:7px;letter-spacing:-0.01em;}
+.fc p{font-size:0.81rem;color:var(--ink-3);line-height:1.65;margin-bottom:13px;}
+.fts{display:flex;flex-wrap:wrap;gap:5px;}
+.ft{font-size:0.66rem;font-weight:600;padding:3px 8px;border-radius:100px;}
+
+/* HOW */
+.how{background:var(--ink);position:relative;overflow:hidden;}
+.how::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:rgba(45,100,128,0.1);top:-200px;right:-150px;pointer-events:none;}
+.how .ey{color:var(--blue-l);}
+.how .sh{color:white;}
+.how .sh em{color:var(--blue-l);}
+.how .sp{color:rgba(255,255,255,0.45);}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:48px;position:relative;}
+.steps::before{content:'';position:absolute;top:25px;left:58px;right:58px;height:1px;background:rgba(255,255,255,0.07);}
+.step{padding:0 18px 0 0;}
+.stnum{width:50px;height:50px;border-radius:50%;border:1.5px solid rgba(74,136,168,0.35);display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',serif;font-size:1.2rem;color:var(--blue-l);margin-bottom:18px;position:relative;z-index:1;background:var(--ink);}
+.step h4{font-family:'Instrument Serif',serif;font-size:0.92rem;font-weight:400;color:white;margin-bottom:7px;}
+.step p{font-size:0.78rem;color:rgba(255,255,255,0.38);line-height:1.6;}
+
+/* COMPANION */
+.chd{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:28px;gap:20px;}
+.cg{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;}
+.cc{background:white;border-radius:var(--r-lg);border:1px solid var(--border);cursor:pointer;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s;}
+.cc:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,0,0,0.07);border-color:var(--blue-l);}
+.cct{padding:18px 18px 0;}
+.cca{height:3px;margin:-1px -1px 0;}
+.ccbs{display:flex;gap:5px;margin:14px 0 8px;}
+.ccb{font-size:0.62rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;padding:3px 8px;border-radius:100px;}
+.cc h3{font-family:'Instrument Serif',serif;font-size:0.92rem;font-weight:400;color:var(--ink);margin-bottom:4px;letter-spacing:-0.01em;}
+.ccq{font-size:0.74rem;color:var(--ink-4);line-height:1.5;font-style:italic;margin-bottom:14px;}
+.ccf{padding:11px 18px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.ccm{font-size:0.68rem;color:var(--ink-4);display:flex;gap:9px;}
+.ccar{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:0.72rem;transition:all 0.18s;}
+.cc:hover .ccar{background:var(--blue);color:white;}
+
+/* NHS */
+.nhs{background:var(--ink);position:relative;overflow:hidden;}
+.nhs::after{content:'';position:absolute;width:500px;height:500px;border-radius:50%;background:rgba(45,100,128,0.09);bottom:-200px;left:-100px;pointer-events:none;}
+.nhs .ey{color:var(--blue-l);}
+.nhs .sh{color:white;}
+.nhs .sh em{color:var(--blue-l);}
+.nhs .sp{color:rgba(255,255,255,0.45);}
+.nhsg{display:grid;grid-template-columns:1fr 1fr;gap:52px;margin-top:44px;align-items:start;}
+.nhsl{display:flex;flex-direction:column;gap:9px;}
+.nhsr{display:flex;gap:13px;align-items:flex-start;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);border-radius:var(--r);padding:14px;}
+.nhsi{width:34px;height:34px;border-radius:8px;background:rgba(45,100,128,0.25);display:grid;place-items:center;font-size:0.85rem;flex-shrink:0;}
+.nhsn{font-size:0.81rem;font-weight:600;color:white;margin-bottom:2px;}
+.nhsd{font-size:0.72rem;color:rgba(255,255,255,0.38);line-height:1.5;}
+.nhscard{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);border-radius:var(--r-lg);padding:26px;}
+.nhsctl{font-size:0.66rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(--blue-l);margin-bottom:18px;}
+.nhscl{display:flex;flex-direction:column;gap:13px;margin-bottom:24px;}
+.nhscr{display:flex;gap:11px;align-items:flex-start;}
+.nhsci{width:22px;height:22px;border-radius:50%;background:rgba(45,100,128,0.3);display:grid;place-items:center;font-size:0.66rem;color:var(--blue-l);font-weight:700;flex-shrink:0;}
+.nhsct{font-size:0.81rem;font-weight:600;color:white;margin-bottom:2px;}
+.nhscd{font-size:0.72rem;color:rgba(255,255,255,0.38);line-height:1.5;}
+
+/* PRODUCT */
+.pg{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin-top:44px;}
+.pc{background:white;border-radius:var(--r-lg);border:1px solid var(--border);overflow:hidden;transition:transform 0.2s,box-shadow 0.2s;}
+.pc:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,0,0,0.07);}
+.pt{padding:20px;display:flex;gap:13px;align-items:center;border-bottom:1px solid var(--border);}
+.pio{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;font-size:1.15rem;flex-shrink:0;}
+.ptt{font-size:0.86rem;font-weight:600;color:var(--ink);}
+.pts{font-size:0.71rem;color:var(--ink-4);margin-top:1px;}
+.pb{padding:16px;}
+.pb p{font-size:0.8rem;color:var(--ink-3);line-height:1.65;}
+
+/* EARLY ACCESS */
+.ea{background:var(--bg);}
+.eag{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:44px;}
+.eac{background:white;border-radius:var(--r-lg);border:1.5px solid var(--border);padding:28px;text-align:center;transition:transform 0.2s,box-shadow 0.2s;}
+.eac:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,0,0,0.07);}
+.eac.feat{background:var(--ink);border-color:var(--ink);position:relative;overflow:hidden;}
+.eac.feat::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--blue-l));}
+.eaico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:1.2rem;margin:0 auto 14px;}
+.ealbl{font-size:0.66rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:7px;}
+.eath{font-family:'Instrument Serif',serif;font-size:1.45rem;font-weight:400;color:var(--ink);margin-bottom:7px;letter-spacing:-0.01em;}
+.eac.feat .eath{color:white;}
+.eadesc{font-size:0.8rem;color:var(--ink-3);line-height:1.6;margin-bottom:20px;}
+.eac.feat .eadesc{color:rgba(255,255,255,0.45);}
+.eabtn{display:inline-flex;align-items:center;gap:6px;padding:9px 20px;border-radius:100px;font-size:0.8rem;font-weight:600;text-decoration:none;transition:all 0.2s;}
+
+/* CTA */
+.ctas{text-align:center;padding:96px 6%;background:white;position:relative;overflow:hidden;}
+.ctas::before{content:'';position:absolute;width:800px;height:400px;background:radial-gradient(ellipse,rgba(45,100,128,0.05) 0%,transparent 70%);bottom:-80px;left:50%;transform:translateX(-50%);}
+
+/* FOOTER */
+footer{background:var(--ink);padding:48px 6% 26px;}
+.fg2{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;margin-bottom:36px;}
+.fb p{font-size:0.8rem;color:rgba(255,255,255,0.3);line-height:1.7;margin-top:12px;max-width:240px;}
+.fc2 h5{font-size:0.67rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:12px;}
+.fc2 ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.fc2 ul li a{font-size:0.8rem;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s;}
+.fc2 ul li a:hover{color:rgba(255,255,255,0.75);}
+.fbot{display:flex;justify-content:space-between;align-items:center;padding-top:20px;border-top:1px solid rgba(255,255,255,0.07);font-size:0.73rem;color:rgba(255,255,255,0.28);flex-wrap:wrap;gap:9px;}
+.fbot a{color:rgba(255,255,255,0.28);text-decoration:none;}
+.fbot a:hover{color:rgba(255,255,255,0.6);}
+.fbl{display:flex;gap:16px;}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .fg{grid-template-columns:repeat(2,1fr);}
+  .cg{grid-template-columns:repeat(2,1fr);}
+  .nhsg{grid-template-columns:1fr;gap:28px;}
+  .pg{grid-template-columns:1fr;}
+  .fg2{grid-template-columns:1fr 1fr;}
+  .fwg{grid-template-columns:1fr;}
+}
+@media(max-width:640px){
+  nav{padding:0 4%;}
+  .nav-links li:not(:last-child){display:none;}
+  section{padding:60px 4%;}
+  .hero{padding:88px 4% 60px;}
+  .hstats{flex-wrap:wrap;}
+  .stat{flex:1 1 50%;border-bottom:1px solid var(--border);}
+  .stat:nth-child(2){border-right:none;}
+  .stat:nth-last-child(-n+2){border-bottom:none;}
+  .fg{grid-template-columns:1fr;}
+  .cg{grid-template-columns:1fr;}
+  .steps{grid-template-columns:1fr 1fr;gap:20px;}
+  .steps::before{display:none;}
+  .eag{grid-template-columns:1fr;}
+  .fg2{grid-template-columns:1fr;}
+  .pg{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">
-    <div class="nav-logo-mark"></div>
-    <span class="nav-logo-text">Alongside<span>You</span>.care</span>
+<nav id="nav">
+  <a href="#" class="logo">
+    <div class="lm"></div>
+    <span class="lt">AlongsideYou<span>.care</span></span>
   </a>
   <ul class="nav-links">
     <li><a href="#features">Features</a></li>
     <li><a href="#companion">Companion Areas</a></li>
-    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#early-access">Early Access</a></li>
     <li><a href="book-demo.html" class="nav-cta">Book a Demo</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-bg-circles"></div>
-  <div class="hero-content">
-    <div class="hero-badge">
-      <div class="hero-badge-dot"></div>
-      Now in Early Access — Free to Try
+  <div class="hi">
+    <div class="htag"><div class="tdot"></div>Now in early access — free to try</div>
+    <h1>Where personalised care<br><em>becomes second nature</em></h1>
+    <p class="hsub">A digital platform supporting Care Coordinators, Social Prescribers, and Health &amp; Wellbeing Coaches to apply what they've learned — in real practice, every day.</p>
+    <div class="hbtns">
+      <a href="demo.html" class="bp">See the platform →</a>
+      <a href="book-demo.html" class="bs">Book an organisational demo</a>
     </div>
-    <h1>Workforce development, <em>built for personalised care</em></h1>
-    <p class="hero-sub">
-      AlongsideYou.care is a digital platform that supports Care Coordinators, Social Prescribers, and Health & Wellbeing Coaches to apply personalised care skills in real practice — every day, not just after training.
-    </p>
-    <div class="hero-actions">
-      <a href="demo.html" class="btn-primary">See the Platform →</a>
-      <a href="book-demo.html" class="btn-secondary">Book a Demo</a>
+    <div class="hstats">
+      <div class="stat"><div class="sn">9</div><div class="sl">Companion Areas covering real practice</div></div>
+      <div class="stat"><div class="sn">5 min</div><div class="sl">Average time per learning session</div></div>
+      <div class="stat"><div class="sn">Auto</div><div class="sl">CPD logged for every interaction</div></div>
+      <div class="stat"><div class="sn">NHS</div><div class="sl">Aligned to personalised care frameworks</div></div>
     </div>
-    <div class="hero-trust">
-      <span class="hero-trust-text">Built for</span>
-      <div class="trust-pills">
-        <span class="trust-pill">PCNs</span>
-        <span class="trust-pill">NHS Teams</span>
-        <span class="trust-pill">VCSE Orgs</span>
-        <span class="trust-pill">ICSs</span>
+    <div class="hby">
+      <span class="byl">Commissioned by</span>
+      <div class="byps">
+        <span class="byp">PCNs</span>
+        <span class="byp">NHS Teams</span>
+        <span class="byp">VCSE Orgs</span>
+        <span class="byp">ICSs</span>
       </div>
-    </div>
-  </div>
-
-  <div class="hero-visual">
-    <div class="mini-card tall" style="background: var(--sage-pale); border-color: rgba(90,122,106,0.2);">
-      <div class="mini-card-icon" style="background: var(--sage); color: white;">💬</div>
-      <h4>Person-Centred Conversations</h4>
-      <p>How do I really listen and respond without rushing to fix?</p>
-      <div class="progress-bar"><div class="progress-fill"></div></div>
-      <div class="tag" style="background: rgba(90,122,106,0.15); color: var(--sage);">In progress</div>
-    </div>
-    <div class="mini-card" style="border-color: rgba(200,129,58,0.2);">
-      <div class="mini-card-icon" style="background: var(--amber-pale); font-size: 0.9rem;">✨</div>
-      <h4>Try This</h4>
-      <p style="font-size: 0.72rem;">Open with curiosity, not a question list.</p>
-    </div>
-    <div class="mini-card" style="background: var(--teal-light); border-color: rgba(45,106,106,0.2);">
-      <div class="mini-card-icon" style="background: rgba(45,106,106,0.15); font-size: 0.9rem;">📊</div>
-      <h4>CPD Tracked</h4>
-      <p style="font-size: 0.72rem;">8 hrs this month</p>
-    </div>
-    <div class="mini-card" style="border-color: rgba(122,107,154,0.2);">
-      <div class="mini-card-icon" style="background: var(--lavender-pale); font-size: 0.9rem;">🔁</div>
-      <h4>Reflection</h4>
-      <p style="font-size: 0.72rem;">3 case reflections completed</p>
     </div>
   </div>
 </section>
 
 <!-- FOR WHOM -->
-<div class="reveal">
-  <div class="for-whom">
-    <div class="for-whom-inner">
-      <div>
-        <div class="section-label">Who It's For</div>
-        <h2 class="section-title">Made for the people at the <em>heart of personalised care</em></h2>
-        <p class="section-sub">Supporting the workforce that works closest with people — in primary care, the community, and beyond.</p>
-        <div class="roles-list">
-          <div class="role-item">
-            <div class="role-icon">🤝</div>
-            <div>
-              <div class="role-name">Care Coordinators</div>
-              <div class="role-desc">PCNs and primary care networks</div>
-            </div>
-          </div>
-          <div class="role-item">
-            <div class="role-icon">🌿</div>
-            <div>
-              <div class="role-name">Social Prescribing Link Workers</div>
-              <div class="role-desc">Connecting people to community support</div>
-            </div>
-          </div>
-          <div class="role-item">
-            <div class="role-icon">💡</div>
-            <div>
-              <div class="role-name">Health & Wellbeing Coaches</div>
-              <div class="role-desc">Supporting behaviour change and self-management</div>
-            </div>
-          </div>
-          <div class="role-item">
-            <div class="role-icon">🏘️</div>
-            <div>
-              <div class="role-name">Community-Based Practitioners</div>
-              <div class="role-desc">VCSE, ICS, and beyond</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="for-whom-quote">
-        <blockquote>"Training gives you the foundation — but real confidence comes from those moments in between. AlongsideYou is built for exactly those moments."</blockquote>
-        <div class="quote-attr">— Designed with and for the personalised care workforce</div>
-        <div class="nhs-badge">
-          <span>🏥</span> Aligned with NHS Personalised Care
-        </div>
-      </div>
+<section class="fw">
+  <div class="reveal"><div class="ey">Who it's for</div><h2 class="sh">Made for the people <em>closest to the person</em></h2><p class="sp">Supporting the workforce that works hardest in primary care, community settings, and beyond.</p></div>
+  <div class="fwg">
+    <div class="rl reveal">
+      <div class="rr"><div class="ri">🤝</div><div><div class="rn">Care Coordinators</div><div class="rd">PCNs and primary care networks</div></div></div>
+      <div class="rr"><div class="ri">🌿</div><div><div class="rn">Social Prescribing Link Workers</div><div class="rd">Connecting people to community support</div></div></div>
+      <div class="rr"><div class="ri">💡</div><div><div class="rn">Health &amp; Wellbeing Coaches</div><div class="rd">Supporting behaviour change and self-management</div></div></div>
+      <div class="rr"><div class="ri">🏘️</div><div><div class="rn">Community-Based Practitioners</div><div class="rd">VCSE, ICS, and beyond</div></div></div>
+    </div>
+    <div class="qcard reveal d1">
+      <blockquote>"Training gives you the foundation — but real confidence comes from those moments in between. AlongsideYou is built for exactly those moments."</blockquote>
+      <p class="qa">— Designed with and for the personalised care workforce</p>
+      <div class="nhst">🏥 &nbsp;Aligned with NHS Personalised Care</div>
     </div>
   </div>
-</div>
+</section>
 
 <!-- FEATURES -->
 <section id="features">
-  <div class="reveal">
-    <div class="section-label">What's Inside</div>
-    <h2 class="section-title">Everything you need to <em>grow in practice</em></h2>
-    <p class="section-sub">Five interconnected areas designed to support you before, during, and after every interaction.</p>
-  </div>
-
-  <div class="features-grid">
-    <div class="feature-card sage reveal reveal-delay-1">
-      <div class="companion-card-accent" style="background: var(--sage);"></div>
-      <div class="feature-icon">🪞</div>
-      <h3>Reflection & Learning</h3>
-      <p>Structured tools to help you pause and make sense of what happened in practice — with AI-supported prompts that meet you where you are.</p>
-      <div class="feature-tags">
-        <span class="feature-tag">Case Reflection</span>
-        <span class="feature-tag">AI Prompts</span>
-        <span class="feature-tag">Competency Links</span>
-      </div>
-    </div>
-
-    <div class="feature-card teal reveal reveal-delay-2">
-      <div class="companion-card-accent" style="background: var(--teal);"></div>
-      <div class="feature-icon">⚡</div>
-      <h3>Micro-Learning</h3>
-      <p>Short, practical modules you can use in 5 minutes. Scenario-based tips and "Try This" nudges aligned to real situations.</p>
-      <div class="feature-tags">
-        <span class="feature-tag">5-Min Modules</span>
-        <span class="feature-tag">Scenarios</span>
-        <span class="feature-tag">Try This</span>
-      </div>
-    </div>
-
-    <div class="feature-card amber reveal reveal-delay-3">
-      <div class="companion-card-accent" style="background: var(--amber);"></div>
-      <div class="feature-icon">🧰</div>
-      <h3>Practical Tools</h3>
-      <p>Conversation frameworks, care planning templates, and coaching tools you can draw on in real interactions. Not scripts — starting points.</p>
-      <div class="feature-tags">
-        <span class="feature-tag">OARS Framework</span>
-        <span class="feature-tag">Care Planning</span>
-        <span class="feature-tag">Coaching Tools</span>
-      </div>
-    </div>
-
-    <div class="feature-card lavender reveal reveal-delay-1">
-      <div class="companion-card-accent" style="background: var(--lavender);"></div>
-      <div class="feature-icon">🌐</div>
-      <h3>Community & Peer Learning</h3>
-      <p>Shared insights from practitioners across the workforce. Real examples of what works — and what's hard — from people doing the same work.</p>
-      <div class="feature-tags">
-        <span class="feature-tag">Shared Insights</span>
-        <span class="feature-tag">Good Practice</span>
-        <span class="feature-tag">Peer Support</span>
-      </div>
-    </div>
-
-    <div class="feature-card sage2 reveal reveal-delay-2">
-      <div class="companion-card-accent" style="background: linear-gradient(90deg, var(--sage), var(--teal));"></div>
-      <div class="feature-icon">📈</div>
-      <h3>CPD & Development</h3>
-      <p>Track your continuing professional development, link to Person Centred Academy programmes, and stay aligned with the latest NHS policy developments.</p>
-      <div class="feature-tags">
-        <span class="feature-tag">CPD Tracking</span>
-        <span class="feature-tag">PCA Links</span>
-        <span class="feature-tag">NHS Aligned</span>
-      </div>
-    </div>
+  <div class="reveal"><div class="ey">What's inside</div><h2 class="sh">Everything you need to <em>grow in practice</em></h2><p class="sp">Five interconnected areas designed to support practitioners before, during, and after every interaction.</p></div>
+  <div class="fg">
+    <div class="fc reveal d1"><div class="fa" style="background:var(--blue)"></div><div class="fi" style="background:var(--blue-bg)">🪞</div><h3>Reflection &amp; Learning</h3><p>Structured tools to help practitioners pause and make sense of what happened — with AI-supported prompts that meet them where they are.</p><div class="fts"><span class="ft" style="background:var(--blue-bg);color:var(--blue-d)">Case Reflection</span><span class="ft" style="background:var(--blue-bg);color:var(--blue-d)">AI Prompts</span><span class="ft" style="background:var(--blue-bg);color:var(--blue-d)">Competency Links</span></div></div>
+    <div class="fc reveal d2"><div class="fa" style="background:var(--teal)"></div><div class="fi" style="background:var(--teal-bg)">⚡</div><h3>Micro-Learning</h3><p>Short, practical modules usable in 5 minutes. Scenario-based tips and Try This nudges aligned to real practice situations.</p><div class="fts"><span class="ft" style="background:var(--teal-bg);color:#1a6a5c">5-Min Modules</span><span class="ft" style="background:var(--teal-bg);color:#1a6a5c">Scenarios</span><span class="ft" style="background:var(--teal-bg);color:#1a6a5c">Try This</span></div></div>
+    <div class="fc reveal d3"><div class="fa" style="background:var(--amber)"></div><div class="fi" style="background:var(--amber-bg)">🧰</div><h3>Practical Tools</h3><p>Conversation frameworks, care planning templates, and coaching tools — not scripts, just starting points for moments that feel difficult.</p><div class="fts"><span class="ft" style="background:var(--amber-bg);color:#8a4a1a">OARS Framework</span><span class="ft" style="background:var(--amber-bg);color:#8a4a1a">Care Planning</span></div></div>
+    <div class="fc reveal d1"><div class="fa" style="background:#6a5a9a"></div><div class="fi" style="background:#f0eefa">👥</div><h3>Community &amp; Peer Learning</h3><p>Shared insights from practitioners across the workforce. Real examples of what works — and what's hard — from people doing the same work.</p><div class="fts"><span class="ft" style="background:#f0eefa;color:#4a3a7a">Shared Insights</span><span class="ft" style="background:#f0eefa;color:#4a3a7a">Peer Support</span></div></div>
+    <div class="fc reveal d2"><div class="fa" style="background:linear-gradient(90deg,var(--blue),var(--teal))"></div><div class="fi" style="background:var(--blue-bg)">📈</div><h3>CPD &amp; Development</h3><p>Automatic CPD tracking, links to Person Centred Academy programmes, and alignment with the latest NHS personalised care developments.</p><div class="fts"><span class="ft" style="background:var(--blue-bg);color:var(--blue-d)">CPD Tracking</span><span class="ft" style="background:var(--blue-bg);color:var(--blue-d)">PCA Links</span><span class="ft" style="background:var(--blue-bg);color:var(--blue-d)">NHS Aligned</span></div></div>
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
-<div class="reveal">
-  <div class="how-section">
-    <div class="section-label">How It Works</div>
-    <h2 class="section-title">From training to <em>everyday practice</em></h2>
-    <p class="section-sub">AlongsideYou fits into the rhythm of your working week — not as another thing to do, but as a quiet companion for the moments that matter.</p>
-    <div class="steps-grid">
-      <div class="step">
-        <div class="step-num">1</div>
-        <h4>Choose Your Focus</h4>
-        <p>Pick a Companion Area that matches where you're working or what's on your mind right now.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <h4>Explore & Reflect</h4>
-        <p>Use micro-learning, tools, or the AI-guided reflection space — however much time you have.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <h4>Try It in Practice</h4>
-        <p>Take a "Try This" nudge into your next conversation or care planning session.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <h4>Track Your Growth</h4>
-        <p>Your CPD log builds automatically. Linked to competency frameworks and further training.</p>
-      </div>
-    </div>
+<section class="how">
+  <div class="reveal"><div class="ey">How it works</div><h2 class="sh">From training to <em>everyday practice</em></h2><p class="sp">AlongsideYou fits into the rhythm of a working week — not as another obligation, but as a quiet companion for the moments that matter.</p></div>
+  <div class="steps">
+    <div class="step reveal"><div class="stnum">1</div><h4>Choose your focus</h4><p>Pick a Companion Area that matches where you're working or what's on your mind right now.</p></div>
+    <div class="step reveal d1"><div class="stnum">2</div><h4>Explore &amp; reflect</h4><p>Use micro-learning, tools, or the AI-guided reflection space — however much time you have.</p></div>
+    <div class="step reveal d2"><div class="stnum">3</div><h4>Try it in practice</h4><p>Take a Try This nudge into your next conversation or care planning session.</p></div>
+    <div class="step reveal d3"><div class="stnum">4</div><h4>Track your growth</h4><p>CPD builds automatically — linked to competency frameworks and further training.</p></div>
   </div>
-</div>
+</section>
 
 <!-- COMPANION AREAS -->
-<section id="companion" class="companion-section">
-  <div class="reveal">
-    <div class="companion-header">
-      <div>
-        <div class="section-label">Companion Areas</div>
-        <h2 class="section-title">Support for <em>different moments</em> in practice</h2>
-      </div>
-      <a href="#" class="btn-secondary" style="white-space: nowrap;">View All Areas</a>
-    </div>
+<section id="companion">
+  <div class="chd reveal">
+    <div><div class="ey">Companion Areas</div><h2 class="sh">Support for <em>different moments</em> in practice</h2></div>
+    <a href="demo.html" class="bs" style="white-space:nowrap;flex-shrink:0;">View all areas</a>
   </div>
+  <div class="cg">
+    <div class="cc reveal" onclick="location.href='demo.html'"><div class="cca" style="background:linear-gradient(90deg,#5a9ab0,#3a7a95)"></div><div class="cct"><div class="ccbs"><span class="ccb" style="background:var(--blue-bg);color:var(--blue-d)">In Progress</span></div><h3>Person-Centred Conversations</h3><p class="ccq">How do I really listen and respond, without rushing to fix things?</p></div><div class="ccf"><div class="ccm"><span>📚 5 modules</span><span>⏱ 25 min</span></div><div class="ccar" style="background:var(--blue-bg);color:var(--blue)">→</div></div></div>
+    <div class="cc reveal d1" onclick="location.href='demo.html'"><div class="cca" style="background:linear-gradient(90deg,#5aab8a,#3a8a6a)"></div><div class="cct"><div class="ccbs"><span class="ccb" style="background:var(--amber-bg);color:#8a4a1a">In Progress</span></div><h3>Understanding What Matters</h3><p class="ccq">What's really important to this person right now?</p></div><div class="ccf"><div class="ccm"><span>📚 4 modules</span><span>⏱ 20 min</span></div><div class="ccar" style="background:var(--teal-bg);color:var(--teal)">→</div></div></div>
+    <div class="cc reveal d2" onclick="location.href='demo.html'"><div class="cca" style="background:linear-gradient(90deg,#e8b87a,#c8813a)"></div><div class="cct"><div class="ccbs"><span class="ccb" style="background:var(--blue-bg);color:var(--blue-d)">New</span></div><h3>When There's No Clear Answer</h3><p class="ccq">Finding a way forward when things are uncertain.</p></div><div class="ccf"><div class="ccm"><span>📚 3 modules</span><span>⏱ 15 min</span></div><div class="ccar" style="background:var(--amber-bg);color:var(--amber)">→</div></div></div>
+    <div class="cc reveal" onclick="location.href='demo.html'"><div class="cca" style="background:linear-gradient(90deg,#7ab5c8,#4a8aaa)"></div><div class="cct"><div class="ccbs"><span class="ccb" style="background:var(--blue-bg);color:var(--blue-d)">Conversations</span></div><h3>Shared Decision Making</h3><p class="ccq">How do we decide together, not for?</p></div><div class="ccf"><div class="ccm"><span>📚 4 modules</span><span>⏱ 22 min</span></div><div class="ccar" style="background:var(--blue-bg);color:var(--blue)">→</div></div></div>
+    <div class="cc reveal d1" onclick="location.href='demo.html'"><div class="cca" style="background:linear-gradient(90deg,#c8a8d8,#9878b8)"></div><div class="cct"><div class="ccbs"><span class="ccb" style="background:#f0eefa;color:#4a3a7a">Change &amp; Support</span></div><h3>Supporting Confidence &amp; Self-Management</h3><p class="ccq">How do I build on what people already know how to do?</p></div><div class="ccf"><div class="ccm"><span>📚 6 modules</span><span>⏱ 30 min</span></div><div class="ccar" style="background:#f0eefa;color:#6a5a9a">→</div></div></div>
+    <div class="cc reveal d2" onclick="location.href='demo.html'"><div class="cca" style="background:linear-gradient(90deg,#f0c878,#d8a050)"></div><div class="cct"><div class="ccbs"><span class="ccb" style="background:var(--amber-bg);color:#8a4a1a">Conversations</span></div><h3>Power, Voice, and Choice</h3><p class="ccq">Helping people feel heard and in control of their care.</p></div><div class="ccf"><div class="ccm"><span>📚 4 modules</span><span>⏱ 20 min</span></div><div class="ccar" style="background:var(--amber-bg);color:var(--amber)">→</div></div></div>
+  </div>
+</section>
 
-  <div class="companion-grid">
-    <div class="companion-card reveal">
-      <div class="companion-card-accent" style="background: linear-gradient(90deg, #7ab5a0, #5a7a6a);"></div>
-      <h3>Understanding What Matters</h3>
-      <p>What's really important to this person right now?</p>
-      <div class="companion-card-footer">
-        <span class="companion-card-meta">🎯 4 modules</span>
-        <div class="companion-card-arrow">→</div>
-      </div>
+<!-- NHS -->
+<section class="nhs">
+  <div class="reveal"><div class="ey">NHS alignment</div><h2 class="sh">Built around the <em>NHS Personalised Care</em> framework</h2><p class="sp">Every Companion Area maps directly to the competencies commissioners and workforce leads are already investing in.</p></div>
+  <div class="nhsg">
+    <div class="nhsl reveal">
+      <div class="nhsr"><div class="nhsi">🏥</div><div><div class="nhsn">NHS Personalised Care Programme</div><div class="nhsd">Aligned to the Universal Personalised Care framework</div></div></div>
+      <div class="nhsr"><div class="nhsi">📋</div><div><div class="nhsn">Care Coordination Competency Framework</div><div class="nhsd">Reflection and learning linked to core competencies</div></div></div>
+      <div class="nhsr"><div class="nhsi">🎓</div><div><div class="nhsn">Person Centred Academy</div><div class="nhsd">Links to accredited training programmes and CPD</div></div></div>
+      <div class="nhsr"><div class="nhsi">📊</div><div><div class="nhsn">Workforce reporting for commissioners</div><div class="nhsd">Team dashboards and CPD tracking at organisational level</div></div></div>
     </div>
-    <div class="companion-card reveal reveal-delay-1">
-      <div class="companion-card-accent" style="background: linear-gradient(90deg, #e8b87a, #c8813a);"></div>
-      <h3>When There's No Clear Answer</h3>
-      <p>Call out a feature, benefit, or value that can stand on its own.</p>
-      <div class="companion-card-footer">
-        <span class="companion-card-meta">💬 3 modules</span>
-        <div class="companion-card-arrow">→</div>
+    <div class="nhscard reveal d1">
+      <div class="nhsctl">What commissioners are buying</div>
+      <div class="nhscl">
+        <div class="nhscr"><div class="nhsci">✓</div><div><div class="nhsct">A platform your workforce will actually use</div><div class="nhscd">Designed around real moments in practice, not as another training obligation</div></div></div>
+        <div class="nhscr"><div class="nhsci">✓</div><div><div class="nhsct">Evidence of ongoing CPD and competency development</div><div class="nhscd">Automatic CPD logs and team-level reporting for your records</div></div></div>
+        <div class="nhscr"><div class="nhsci">✓</div><div><div class="nhsct">Scalable across your PCN, ICB or ICS</div><div class="nhscd">Flexible licensing with NHS billing options</div></div></div>
+        <div class="nhscr"><div class="nhsci">✓</div><div><div class="nhsct">Low implementation burden</div><div class="nhscd">No IT integration required — any browser, any device</div></div></div>
       </div>
-    </div>
-    <div class="companion-card reveal reveal-delay-2">
-      <div class="companion-card-accent" style="background: linear-gradient(90deg, #9aafcc, #6a82a0);"></div>
-      <h3>Person-Centred Conversations</h3>
-      <p>How do I really listen and respond, without rushing to fix things?</p>
-      <div class="companion-card-footer">
-        <span class="companion-card-meta">🪞 5 modules</span>
-        <div class="companion-card-arrow">→</div>
-      </div>
-    </div>
-    <div class="companion-card reveal">
-      <div class="companion-card-accent" style="background: linear-gradient(90deg, #a0c8b8, #70a890);"></div>
-      <h3>Shared Decision Making</h3>
-      <p>How do we decide together, not for?</p>
-      <div class="companion-card-footer">
-        <span class="companion-card-meta">🤝 4 modules</span>
-        <div class="companion-card-arrow">→</div>
-      </div>
-    </div>
-    <div class="companion-card reveal reveal-delay-1">
-      <div class="companion-card-accent" style="background: linear-gradient(90deg, #d4a8c8, #a878a0);"></div>
-      <h3>Supporting Confidence & Self-Management</h3>
-      <p>How do I really listen and respond?</p>
-      <div class="companion-card-footer">
-        <span class="companion-card-meta">💡 6 modules</span>
-        <div class="companion-card-arrow">→</div>
-      </div>
-    </div>
-    <div class="companion-card reveal reveal-delay-2">
-      <div class="companion-card-accent" style="background: linear-gradient(90deg, #f0c878, #d8a050);"></div>
-      <h3>Power, Voice, and Choice</h3>
-      <p>Helping people feel heard and in control of their own care journey.</p>
-      <div class="companion-card-footer">
-        <span class="companion-card-meta">✊ 4 modules</span>
-        <div class="companion-card-arrow">→</div>
-      </div>
+      <a href="book-demo.html" class="bp" style="width:100%;justify-content:center;">Book an organisational demo →</a>
     </div>
   </div>
 </section>
 
-<!-- NHS ALIGNMENT -->
-<div class="reveal">
-  <div class="for-whom" style="background: linear-gradient(135deg, #3e5a4e 0%, #4a7066 100%);">
-    <div class="for-whom-inner">
-      <div>
-        <div class="section-label" style="color: var(--sage-light);">NHS Alignment</div>
-        <h2 class="section-title" style="color: white;">Built around the <em style="color: var(--sage-light);">NHS Personalised Care</em> framework</h2>
-        <p class="section-sub" style="color: rgba(255,255,255,0.65);">AlongsideYou.care is designed to sit alongside — not replace — existing training. Every Companion Area maps directly to the competencies and behaviours commissioners and workforce leads are already investing in.</p>
-        <div class="roles-list" style="margin-top: 24px;">
-          <div class="role-item" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12);">
-            <div class="role-icon" style="background: rgba(255,255,255,0.1);">🏥</div>
-            <div>
-              <div class="role-name" style="color: white;">NHS Personalised Care Programme</div>
-              <div class="role-desc" style="color: rgba(255,255,255,0.5);">Aligned to the Universal Personalised Care framework</div>
-            </div>
-          </div>
-          <div class="role-item" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12);">
-            <div class="role-icon" style="background: rgba(255,255,255,0.1);">📋</div>
-            <div>
-              <div class="role-name" style="color: white;">Care Coordination Competency Framework</div>
-              <div class="role-desc" style="color: rgba(255,255,255,0.5);">Reflection and learning linked to core competencies</div>
-            </div>
-          </div>
-          <div class="role-item" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12);">
-            <div class="role-icon" style="background: rgba(255,255,255,0.1);">🎓</div>
-            <div>
-              <div class="role-name" style="color: white;">Person Centred Academy</div>
-              <div class="role-desc" style="color: rgba(255,255,255,0.5);">Links to accredited training programmes and CPD</div>
-            </div>
-          </div>
-          <div class="role-item" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12);">
-            <div class="role-icon" style="background: rgba(255,255,255,0.1);">📊</div>
-            <div>
-              <div class="role-name" style="color: white;">Workforce reporting for commissioners</div>
-              <div class="role-desc" style="color: rgba(255,255,255,0.5);">Team dashboards and CPD tracking at organisational level</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="for-whom-quote" style="background: rgba(255,255,255,0.08); border-left-color: var(--sage-light);">
-          <div style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sage-light); margin-bottom: 14px;">What commissioners are buying</div>
-          <div style="display: flex; flex-direction: column; gap: 14px;">
-            <div style="display: flex; gap: 12px; align-items: flex-start;">
-              <div style="width: 28px; height: 28px; background: rgba(157,189,173,0.2); border-radius: 50%; display: grid; place-items: center; font-size: 0.8rem; flex-shrink: 0;">✓</div>
-              <div>
-                <div style="font-size: 0.85rem; font-weight: 600; color: white; margin-bottom: 2px;">A platform your workforce will actually use</div>
-                <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.5;">Designed around real moments in practice, not as another training obligation</div>
-              </div>
-            </div>
-            <div style="display: flex; gap: 12px; align-items: flex-start;">
-              <div style="width: 28px; height: 28px; background: rgba(157,189,173,0.2); border-radius: 50%; display: grid; place-items: center; font-size: 0.8rem; flex-shrink: 0;">✓</div>
-              <div>
-                <div style="font-size: 0.85rem; font-weight: 600; color: white; margin-bottom: 2px;">Evidence of ongoing CPD and competency development</div>
-                <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.5;">Automatic CPD logs and team-level reporting for your records</div>
-              </div>
-            </div>
-            <div style="display: flex; gap: 12px; align-items: flex-start;">
-              <div style="width: 28px; height: 28px; background: rgba(157,189,173,0.2); border-radius: 50%; display: grid; place-items: center; font-size: 0.8rem; flex-shrink: 0;">✓</div>
-              <div>
-                <div style="font-size: 0.85rem; font-weight: 600; color: white; margin-bottom: 2px;">Scalable across your PCN, ICB or ICS</div>
-                <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.5;">Flexible licensing for teams of any size, with NHS billing options</div>
-              </div>
-            </div>
-            <div style="display: flex; gap: 12px; align-items: flex-start;">
-              <div style="width: 28px; height: 28px; background: rgba(157,189,173,0.2); border-radius: 50%; display: grid; place-items: center; font-size: 0.8rem; flex-shrink: 0;">✓</div>
-              <div>
-                <div style="font-size: 0.85rem; font-weight: 600; color: white; margin-bottom: 2px;">Low implementation burden</div>
-                <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.5;">No IT integration required — practitioners access via any browser or mobile device</div>
-              </div>
-            </div>
-          </div>
-          <div style="margin-top: 22px;">
-            <a href="book-demo.html" class="btn-primary" style="display: inline-flex;">Book an organisational demo →</a>
-          </div>
-        </div>
-      </div>
-    </div>
+<!-- PRODUCT -->
+<section>
+  <div class="reveal" style="text-align:center;max-width:580px;margin:0 auto 44px;"><div class="ey">The platform</div><h2 class="sh">Everything in one place, <em>ready when they need it</em></h2><p class="sp" style="margin:0 auto;">A practitioner logs in between appointments, after a difficult conversation, or before a supervision — and finds exactly what they need.</p></div>
+  <div class="pg">
+    <div class="pc reveal"><div class="pt" style="background:var(--blue-bg)"><div class="pio" style="background:var(--blue);color:white">🗺️</div><div><div class="ptt">9 Companion Areas</div><div class="pts">Covering the full range of practice</div></div></div><div class="pb"><p>From person-centred conversations to navigating complex systems — each area contains structured reflection, micro-learning, practical tools and Try This prompts.</p></div></div>
+    <div class="pc reveal d1"><div class="pt" style="background:var(--amber-bg)"><div class="pio" style="background:var(--amber);color:white">🪞</div><div><div class="ptt">AI-Guided Reflection</div><div class="pts">Structured, not scripted</div></div></div><div class="pb"><p>Practitioners reflect on real cases with prompts that adapt to what they've written — turning everyday experience into evidence of learning.</p></div></div>
+    <div class="pc reveal d2"><div class="pt" style="background:var(--teal-bg)"><div class="pio" style="background:var(--teal);color:white">📈</div><div><div class="ptt">Automatic CPD Tracking</div><div class="pts">For practitioners and teams</div></div></div><div class="pb"><p>Every reflection, module and tool interaction is logged automatically. Practitioners keep a personal record. Workforce leads get team-level oversight.</p></div></div>
+    <div class="pc reveal d3"><div class="pt" style="background:var(--blue-bg)"><div class="pio" style="background:var(--blue-l);color:white">⚡</div><div><div class="ptt">Micro-Learning &amp; Tools</div><div class="pts">5 minutes or less</div></div></div><div class="pb"><p>Short modules, conversation frameworks and Try This nudges — designed to be used between appointments, not saved for a training day.</p></div></div>
   </div>
-</div>
-
-<!-- PRODUCT VISUAL -->
-<section style="padding: 80px 5%;">
-  <div class="reveal" style="text-align: center; margin-bottom: 40px;">
-    <div class="section-label">The Platform</div>
-    <h2 class="section-title">Everything in one place, <em>ready when they need it</em></h2>
-    <p class="section-sub" style="margin: 0 auto;">A practitioner logs in between appointments, after a difficult conversation, or before a supervision session — and finds exactly what they need.</p>
-  </div>
-  <div class="reveal" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 16px; max-width: 1100px; margin: 0 auto;">
-    <div style="background: white; border-radius: 16px; border: 1px solid var(--stone); overflow: hidden;">
-      <div style="background: linear-gradient(135deg, #eef4f0, #e8f2f2); padding: 24px; display: flex; gap: 12px; align-items: center; border-bottom: 1px solid var(--stone);">
-        <div style="width: 40px; height: 40px; background: var(--sage); border-radius: 10px; display: grid; place-items: center; font-size: 1.2rem; flex-shrink: 0;">🗺️</div>
-        <div>
-          <div style="font-weight: 600; font-size: 0.9rem; color: var(--ink);">9 Companion Areas</div>
-          <div style="font-size: 0.75rem; color: var(--ink-light);">Covering the full range of practice</div>
-        </div>
-      </div>
-      <div style="padding: 18px;">
-        <p style="font-size: 0.82rem; color: var(--ink-mid); line-height: 1.65;">From person-centred conversations to navigating complex systems — each area contains structured reflection, micro-learning, practical tools and Try This prompts.</p>
-      </div>
-    </div>
-    <div style="background: white; border-radius: 16px; border: 1px solid var(--stone); overflow: hidden;">
-      <div style="background: linear-gradient(135deg, #fef8f1, #fdf4ec); padding: 24px; display: flex; gap: 12px; align-items: center; border-bottom: 1px solid var(--stone);">
-        <div style="width: 40px; height: 40px; background: var(--amber); border-radius: 10px; display: grid; place-items: center; font-size: 1.2rem; flex-shrink: 0;">🪞</div>
-        <div>
-          <div style="font-weight: 600; font-size: 0.9rem; color: var(--ink);">AI-Guided Reflection</div>
-          <div style="font-size: 0.75rem; color: var(--ink-light);">Structured, not scripted</div>
-        </div>
-      </div>
-      <div style="padding: 18px;">
-        <p style="font-size: 0.82rem; color: var(--ink-mid); line-height: 1.65;">Practitioners reflect on real cases with prompts that adapt to what they've written — turning everyday experience into evidence of learning.</p>
-      </div>
-    </div>
-    <div style="background: white; border-radius: 16px; border: 1px solid var(--stone); overflow: hidden;">
-      <div style="background: linear-gradient(135deg, #eef6f6, #e8f2f2); padding: 24px; display: flex; gap: 12px; align-items: center; border-bottom: 1px solid var(--stone);">
-        <div style="width: 40px; height: 40px; background: var(--teal); border-radius: 10px; display: grid; place-items: center; font-size: 1.2rem; flex-shrink: 0;">📈</div>
-        <div>
-          <div style="font-weight: 600; font-size: 0.9rem; color: var(--ink);">Automatic CPD Tracking</div>
-          <div style="font-size: 0.75rem; color: var(--ink-light);">For practitioners and teams</div>
-        </div>
-      </div>
-      <div style="padding: 18px;">
-        <p style="font-size: 0.82rem; color: var(--ink-mid); line-height: 1.65;">Every reflection, module and tool interaction is logged automatically. Practitioners keep a personal CPD record. Workforce leads get team-level oversight.</p>
-      </div>
-    </div>
-    <div style="background: white; border-radius: 16px; border: 1px solid var(--stone); overflow: hidden;">
-      <div style="background: linear-gradient(135deg, #f5f2fb, #f2eef8); padding: 24px; display: flex; gap: 12px; align-items: center; border-bottom: 1px solid var(--stone);">
-        <div style="width: 40px; height: 40px; background: var(--lavender); border-radius: 10px; display: grid; place-items: center; font-size: 1.2rem; flex-shrink: 0;">⚡</div>
-        <div>
-          <div style="font-weight: 600; font-size: 0.9rem; color: var(--ink);">Micro-Learning & Tools</div>
-          <div style="font-size: 0.75rem; color: var(--ink-light);">5 minutes or less</div>
-        </div>
-      </div>
-      <div style="padding: 18px;">
-        <p style="font-size: 0.82rem; color: var(--ink-mid); line-height: 1.65;">Short modules, conversation frameworks and "Try This" nudges — designed to be used between appointments, not saved for a training day.</p>
-      </div>
-    </div>
-  </div>
-  <div class="reveal" style="text-align: center; margin-top: 36px;">
-    <a href="demo.html" class="btn-primary" style="display: inline-flex;">Explore the platform →</a>
-  </div>
+  <div class="reveal" style="text-align:center;margin-top:28px;"><a href="demo.html" class="bp" style="display:inline-flex;">Explore the platform →</a></div>
 </section>
 
-<!-- PRICING -->
-<section id="pricing">
-  <div class="reveal" style="text-align: center;">
-    <div class="section-label">Pricing</div>
-    <h2 class="section-title">Simple, <em>fair pricing</em> for the workforce</h2>
-    <p class="section-sub" style="margin: 0 auto 0;">Designed to work for individuals and teams alike — with options for organisations commissioning workforce support.</p>
-  </div>
-
-  <div class="pricing-grid">
-    <div class="pricing-card reveal">
-      <div class="pricing-tier">Individual</div>
-      <div class="pricing-price">Free <span>/ always</span></div>
-      <p class="pricing-desc">Core access for any practitioner who wants to get started.</p>
-      <ul class="pricing-features">
-        <li>3 Companion Areas</li>
-        <li>Open Reflection tool</li>
-        <li>Basic micro-learning</li>
-        <li>Try This prompts</li>
-        <li>CPD log (up to 10 entries)</li>
-      </ul>
-      <a href="#" class="pricing-cta">Get Started Free</a>
-    </div>
-
-    <div class="pricing-card featured reveal reveal-delay-1">
-      <div class="pricing-badge">Most Popular</div>
-      <div class="pricing-tier">Pro</div>
-      <div class="pricing-price">£9 <span>/ month</span></div>
-      <p class="pricing-desc">Full access for practitioners who want to grow continuously.</p>
-      <ul class="pricing-features">
-        <li>All Companion Areas</li>
-        <li>AI-guided reflection</li>
-        <li>Full micro-learning library</li>
-        <li>All practical tools & frameworks</li>
-        <li>Unlimited CPD tracking</li>
-        <li>Peer community access</li>
-        <li>PCA programme links</li>
-      </ul>
-      <a href="#" class="pricing-cta">Start Free Trial</a>
-    </div>
-
-    <div class="pricing-card reveal reveal-delay-2">
-      <div class="pricing-tier">Team / Organisation</div>
-      <div class="pricing-price">Talk <span>to us</span></div>
-      <p class="pricing-desc">For PCNs, ICSs, and VCSE organisations supporting their workforce.</p>
-      <ul class="pricing-features">
-        <li>Everything in Pro</li>
-        <li>Team dashboards & reporting</li>
-        <li>Custom competency frameworks</li>
-        <li>Onboarding & implementation support</li>
-        <li>NHS & VCSE billing options</li>
-      </ul>
-      <a href="#" class="pricing-cta">Get in Touch</a>
-    </div>
+<!-- EARLY ACCESS -->
+<section id="early-access" class="ea">
+  <div class="reveal" style="text-align:center;max-width:580px;margin:0 auto;"><div class="ey">Early access</div><h2 class="sh">We're building this <em>with the sector</em></h2><p class="sp" style="margin:0 auto 44px;">AlongsideYou.care is in early access. Pricing for organisations will be confirmed shortly — designed to be fair, flexible, and accessible.</p></div>
+  <div class="eag">
+    <div class="eac reveal"><div class="eaico" style="background:var(--blue-bg)">🧑‍💼</div><div class="ealbl" style="color:var(--blue)">Individual practitioners</div><div class="eath">Free to try</div><p class="eadesc">Any practitioner can access core features at no cost. No card required.</p><a href="demo.html" class="eabtn" style="background:var(--blue-bg);color:var(--blue-d);">Explore the platform →</a></div>
+    <div class="eac feat reveal d1"><div class="eaico" style="background:rgba(255,255,255,0.1)">🏥</div><div class="ealbl" style="color:var(--blue-l)">PCNs · ICSs · VCSE Orgs</div><div class="eath">Organisational pricing</div><p class="eadesc">Flexible team licensing, NHS billing options, onboarding support and workforce reporting. Pricing on request during early access.</p><a href="book-demo.html" class="eabtn" style="background:var(--blue);color:white;box-shadow:0 4px 14px rgba(45,100,128,0.4);">Book a demo to discuss →</a></div>
+    <div class="eac reveal d2"><div class="eaico" style="background:var(--amber-bg)">🤝</div><div class="ealbl" style="color:var(--amber)">Shape what we build</div><div class="eath">Early adopters</div><p class="eadesc">Organisations joining now help shape the platform and benefit from founder pricing at launch.</p><a href="book-demo.html" class="eabtn" style="background:var(--amber-bg);color:var(--amber);">Get involved →</a></div>
   </div>
 </section>
 
 <!-- CTA -->
-<section class="cta-section reveal">
-  <div class="section-label">Get Started</div>
-  <h2 class="section-title">See it working with <em>your workforce</em></h2>
-  <p class="section-sub">AlongsideYou.care is in early access. Book a 30-minute demo and we'll show you exactly how it works for your team — and what commissioning looks like.</p>
-  <div class="hero-actions" style="justify-content: center;">
-    <a href="book-demo.html" class="btn-primary">Book an Organisational Demo →</a>
-    <a href="demo.html" class="btn-secondary">Explore the Platform First</a>
+<section class="ctas reveal">
+  <div class="ey" style="text-align:center">Get started</div>
+  <h2 class="sh" style="text-align:center;max-width:520px;margin:0 auto 12px;">See it working with <em>your workforce</em></h2>
+  <p class="sp" style="text-align:center;margin:0 auto 32px;max-width:440px;">Book a 30-minute demo and we'll show you exactly how AlongsideYou works for your team.</p>
+  <div style="display:flex;gap:11px;justify-content:center;flex-wrap:wrap;">
+    <a href="book-demo.html" class="bp">Book an organisational demo →</a>
+    <a href="demo.html" class="bs">Explore the platform first</a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <a href="#" class="nav-logo" style="display: inline-flex;">
-        <div class="nav-logo-mark"></div>
-        <span class="nav-logo-text" style="color: white;">Alongside<span>You</span>.care</span>
-      </a>
+  <div class="fg2">
+    <div class="fb">
+      <a href="#" class="logo"><div class="lm"></div><span class="lt" style="color:white">AlongsideYou<span>.care</span></span></a>
       <p>Extending learning beyond formal training — practical, day-to-day support for the personalised care workforce.</p>
     </div>
-    <div class="footer-col">
-      <h5>Platform</h5>
-      <ul>
-        <li><a href="#">Companion Areas</a></li>
-        <li><a href="#">Micro-Learning</a></li>
-        <li><a href="#">Practical Tools</a></li>
-        <li><a href="#">Community</a></li>
-        <li><a href="#">CPD Tracker</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h5>For Organisations</h5>
-      <ul>
-        <li><a href="#">PCNs</a></li>
-        <li><a href="#">ICS Teams</a></li>
-        <li><a href="#">VCSE Orgs</a></li>
-        <li><a href="#">Commissioning</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h5>Company</h5>
-      <ul>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">Privacy</a></li>
-        <li><a href="#">Terms</a></li>
-      </ul>
-    </div>
+    <div class="fc2"><h5>Platform</h5><ul><li><a href="demo.html">Companion Areas</a></li><li><a href="demo.html">Micro-Learning</a></li><li><a href="demo.html">Practical Tools</a></li><li><a href="demo.html">CPD Tracker</a></li></ul></div>
+    <div class="fc2"><h5>For Organisations</h5><ul><li><a href="book-demo.html">PCNs</a></li><li><a href="book-demo.html">ICS Teams</a></li><li><a href="book-demo.html">VCSE Orgs</a></li><li><a href="book-demo.html">Book a Demo</a></li></ul></div>
+    <div class="fc2"><h5>Company</h5><ul><li><a href="#">About</a></li><li><a href="#">Contact</a></li><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li></ul></div>
   </div>
-  <div class="footer-bottom">
-    <span>© 2025 AlongsideYou.care — All rights reserved</span>
-    <div class="footer-bottom-links">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Use</a>
-      <a href="#">Accessibility</a>
-    </div>
+  <div class="fbot">
+    <span>© 2026 AlongsideYou.care — All rights reserved</span>
+    <div class="fbl"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Accessibility</a></div>
   </div>
 </footer>
 
 <script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  reveals.forEach(el => observer.observe(el));
-
-  // Nav scroll effect
-  const nav = document.querySelector('nav');
-  window.addEventListener('scroll', () => {
-    nav.style.boxShadow = window.scrollY > 20 ? '0 2px 20px rgba(0,0,0,0.08)' : 'none';
-  });
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+},{ threshold:0.08, rootMargin:'0px 0px -28px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 16);
+});
 </script>
 </body>
 </html>
