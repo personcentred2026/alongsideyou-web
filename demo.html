@@ -3,1567 +3,768 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AlongsideYou.care — App</title>
+<title>Book a Demo — AlongsideYou.care</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 <style>
-* { margin:0; padding:0; box-sizing:border-box; }
-html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:#f5f7f5;min-height:100vh;color:#3a4a42;}
 
-:root {
-  --sage:#6b8f7e; --sage-l:#9dbdad; --sage-pale:#f0f5f2; --sage-dark:#527066;
-  --teal:#4a8282; --teal-l:#eef6f6;
-  --amber:#c49060; --amber-pale:#fef8f1;
-  --lav:#9288b2; --lav-pale:#f5f2fb;
-  --blue:#6690b8; --blue-pale:#eef4fa;
-  --rose:#c08090; --rose-pale:#fcf2f4;
-  --ink:#3a4a42; --ink-m:#6a7e74; --ink-l:#9ab0a8;
-  --stone:#ece9e4; --warm:#fbfaf8;
-  --r:14px; --r-sm:10px;
-  --sidebar:240px;
-  --header:60px;
+:root{
+  --sage:#6b8f7e;--sage-d:#527066;--sage-l:#9dbdad;--sage-pale:#f0f5f2;
+  --teal:#4a8282;--teal-l:#eef6f6;
+  --amber:#c49060;--amber-pale:#fef8f1;
+  --ink:#3a4a42;--ink-m:#6a7e74;--ink-l:#9ab0a8;
+  --stone:#ece9e4;--warm:#fbfaf8;
+  --r:14px;
 }
 
-/* ── LAYOUT ── */
-.app { display:flex; height:100vh; background:var(--warm); }
+/* ── PAGE LAYOUT ── */
+.page{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
 
-/* ── SIDEBAR ── */
-.sidebar {
-  width:var(--sidebar); flex-shrink:0;
-  background:#e8eeea;
-  display:flex; flex-direction:column;
-  padding:0;
+/* ── LEFT PANEL ── */
+.left{
+  background:linear-gradient(160deg,#3e5a4e 0%,#4d7268 55%,#3a6060 100%);
+  padding:52px 56px;
+  display:flex;
+  flex-direction:column;
+  position:relative;
   overflow:hidden;
-  transition:width 0.3s;
-  border-right:1px solid #d4ddd7;
 }
 
-.sidebar-header {
-  padding:20px 18px 16px;
-  border-bottom:1px solid rgba(0,0,0,0.07);
-  display:flex; align-items:center; gap:10px;
+/* Decorative circles */
+.left::before{
+  content:'';position:absolute;
+  width:420px;height:420px;border-radius:50%;
+  border:1px solid rgba(255,255,255,0.08);
+  top:-120px;right:-140px;
+}
+.left::after{
+  content:'';position:absolute;
+  width:260px;height:260px;border-radius:50%;
+  border:1px solid rgba(255,255,255,0.06);
+  bottom:-60px;left:-80px;
 }
 
-.logo-mark {
-  width:32px; height:32px; border-radius:50%;
-  background:var(--sage); flex-shrink:0;
-  display:grid; place-items:center; position:relative; overflow:hidden;
-}
-.logo-mark::before {
-  content:''; position:absolute;
-  width:15px; height:15px; border:2px solid white; border-radius:50%;
-  top:50%; left:50%; transform:translate(-50%,-58%);
-}
-.logo-mark::after {
-  content:''; position:absolute;
-  width:18px; height:8px; border:2px solid white;
-  border-radius:0 0 10px 10px; border-top:none;
-  bottom:6px; left:50%; transform:translateX(-50%);
-}
-.logo-text { font-family:'Lora',serif; font-size:0.85rem; font-weight:600; color:var(--ink); line-height:1.2; }
-.logo-text span { color:var(--sage); }
+.left-inner{position:relative;z-index:1;display:flex;flex-direction:column;height:100%;}
 
-.sidebar-user {
-  margin:14px 12px;
-  background:rgba(255,255,255,0.6);
-  border-radius:10px; padding:11px 12px;
-  display:flex; align-items:center; gap:10px;
-  border:1px solid rgba(0,0,0,0.06);
+/* Logo */
+.logo{display:flex;align-items:center;gap:11px;margin-bottom:60px;}
+.logo-mark{
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(255,255,255,0.15);
+  border:1.5px solid rgba(255,255,255,0.3);
+  flex-shrink:0;display:grid;place-items:center;
+  position:relative;overflow:hidden;
 }
-.user-avatar {
-  width:34px; height:34px; border-radius:50%;
-  background:linear-gradient(135deg,var(--sage),var(--teal));
-  display:grid; place-items:center;
-  font-weight:700; font-size:0.78rem; color:white; flex-shrink:0;
+.logo-mark::before{
+  content:'';position:absolute;
+  width:17px;height:17px;border:2px solid white;border-radius:50%;
+  top:50%;left:50%;transform:translate(-50%,-58%);
 }
-.user-name { font-size:0.8rem; font-weight:600; color:var(--ink); }
-.user-role { font-size:0.7rem; color:var(--ink-l); margin-top:1px; }
+.logo-mark::after{
+  content:'';position:absolute;
+  width:20px;height:9px;border:2px solid white;
+  border-radius:0 0 11px 11px;border-top:none;
+  bottom:7px;left:50%;transform:translateX(-50%);
+}
+.logo-text{font-family:'Lora',serif;font-size:1rem;font-weight:600;color:white;line-height:1.25;}
+.logo-text span{color:rgba(255,255,255,0.6);}
 
-.sidebar-nav { flex:1; padding:8px 10px; overflow-y:auto; }
-.sidebar-nav::-webkit-scrollbar { width:0; }
-
-.nav-section-label {
-  font-size:0.65rem; font-weight:700; letter-spacing:0.1em;
-  text-transform:uppercase; color:var(--ink-l);
-  padding:10px 8px 6px; margin-top:6px;
+/* Headline */
+.left h1{
+  font-family:'Lora',serif;
+  font-size:clamp(1.8rem,3vw,2.6rem);
+  font-weight:600;
+  color:white;
+  line-height:1.2;
+  margin-bottom:18px;
 }
+.left h1 em{font-style:italic;color:rgba(255,255,255,0.7);}
 
-.nav-item {
-  display:flex; align-items:center; gap:10px;
-  padding:9px 10px; border-radius:8px;
-  cursor:pointer; transition:background 0.15s;
-  margin-bottom:2px; text-decoration:none;
-}
-.nav-item:hover { background:rgba(0,0,0,0.05); }
-.nav-item.active { background:rgba(255,255,255,0.75); box-shadow:0 1px 4px rgba(0,0,0,0.07); }
-.nav-icon { font-size:1rem; width:20px; text-align:center; flex-shrink:0; }
-.nav-label { font-size:0.83rem; font-weight:500; color:var(--ink-m); }
-.nav-item.active .nav-label { color:var(--ink); }
-.nav-badge {
-  margin-left:auto; background:var(--sage); color:white;
-  font-size:0.65rem; font-weight:700; padding:2px 7px;
-  border-radius:100px;
+.left-sub{
+  font-size:0.95rem;
+  color:rgba(255,255,255,0.6);
+  line-height:1.7;
+  margin-bottom:48px;
+  max-width:400px;
+  font-weight:300;
 }
 
-.sidebar-footer {
-  padding:14px 12px;
-  border-top:1px solid rgba(0,0,0,0.08);
+/* What to expect */
+.expect-label{
+  font-size:0.7rem;font-weight:700;letter-spacing:0.1em;
+  text-transform:uppercase;color:rgba(255,255,255,0.4);
+  margin-bottom:16px;
 }
-.cpd-bar-wrap { margin-bottom:6px; }
-.cpd-bar-label { display:flex; justify-content:space-between; margin-bottom:5px; }
-.cpd-bar-label span { font-size:0.7rem; color:var(--ink-l); }
-.cpd-bar-label strong { font-size:0.7rem; color:var(--sage); }
-.cpd-bar { height:5px; background:rgba(0,0,0,0.1); border-radius:4px; overflow:hidden; }
-.cpd-fill { height:100%; width:55%; background:linear-gradient(90deg,var(--sage),var(--sage-l)); border-radius:4px; }
-
-/* ── MAIN ── */
-.main { flex:1; display:flex; flex-direction:column; overflow:hidden; }
-
-.topbar {
-  height:var(--header); flex-shrink:0;
-  background:white; border-bottom:1px solid var(--stone);
-  display:flex; align-items:center; padding:0 28px;
-  gap:16px;
+.expect-list{display:flex;flex-direction:column;gap:12px;margin-bottom:auto;}
+.expect-item{
+  display:flex;align-items:flex-start;gap:14px;
 }
-.topbar-title { font-family:'Lora',serif; font-size:1.1rem; font-weight:600; color:var(--ink); flex:1; }
-.topbar-sub { font-size:0.78rem; color:var(--ink-l); margin-top:1px; }
-
-.topbar-actions { display:flex; gap:10px; align-items:center; }
-.btn-sm {
-  padding:7px 16px; border-radius:100px; font-size:0.78rem; font-weight:600;
-  cursor:pointer; border:none; transition:all 0.2s; font-family:'DM Sans',sans-serif;
+.expect-icon{
+  width:36px;height:36px;border-radius:10px;
+  background:rgba(255,255,255,0.1);
+  border:1px solid rgba(255,255,255,0.12);
+  display:grid;place-items:center;
+  font-size:1rem;flex-shrink:0;
+  margin-top:1px;
 }
-.btn-outline { background:transparent; border:1.5px solid var(--stone); color:var(--ink-m); }
-.btn-outline:hover { border-color:var(--sage-l); color:var(--sage); }
-.btn-primary-sm { background:var(--sage); color:white; box-shadow:0 2px 10px rgba(90,122,106,0.3); }
-.btn-primary-sm:hover { background:var(--sage-dark); }
+.expect-text strong{
+  display:block;font-size:0.85rem;font-weight:600;
+  color:white;margin-bottom:2px;
+}
+.expect-text span{font-size:0.78rem;color:rgba(255,255,255,0.5);line-height:1.5;}
 
-.search-box {
-  display:flex; align-items:center; gap:8px;
-  background:var(--warm); border:1.5px solid var(--stone); border-radius:100px;
-  padding:7px 14px; font-size:0.8rem; color:var(--ink-l);
-  width:200px;
+/* Testimonial */
+.testimonial{
+  margin-top:48px;
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:var(--r);
+  padding:20px 22px;
+}
+.testimonial blockquote{
+  font-family:'Lora',serif;
+  font-style:italic;
+  font-size:0.88rem;
+  color:rgba(255,255,255,0.8);
+  line-height:1.65;
+  margin-bottom:14px;
+}
+.testimonial-attr{display:flex;align-items:center;gap:10px;}
+.t-avatar{
+  width:32px;height:32px;border-radius:50%;
+  background:rgba(255,255,255,0.2);
+  display:grid;place-items:center;
+  font-size:0.72rem;font-weight:700;color:white;flex-shrink:0;
+}
+.t-name{font-size:0.78rem;font-weight:600;color:rgba(255,255,255,0.8);}
+.t-role{font-size:0.7rem;color:rgba(255,255,255,0.45);margin-top:1px;}
+
+/* ── RIGHT PANEL ── */
+.right{
+  background:var(--warm);
+  padding:52px 56px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 }
 
-/* ── CONTENT ── */
-.content { flex:1; overflow-y:auto; padding:28px; }
-.content::-webkit-scrollbar { width:6px; }
-.content::-webkit-scrollbar-track { background:transparent; }
-.content::-webkit-scrollbar-thumb { background:var(--stone); border-radius:4px; }
-
-/* ── VIEWS ── */
-.view { display:none; animation:fadeIn 0.3s ease; }
-.view.active { display:block; }
-@keyframes fadeIn { from{opacity:0;transform:translateY(8px);} to{opacity:1;transform:none;} }
-
-/* ── HOME VIEW ── */
-.welcome-banner {
-  background:linear-gradient(135deg,#3e5a4e 0%,#4a7066 100%);
-  border-radius:var(--r); padding:28px 32px; margin-bottom:24px;
-  position:relative; overflow:hidden;
+.form-header{margin-bottom:36px;}
+.form-eyebrow{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--sage-pale);
+  border:1px solid rgba(107,143,126,0.2);
+  border-radius:100px;padding:5px 14px;
+  font-size:0.72rem;font-weight:700;
+  letter-spacing:0.06em;text-transform:uppercase;
+  color:var(--sage);margin-bottom:16px;
 }
-.welcome-banner::before {
-  content:''; position:absolute;
-  width:300px; height:300px; border-radius:50%;
-  background:rgba(90,122,106,0.15);
-  top:-100px; right:-60px;
+.eyebrow-dot{width:6px;height:6px;background:var(--sage);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.7);}}
+
+.form-header h2{
+  font-family:'Lora',serif;
+  font-size:clamp(1.4rem,2.5vw,2rem);
+  font-weight:600;color:var(--ink);
+  line-height:1.25;margin-bottom:8px;
 }
-.welcome-banner::after {
-  content:''; position:absolute;
-  width:180px; height:180px; border-radius:50%;
-  background:rgba(200,129,58,0.1);
-  bottom:-60px; right:120px;
+.form-header p{font-size:0.88rem;color:var(--ink-m);line-height:1.6;}
+
+/* Form */
+.signup-form{display:flex;flex-direction:column;gap:0;}
+
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.form-row.full{grid-template-columns:1fr;}
+
+.field{display:flex;flex-direction:column;gap:6px;}
+
+.field label{
+  font-size:0.78rem;font-weight:600;color:var(--ink);
+  display:flex;align-items:center;gap:4px;
 }
-.welcome-banner h2 { font-family:'Lora',serif; font-size:1.5rem; color:white; margin-bottom:6px; position:relative; }
-.welcome-banner p { font-size:0.88rem; color:rgba(255,255,255,0.6); max-width:420px; line-height:1.6; position:relative; }
-.welcome-banner .today-nudge {
-  margin-top:18px; display:inline-flex; align-items:center; gap:10px;
-  background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.15);
-  border-radius:100px; padding:8px 16px; position:relative; cursor:pointer;
-  transition:background 0.2s;
+.field label .req{color:var(--sage);font-size:0.7rem;}
+
+.field input,
+.field select,
+.field textarea{
+  width:100%;
+  padding:11px 14px;
+  border:1.5px solid var(--stone);
+  border-radius:10px;
+  font-size:0.86rem;
+  font-family:'DM Sans',sans-serif;
+  color:var(--ink);
+  background:white;
+  transition:border-color 0.2s,box-shadow 0.2s;
+  appearance:none;
+  -webkit-appearance:none;
 }
-.welcome-banner .today-nudge:hover { background:rgba(255,255,255,0.18); }
-.welcome-banner .today-nudge span { font-size:0.8rem; color:white; font-weight:500; }
-.nudge-dot { width:8px; height:8px; background:var(--amber); border-radius:50%; animation:pulse 2s infinite; }
-@keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.5;transform:scale(0.7);} }
-
-.stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:24px; }
-.stat-card {
-  background:white; border-radius:var(--r); padding:18px;
-  border:1px solid var(--stone); position:relative; overflow:hidden;
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  outline:none;
+  border-color:var(--sage-l);
+  box-shadow:0 0 0 3px rgba(107,143,126,0.12);
 }
-.stat-card::before {
-  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+.field input::placeholder,
+.field textarea::placeholder{color:var(--ink-l);}
+.field select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239ab0a8' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 14px center;
+  padding-right:36px;
+  cursor:pointer;
+  color:var(--ink);
 }
-.stat-card.c1::before{background:var(--sage-l);}
-.stat-card.c2::before{background:#d4ab80;}
-.stat-card.c3::before{background:var(--teal);}
-.stat-card.c4::before{background:var(--lav);}
-.stat-num { font-family:'Lora',serif; font-size:2rem; font-weight:600; color:var(--ink); }
-.stat-label { font-size:0.75rem; color:var(--ink-l); margin-top:2px; }
-.stat-delta { font-size:0.72rem; color:var(--sage); font-weight:600; margin-top:6px; }
+.field select option[value=""]{color:var(--ink-l);}
+.field textarea{min-height:90px;resize:vertical;line-height:1.6;}
 
-.home-grid { display:grid; grid-template-columns:1fr 320px; gap:20px; }
-
-.section-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; }
-.section-head h3 { font-family:'Lora',serif; font-size:1rem; font-weight:600; color:var(--ink); }
-.section-head a { font-size:0.78rem; color:var(--sage); font-weight:600; cursor:pointer; text-decoration:none; }
-.section-head a:hover { text-decoration:underline; }
-
-.continue-list { display:flex; flex-direction:column; gap:10px; }
-.continue-card {
-  background:white; border-radius:var(--r-sm); padding:16px;
-  border:1px solid var(--stone); display:flex; gap:14px; align-items:center;
-  cursor:pointer; transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s;
+/* Preferred time */
+.time-slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;}
+.time-slot{
+  padding:9px 8px;
+  border:1.5px solid var(--stone);
+  border-radius:9px;
+  font-size:0.75rem;font-weight:500;
+  color:var(--ink-m);
+  text-align:center;
+  cursor:pointer;
+  transition:all 0.15s;
+  background:white;
+  user-select:none;
 }
-.continue-card:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,0,0,0.07); border-color:var(--sage-l); }
-.continue-icon { width:44px; height:44px; border-radius:10px; display:grid; place-items:center; font-size:1.2rem; flex-shrink:0; }
-.continue-info { flex:1; min-width:0; }
-.continue-info h4 { font-size:0.85rem; font-weight:600; color:var(--ink); margin-bottom:3px; }
-.continue-info p { font-size:0.75rem; color:var(--ink-l); }
-.mini-progress { height:3px; background:var(--stone); border-radius:4px; margin-top:8px; overflow:hidden; }
-.mini-progress-fill { height:100%; background:var(--sage); border-radius:4px; }
-.continue-arrow { font-size:0.9rem; color:var(--ink-l); flex-shrink:0; }
-
-.right-panel { display:flex; flex-direction:column; gap:16px; }
-
-.panel-card { background:white; border-radius:var(--r); padding:20px; border:1px solid var(--stone); }
-.panel-card h4 { font-family:'Lora',serif; font-size:0.92rem; font-weight:600; color:var(--ink); margin-bottom:14px; }
-
-.try-this-card {
-  background:var(--amber-pale); border-radius:var(--r-sm);
-  padding:16px; border:1px solid rgba(200,129,58,0.2);
-  margin-bottom:10px;
+.time-slot:hover{border-color:var(--sage-l);color:var(--sage);}
+.time-slot.selected{
+  background:var(--sage-pale);
+  border-color:var(--sage);
+  color:var(--sage);
+  font-weight:600;
 }
-.try-this-tag { font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; color:var(--amber); margin-bottom:8px; }
-.try-this-card p { font-size:0.82rem; color:var(--ink); line-height:1.6; font-style:italic; }
+.time-slots-label{font-size:0.78rem;font-weight:600;color:var(--ink);margin-bottom:8px;}
 
-.activity-list { display:flex; flex-direction:column; gap:10px; }
-.activity-item { display:flex; gap:10px; align-items:flex-start; }
-.activity-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; margin-top:5px; }
-.activity-text { font-size:0.78rem; color:var(--ink-m); line-height:1.4; }
-.activity-time { font-size:0.7rem; color:var(--ink-l); margin-top:2px; }
-
-/* ── COMPANION AREAS VIEW ── */
-.companion-intro { margin-bottom:26px; }
-.companion-intro h2 { font-family:'Lora',serif; font-size:1.5rem; font-weight:600; color:var(--ink); margin-bottom:6px; }
-.companion-intro p { font-size:0.88rem; color:var(--ink-m); line-height:1.6; max-width:580px; }
-
-.filter-bar { display:flex; gap:8px; margin-bottom:22px; flex-wrap:wrap; }
-.filter-btn {
-  padding:7px 16px; border-radius:100px; font-size:0.78rem; font-weight:600;
-  cursor:pointer; border:1.5px solid var(--stone); background:white; color:var(--ink-m);
-  transition:all 0.2s; font-family:'DM Sans',sans-serif;
+/* Consent */
+.consent-row{
+  display:flex;gap:11px;align-items:flex-start;
+  margin-bottom:22px;margin-top:6px;
 }
-.filter-btn:hover, .filter-btn.active { background:var(--sage); color:white; border-color:var(--sage); }
-
-.areas-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-
-.area-card {
-  background:white; border-radius:var(--r); border:1px solid var(--stone);
-  cursor:pointer; transition:transform 0.25s,box-shadow 0.25s,border-color 0.2s;
-  overflow:hidden; position:relative;
+.consent-row input[type=checkbox]{
+  width:18px;height:18px;flex-shrink:0;
+  margin-top:2px;cursor:pointer;
+  accent-color:var(--sage);
 }
-.area-card:hover { transform:translateY(-4px); box-shadow:0 14px 36px rgba(0,0,0,0.09); border-color:transparent; }
+.consent-text{font-size:0.76rem;color:var(--ink-m);line-height:1.55;}
+.consent-text a{color:var(--sage);text-decoration:none;}
+.consent-text a:hover{text-decoration:underline;}
 
-.area-card-top { padding:22px 22px 0; }
-.area-card-accent { height:4px; margin:-1px -1px 0; border-radius:var(--r) var(--r) 0 0; }
-.area-badge-row { display:flex; gap:6px; margin-bottom:14px; margin-top:18px; }
-.area-badge {
-  font-size:0.68rem; font-weight:700; letter-spacing:0.04em;
-  text-transform:uppercase; padding:3px 9px; border-radius:100px;
+/* Submit button */
+.submit-btn{
+  width:100%;padding:15px;
+  background:var(--sage);color:white;
+  border:none;border-radius:100px;
+  font-size:0.95rem;font-weight:600;
+  font-family:'DM Sans',sans-serif;
+  cursor:pointer;
+  transition:background 0.2s,transform 0.15s,box-shadow 0.2s;
+  box-shadow:0 4px 18px rgba(107,143,126,0.3);
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  letter-spacing:0.01em;
 }
-.area-card h3 { font-family:'Lora',serif; font-size:1rem; font-weight:600; color:var(--ink); margin-bottom:6px; line-height:1.3; }
-.area-card .area-q { font-size:0.78rem; color:var(--ink-l); line-height:1.5; font-style:italic; margin-bottom:16px; }
+.submit-btn:hover{background:var(--sage-d);transform:translateY(-1px);box-shadow:0 8px 28px rgba(107,143,126,0.35);}
+.submit-btn:active{transform:translateY(0);}
 
-.area-card-footer {
-  padding:14px 22px; border-top:1px solid var(--stone);
-  display:flex; align-items:center; justify-content:space-between;
+/* Trust strip */
+.trust-strip{
+  display:flex;align-items:center;gap:16px;
+  margin-top:18px;flex-wrap:wrap;
 }
-.area-meta { display:flex; gap:12px; }
-.area-meta-item { font-size:0.72rem; color:var(--ink-l); display:flex; align-items:center; gap:4px; }
-.area-go {
-  width:30px; height:30px; border-radius:50%;
-  display:grid; place-items:center; font-size:0.8rem;
+.trust-item{
+  display:flex;align-items:center;gap:6px;
+  font-size:0.74rem;color:var(--ink-l);font-weight:500;
+}
+.trust-item svg{flex-shrink:0;}
+
+/* ── SUCCESS STATE ── */
+.success-state{
+  display:none;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:40px 0;
+  animation:fadeUp 0.5s ease;
+}
+.success-state.show{display:flex;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+
+.success-icon{
+  width:72px;height:72px;border-radius:50%;
+  background:var(--sage-pale);
+  border:2px solid var(--sage-l);
+  display:grid;place-items:center;
+  font-size:2rem;margin-bottom:22px;
+}
+.success-state h3{
+  font-family:'Lora',serif;font-size:1.5rem;
+  font-weight:600;color:var(--ink);margin-bottom:10px;
+}
+.success-state p{font-size:0.9rem;color:var(--ink-m);line-height:1.65;max-width:360px;margin-bottom:28px;}
+.success-detail{
+  background:var(--sage-pale);border-radius:var(--r);
+  padding:18px 24px;border:1px solid rgba(107,143,126,0.2);
+  width:100%;max-width:380px;margin-bottom:20px;text-align:left;
+}
+.success-detail-row{
+  display:flex;justify-content:space-between;
+  font-size:0.8rem;padding:6px 0;
+  border-bottom:1px solid rgba(107,143,126,0.15);
+}
+.success-detail-row:last-child{border-bottom:none;}
+.success-detail-row span:first-child{color:var(--ink-l);}
+.success-detail-row span:last-child{font-weight:600;color:var(--ink);}
+
+.add-cal-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 22px;border-radius:100px;
+  border:1.5px solid var(--stone);
+  background:white;font-size:0.84rem;font-weight:600;
+  color:var(--ink-m);cursor:pointer;
+  font-family:'DM Sans',sans-serif;
   transition:all 0.2s;
 }
-
-/* ── LESSON VIEW ── */
-.lesson-header { margin-bottom:24px; }
-.breadcrumb { display:flex; align-items:center; gap:6px; font-size:0.76rem; color:var(--ink-l); margin-bottom:14px; cursor:pointer; }
-.breadcrumb span { color:var(--sage); font-weight:600; }
-.breadcrumb:hover span { text-decoration:underline; }
-
-.lesson-layout { display:grid; grid-template-columns:1fr 300px; gap:20px; align-items:start; }
-
-.lesson-main { background:white; border-radius:var(--r); border:1px solid var(--stone); overflow:hidden; }
-
-.lesson-nav-tabs { display:flex; border-bottom:1px solid var(--stone); }
-.lesson-tab {
-  padding:14px 20px; font-size:0.82rem; font-weight:600; cursor:pointer;
-  color:var(--ink-l); border-bottom:2px solid transparent; margin-bottom:-1px;
-  transition:color 0.2s, border-color 0.2s;
-}
-.lesson-tab.active { color:var(--sage); border-bottom-color:var(--sage); }
-.lesson-tab:hover { color:var(--ink); }
-
-.lesson-body { padding:28px; }
-
-.lesson-section { display:none; }
-.lesson-section.active { display:block; animation:fadeIn 0.25s ease; }
-
-.intro-banner {
-  background:var(--sage-pale); border-radius:var(--r-sm);
-  padding:18px 20px; border-left:4px solid var(--sage); margin-bottom:22px;
-}
-.intro-banner p { font-size:0.85rem; color:var(--ink); line-height:1.65; }
-.intro-banner .time-note { font-size:0.76rem; color:var(--ink-l); margin-top:8px; font-weight:500; }
-
-.content-block { margin-bottom:24px; }
-.content-block h4 { font-family:'Lora',serif; font-size:1rem; font-weight:600; color:var(--ink); margin-bottom:10px; }
-.content-block p { font-size:0.86rem; color:var(--ink-m); line-height:1.7; margin-bottom:10px; }
-
-.principle-list { display:flex; flex-direction:column; gap:10px; margin-bottom:20px; }
-.principle-item {
-  display:flex; gap:12px; align-items:flex-start;
-  background:var(--warm); border-radius:var(--r-sm); padding:14px;
-  border:1px solid var(--stone);
-}
-.principle-num {
-  width:26px; height:26px; border-radius:50%; background:var(--sage);
-  color:white; font-size:0.72rem; font-weight:700; display:grid; place-items:center; flex-shrink:0;
-}
-.principle-item h5 { font-size:0.83rem; font-weight:600; color:var(--ink); margin-bottom:3px; }
-.principle-item p { font-size:0.78rem; color:var(--ink-m); line-height:1.5; margin:0; }
-
-.reflection-area {
-  background:var(--warm); border-radius:var(--r-sm); padding:18px;
-  border:1.5px solid var(--stone);
-}
-.reflection-area label { font-size:0.8rem; font-weight:600; color:var(--ink); display:block; margin-bottom:8px; }
-.reflection-area textarea {
-  width:100%; min-height:100px; border:1.5px solid var(--stone);
-  border-radius:8px; padding:12px; font-size:0.84rem; font-family:'DM Sans',sans-serif;
-  color:var(--ink); line-height:1.6; resize:vertical; transition:border-color 0.2s;
-  background:white;
-}
-.reflection-area textarea:focus { outline:none; border-color:var(--sage-l); }
-.reflection-prompt { font-size:0.76rem; color:var(--ink-l); line-height:1.5; font-style:italic; margin-top:8px; }
-
-.try-this-box {
-  background:var(--amber-pale); border-radius:var(--r-sm);
-  padding:18px 20px; border:1px solid rgba(200,129,58,0.25); margin-bottom:16px;
-}
-.try-this-box .tt-label { font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; color:var(--amber); margin-bottom:8px; display:flex; align-items:center; gap:6px; }
-.try-this-box h5 { font-size:0.88rem; font-weight:600; color:var(--ink); margin-bottom:6px; }
-.try-this-box p { font-size:0.82rem; color:var(--ink-m); line-height:1.6; }
-
-.key-things { display:flex; flex-direction:column; gap:8px; }
-.key-thing {
-  display:flex; gap:10px; align-items:flex-start;
-  padding:12px 14px; background:white; border-radius:8px;
-  border:1px solid var(--stone);
-}
-.key-thing::before { content:'✦'; color:var(--sage); font-size:0.8rem; flex-shrink:0; margin-top:1px; }
-.key-thing p { font-size:0.82rem; color:var(--ink-m); line-height:1.5; margin:0; }
-
-.lesson-complete-btn {
-  margin-top:24px; width:100%; padding:14px;
-  background:var(--sage); color:white; border:none;
-  border-radius:100px; font-size:0.9rem; font-weight:600;
-  cursor:pointer; font-family:'DM Sans',sans-serif;
-  transition:background 0.2s,transform 0.15s;
-  display:flex; align-items:center; justify-content:center; gap:8px;
-}
-.lesson-complete-btn:hover { background:var(--sage-dark); transform:translateY(-1px); }
-
-/* Lesson sidebar */
-.lesson-sidebar { display:flex; flex-direction:column; gap:14px; }
-
-.module-list-card { background:white; border-radius:var(--r); border:1px solid var(--stone); overflow:hidden; }
-.module-list-head { padding:14px 18px; border-bottom:1px solid var(--stone); font-size:0.82rem; font-weight:600; color:var(--ink); }
-.module-items { padding:8px 0; }
-.module-item {
-  display:flex; gap:12px; align-items:center;
-  padding:10px 18px; cursor:pointer; transition:background 0.15s;
-}
-.module-item:hover { background:var(--warm); }
-.module-item.active { background:var(--sage-pale); }
-.module-check {
-  width:22px; height:22px; border-radius:50%; flex-shrink:0;
-  display:grid; place-items:center; font-size:0.7rem;
-}
-.module-check.done { background:var(--sage); color:white; }
-.module-check.current { background:var(--sage-pale); border:2px solid var(--sage); color:var(--sage); font-weight:700; }
-.module-check.locked { background:var(--stone); color:var(--ink-l); }
-.module-item-text { flex:1; }
-.module-item-text strong { font-size:0.8rem; font-weight:600; color:var(--ink); display:block; }
-.module-item-text span { font-size:0.72rem; color:var(--ink-l); }
-.module-item.active .module-item-text strong { color:var(--sage); }
-
-.framework-card { background:var(--teal-l); border-radius:var(--r); padding:18px; border:1px solid rgba(45,106,106,0.2); }
-.framework-card h4 { font-size:0.85rem; font-weight:700; color:var(--teal); margin-bottom:12px; letter-spacing:0.02em; }
-.oars-item { margin-bottom:10px; }
-.oars-letter { font-family:'Lora',serif; font-size:1.3rem; font-weight:600; color:var(--teal); line-height:1; }
-.oars-word { font-size:0.75rem; font-weight:600; color:var(--teal); }
-.oars-desc { font-size:0.75rem; color:var(--ink-m); line-height:1.4; margin-top:2px; }
-
-/* ── REFLECTION VIEW ── */
-.reflection-view { max-width:680px; }
-.r-intro { margin-bottom:24px; }
-.r-intro h2 { font-family:'Lora',serif; font-size:1.4rem; font-weight:600; color:var(--ink); margin-bottom:6px; }
-.r-intro p { font-size:0.87rem; color:var(--ink-m); line-height:1.65; }
-
-.reflection-card { background:white; border-radius:var(--r); border:1px solid var(--stone); padding:28px; margin-bottom:16px; }
-.reflection-card h4 { font-family:'Lora',serif; font-size:0.95rem; font-weight:600; color:var(--ink); margin-bottom:14px; }
-.r-field { margin-bottom:18px; }
-.r-field label { font-size:0.8rem; font-weight:600; color:var(--ink); display:block; margin-bottom:6px; }
-.r-field textarea, .r-field input, .r-field select {
-  width:100%; border:1.5px solid var(--stone); border-radius:8px;
-  padding:11px 14px; font-size:0.84rem; font-family:'DM Sans',sans-serif;
-  color:var(--ink); transition:border-color 0.2s; background:var(--warm);
-}
-.r-field textarea:focus,.r-field input:focus,.r-field select:focus { outline:none; border-color:var(--sage-l); background:white; }
-.r-field textarea { min-height:90px; resize:vertical; line-height:1.6; }
-.r-field select { cursor:pointer; }
-
-.ai-prompt-box {
-  background:linear-gradient(135deg,var(--sage-pale),var(--teal-l));
-  border-radius:var(--r-sm); padding:16px 18px;
-  border:1px solid rgba(90,122,106,0.2); margin-top:16px;
-}
-.ai-label { font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; color:var(--sage); margin-bottom:8px; display:flex; align-items:center; gap:6px; }
-.ai-prompt-box p { font-size:0.82rem; color:var(--ink); line-height:1.6; font-style:italic; }
-
-/* ── JOURNEY VIEW ── */
-.journey-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
-.journey-card { background:white; border-radius:var(--r); border:1px solid var(--stone); padding:22px; }
-.journey-card h4 { font-family:'Lora',serif; font-size:0.95rem; font-weight:600; color:var(--ink); margin-bottom:16px; }
-
-.cpd-entries { display:flex; flex-direction:column; gap:8px; }
-.cpd-entry {
-  display:flex; gap:12px; align-items:center;
-  padding:10px 14px; background:var(--warm); border-radius:8px; border:1px solid var(--stone);
-}
-.cpd-entry-icon { width:36px; height:36px; border-radius:10px; display:grid; place-items:center; font-size:1rem; flex-shrink:0; }
-.cpd-entry-info { flex:1; }
-.cpd-entry-info strong { font-size:0.82rem; font-weight:600; color:var(--ink); display:block; }
-.cpd-entry-info span { font-size:0.72rem; color:var(--ink-l); }
-.cpd-entry-hrs { font-size:0.8rem; font-weight:700; color:var(--sage); }
-
-.badges-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
-.badge-item { text-align:center; padding:14px 8px; background:var(--warm); border-radius:10px; border:1px solid var(--stone); }
-.badge-icon { font-size:1.6rem; margin-bottom:6px; }
-.badge-name { font-size:0.7rem; font-weight:600; color:var(--ink); line-height:1.3; }
-.badge-item.locked { opacity:0.4; filter:grayscale(1); }
-
-/* ── TOAST ── */
-.toast {
-  position:fixed; bottom:28px; right:28px;
-  background:var(--ink); color:white;
-  border-radius:12px; padding:14px 20px;
-  font-size:0.84rem; font-weight:500;
-  box-shadow:0 8px 32px rgba(0,0,0,0.25);
-  display:flex; align-items:center; gap:10px;
-  transform:translateY(80px); opacity:0;
-  transition:all 0.35s cubic-bezier(0.22,1,0.36,1);
-  z-index:999; max-width:320px;
-}
-.toast.show { transform:none; opacity:1; }
-.toast-icon { font-size:1.1rem; }
-
-/* ── MODAL ── */
-.modal-overlay {
-  position:fixed; inset:0; background:rgba(30,42,36,0.5);
-  backdrop-filter:blur(4px); z-index:200;
-  display:none; place-items:center;
-}
-.modal-overlay.open { display:grid; }
-.modal {
-  background:white; border-radius:var(--r); padding:32px;
-  max-width:440px; width:90%; box-shadow:0 24px 60px rgba(0,0,0,0.2);
-  animation:fadeIn 0.3s ease;
-  text-align:center;
-}
-.modal-icon { font-size:2.5rem; margin-bottom:14px; }
-.modal h3 { font-family:'Lora',serif; font-size:1.3rem; font-weight:600; color:var(--ink); margin-bottom:8px; }
-.modal p { font-size:0.86rem; color:var(--ink-m); line-height:1.65; margin-bottom:22px; }
-.modal-actions { display:flex; gap:10px; justify-content:center; }
-
-/* ── RESPONSIVE DESKTOP ── */
-@media(max-width:1100px) { .areas-grid { grid-template-columns:repeat(2,1fr); } }
-@media(max-width:900px) { .lesson-layout { grid-template-columns:1fr; } .home-grid { grid-template-columns:1fr; } }
-@media(max-width:700px) { .areas-grid { grid-template-columns:1fr; } .stats-row { grid-template-columns:repeat(2,1fr); } .journey-grid { grid-template-columns:1fr; } }
-
-/* ── BOTTOM TAB BAR (mobile only) ── */
-.bottom-tab-bar { display:none; }
+.add-cal-btn:hover{border-color:var(--sage-l);color:var(--sage);}
 
 /* ── MOBILE ── */
-@media(max-width:600px) {
+@media(max-width:768px){
+  .page{grid-template-columns:1fr;}
+  .left{padding:36px 24px 32px;}
+  .left h1{font-size:1.6rem;}
+  .left-sub{font-size:0.88rem;margin-bottom:32px;}
+  .testimonial{display:none;}
+  .right{padding:36px 24px 48px;}
+  .form-row{grid-template-columns:1fr;}
+  .time-slots{grid-template-columns:repeat(2,1fr);}
+}
 
-  html, body { overflow:hidden; }
-
-  /* Hide desktop sidebar */
-  .sidebar { display:none; }
-
-  /* Layout */
-  .app { flex-direction:column; height:100dvh; }
-  .main { flex:1; min-height:0; display:flex; flex-direction:column; }
-
-  /* Topbar */
-  .topbar { height:52px; padding:0 14px; gap:10px; }
-  .topbar-title { font-size:0.92rem; }
-  .topbar-sub { display:none; }
-  .search-box { display:none; }
-  .topbar-actions .btn-outline { display:none; }
-  .btn-primary-sm { padding:6px 12px; font-size:0.73rem; }
-
-  /* Content scrolls, leaves room for tab bar */
-  .content { padding:14px 14px 76px; flex:1; overflow-y:auto; }
-
-  /* Welcome banner */
-  .welcome-banner { padding:18px 18px 20px; margin-bottom:14px; }
-  .welcome-banner h2 { font-size:1.15rem; }
-  .welcome-banner p { font-size:0.8rem; max-width:100%; }
-  .welcome-banner .today-nudge { padding:7px 12px; margin-top:14px; }
-  .welcome-banner .today-nudge span { font-size:0.75rem; }
-
-  /* Stats */
-  .stats-row { grid-template-columns:repeat(2,1fr); gap:10px; margin-bottom:14px; }
-  .stat-card { padding:14px; }
-  .stat-num { font-size:1.5rem; }
-  .stat-label { font-size:0.7rem; }
-  .stat-delta { font-size:0.68rem; }
-
-  /* Home grid */
-  .home-grid { grid-template-columns:1fr; gap:14px; }
-  .right-panel { gap:10px; }
-
-  /* Cards */
-  .continue-card { padding:12px; gap:10px; }
-  .continue-icon { width:38px; height:38px; }
-  .continue-info h4 { font-size:0.82rem; }
-  .continue-info p { font-size:0.72rem; }
-  .panel-card { padding:16px; }
-
-  /* Companion areas */
-  .companion-intro { margin-bottom:14px; }
-  .companion-intro h2 { font-size:1.15rem; }
-  .companion-intro p { font-size:0.82rem; }
-  .areas-grid { grid-template-columns:1fr; gap:10px; }
-  .area-card-top { padding:16px 16px 0; }
-  .area-card-footer { padding:12px 16px; }
-
-  /* Filter bar scrolls horizontally */
-  .filter-bar { flex-wrap:nowrap; overflow-x:auto; padding-bottom:6px; gap:6px; -webkit-overflow-scrolling:touch; margin-bottom:14px; }
-  .filter-bar::-webkit-scrollbar { display:none; }
-  .filter-btn { white-space:nowrap; flex-shrink:0; font-size:0.75rem; padding:6px 14px; }
-
-  /* Lesson */
-  .lesson-layout { grid-template-columns:1fr; gap:12px; }
-  .lesson-sidebar { order:2; }
-  .lesson-main { order:1; }
-  .lesson-nav-tabs { overflow-x:auto; -webkit-overflow-scrolling:touch; }
-  .lesson-nav-tabs::-webkit-scrollbar { display:none; }
-  .lesson-tab { white-space:nowrap; flex-shrink:0; padding:11px 13px; font-size:0.77rem; }
-  .lesson-body { padding:16px; }
-  .principle-item { padding:12px; }
-  .lesson-complete-btn { padding:12px; font-size:0.85rem; }
-
-  /* Reflection */
-  .reflection-view { max-width:100%; }
-  .reflection-card { padding:16px; }
-  .r-field textarea { min-height:80px; }
-
-  /* Journey */
-  .journey-grid { grid-template-columns:1fr; }
-  .badges-grid { grid-template-columns:repeat(3,1fr); }
-  .cpd-entry { padding:10px 12px; gap:10px; }
-  .cpd-entry-icon { width:30px; height:30px; font-size:0.85rem; }
-  .cpd-entry-info strong { font-size:0.78rem; }
-  .cpd-entry-info span { font-size:0.68rem; }
-
-  /* Toast clears tab bar */
-  .toast { bottom:74px; right:12px; left:12px; max-width:none; }
-
-  /* Modal */
-  .modal { padding:24px 18px; }
-  .modal h3 { font-size:1.1rem; }
-
-  /* Section titles */
-  .section-head h3 { font-size:0.92rem; }
-
-  /* Bottom tab bar */
-  .bottom-tab-bar {
-    display:flex;
-    position:fixed;
-    bottom:0; left:0; right:0;
-    height:60px;
-    background:white;
-    border-top:1px solid var(--stone);
-    z-index:100;
-    padding:0 2px;
-    padding-bottom:env(safe-area-inset-bottom,0px);
-    box-shadow:0 -4px 20px rgba(0,0,0,0.06);
-  }
-
-  .tab-item {
-    flex:1; display:flex; flex-direction:column;
-    align-items:center; justify-content:center;
-    gap:2px; cursor:pointer;
-    padding:6px 2px 4px;
-    border-radius:10px;
-    transition:background 0.15s;
-    position:relative;
-    -webkit-tap-highlight-color:transparent;
-  }
-  .tab-item:active { background:var(--sage-pale); }
-  .tab-icon { font-size:1.2rem; color:var(--ink-l); transition:color 0.15s; line-height:1; }
-  .tab-label { font-size:0.6rem; font-weight:500; color:var(--ink-l); transition:color 0.15s; letter-spacing:0.01em; }
-  .tab-item.active .tab-icon { color:var(--sage); }
-  .tab-item.active .tab-label { color:var(--sage); font-weight:600; }
-  .tab-item.active::after {
-    content:''; position:absolute;
-    bottom:0; left:50%; transform:translateX(-50%);
-    width:20px; height:3px;
-    background:var(--sage); border-radius:3px 3px 0 0;
-  }
-  .tab-badge {
-    position:absolute; top:3px; right:calc(50% - 16px);
-    width:15px; height:15px; background:var(--sage); color:white;
-    font-size:0.5rem; font-weight:700; border-radius:50%;
-    display:grid; place-items:center; border:2px solid white;
-  }
+@media(max-width:480px){
+  .left{padding:28px 18px 24px;}
+  .right{padding:28px 18px 40px;}
+  .form-header h2{font-size:1.3rem;}
+  .time-slots{grid-template-columns:1fr 1fr;}
+  .trust-strip{gap:12px;}
 }
 </style>
 </head>
 <body>
 
-<div class="app">
+<div class="page">
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="sidebar-header">
-      <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
-        <div class="logo-mark"></div>
-        <div class="logo-text">Alongside<span>You</span><br>.care</div>
-      </a>
-    </div>
+  <!-- ── LEFT: VALUE PROP ── -->
+  <div class="left">
+    <div class="left-inner">
 
-    <div class="sidebar-user">
-      <div class="user-avatar">SC</div>
-      <div>
-        <div class="user-name">Sarah Clarke</div>
-        <div class="user-role">Care Coordinator · Southwark PCN</div>
-      </div>
-    </div>
-
-    <nav class="sidebar-nav">
-      <div class="nav-section-label">Main</div>
-      <div class="nav-item active" onclick="showView('home',this)">
-        <div class="nav-icon">🏠</div>
-        <div class="nav-label">Home</div>
-      </div>
-      <div class="nav-item" onclick="showView('companion',this)">
-        <div class="nav-icon">🗺️</div>
-        <div class="nav-label">Companion Areas</div>
-        <div class="nav-badge">9</div>
-      </div>
-      <div class="nav-item" onclick="showView('reflection',this)">
-        <div class="nav-icon">🪞</div>
-        <div class="nav-label">Reflect</div>
-      </div>
-      <div class="nav-item" onclick="showView('journey',this)">
-        <div class="nav-icon">📈</div>
-        <div class="nav-label">My Journey</div>
+      <div class="logo">
+        <a href="index.html" style="display:flex;align-items:center;gap:11px;text-decoration:none;">
+          <div class="logo-mark"></div>
+          <div class="logo-text">AlongsideYou<span>.care</span></div>
+        </a>
+        <a href="index.html" style="margin-left:auto;font-size:0.78rem;color:rgba(255,255,255,0.5);text-decoration:none;display:flex;align-items:center;gap:5px;">← Back to site</a>
       </div>
 
-      <div class="nav-section-label">Resources</div>
-      <div class="nav-item">
-        <div class="nav-icon">🧰</div>
-        <div class="nav-label">Practical Tools</div>
-      </div>
-      <div class="nav-item">
-        <div class="nav-icon">👥</div>
-        <div class="nav-label">Community</div>
-        <div class="nav-badge">3</div>
-      </div>
-      <div class="nav-item">
-        <div class="nav-icon">🔗</div>
-        <div class="nav-label">PCA Programmes</div>
-      </div>
+      <h1>See how it works <em>in practice</em></h1>
+      <p class="left-sub">A 30-minute demo tailored to your team — we'll walk through how AlongsideYou supports Care Coordinators, Social Prescribers, and Health & Wellbeing Coaches day to day.</p>
 
-      <div class="nav-section-label">Account</div>
-      <div class="nav-item">
-        <div class="nav-icon">⚙️</div>
-        <div class="nav-label">Settings</div>
-      </div>
-    </nav>
-
-    <div class="sidebar-footer">
-      <div class="cpd-bar-wrap">
-        <div class="cpd-bar-label"><span>CPD Hours this month</span><strong>5.5 / 10h</strong></div>
-        <div class="cpd-bar"><div class="cpd-fill"></div></div>
-      </div>
-      <div style="margin-top:10px;">
-        <a href="privacy.html" style="font-size:0.68rem;color:var(--ink-l);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--sage)'" onmouseout="this.style.color='var(--ink-l)'">Privacy Policy</a>
-        <span style="font-size:0.68rem;color:var(--ink-l);margin:0 6px;">·</span>
-        <a href="index.html" style="font-size:0.68rem;color:var(--ink-l);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--sage)'" onmouseout="this.style.color='var(--ink-l)'">Back to site</a>
-      </div>
-    </div>
-  </aside>
-
-  <!-- MAIN -->
-  <div class="main">
-    <header class="topbar" id="topbar">
-      <div>
-        <div class="topbar-title" id="topbar-title">Good morning, Sarah 👋</div>
-        <div class="topbar-sub" id="topbar-sub">Thursday · Your practice companion is ready</div>
-      </div>
-      <div class="topbar-actions">
-        <div class="search-box">🔍 &nbsp;Search areas, tools…</div>
-        <button class="btn-sm btn-outline" onclick="showView('reflection', document.querySelector('[onclick*=reflection]'))">+ Reflect</button>
-        <a href="book-demo.html" class="btn-sm btn-primary-sm" style="text-decoration:none;">Book a Demo</a>
-      </div>
-    </header>
-
-    <div class="content">
-
-      <!-- HOME VIEW -->
-      <div class="view active" id="view-home">
-        <div class="welcome-banner">
-          <h2>Welcome back, Sarah</h2>
-          <p>You're making steady progress. You have 3 modules in progress and your next reflection is overdue — pick up where you left off.</p>
-          <div class="today-nudge" onclick="showTryThisModal()">
-            <div class="nudge-dot"></div>
-            <span>✨ Today's nudge: <em>Start with curiosity, not a question list.</em></span>
+      <div class="expect-label">What to expect</div>
+      <div class="expect-list">
+        <div class="expect-item">
+          <div class="expect-icon">🗺️</div>
+          <div class="expect-text">
+            <strong>A live walkthrough</strong>
+            <span>See Companion Areas, reflection tools, and micro-learning in action — not slides.</span>
           </div>
         </div>
-
-        <div class="stats-row">
-          <div class="stat-card c1">
-            <div class="stat-num">3</div>
-            <div class="stat-label">Areas in Progress</div>
-            <div class="stat-delta">↑ 1 this week</div>
-          </div>
-          <div class="stat-card c2">
-            <div class="stat-num">5.5h</div>
-            <div class="stat-label">CPD Logged</div>
-            <div class="stat-delta">55% of monthly goal</div>
-          </div>
-          <div class="stat-card c3">
-            <div class="stat-num">7</div>
-            <div class="stat-label">Reflections Written</div>
-            <div class="stat-delta">↑ 2 this month</div>
-          </div>
-          <div class="stat-card c4">
-            <div class="stat-num">4</div>
-            <div class="stat-label">Badges Earned</div>
-            <div class="stat-delta">1 new this week</div>
+        <div class="expect-item">
+          <div class="expect-icon">💬</div>
+          <div class="expect-text">
+            <strong>Tailored to your context</strong>
+            <span>We'll focus on the areas most relevant to your team and role mix.</span>
           </div>
         </div>
+        <div class="expect-item">
+          <div class="expect-icon">🤝</div>
+          <div class="expect-text">
+            <strong>A real conversation</strong>
+            <span>Ask anything — about the platform, pricing, or how it fits alongside existing training.</span>
+          </div>
+        </div>
+        <div class="expect-item">
+          <div class="expect-icon">⚡</div>
+          <div class="expect-text">
+            <strong>30 minutes, no pressure</strong>
+            <span>We'll follow your lead. No hard sell — just an honest look at whether it's a good fit.</span>
+          </div>
+        </div>
+      </div>
 
-        <div class="home-grid">
+      <div class="testimonial">
+        <blockquote>"I wasn't sure what to expect from the demo, but it was genuinely useful — they focused on exactly the challenges our team was facing."</blockquote>
+        <div class="testimonial-attr">
+          <div class="t-avatar">KH</div>
           <div>
-            <div class="section-head">
-              <h3>Continue Learning</h3>
-              <a onclick="showView('companion', document.querySelector('[onclick*=companion]'))">View all areas →</a>
-            </div>
-            <div class="continue-list">
-              <div class="continue-card" onclick="openLesson('pcc')">
-                <div class="continue-icon" style="background:var(--blue-pale);">💬</div>
-                <div class="continue-info">
-                  <h4>Person-Centred Conversations</h4>
-                  <p>Micro-training: Foundations — 65% complete</p>
-                  <div class="mini-progress"><div class="mini-progress-fill" style="width:65%"></div></div>
-                </div>
-                <div class="continue-arrow">→</div>
-              </div>
-              <div class="continue-card" onclick="openLesson('sdm')">
-                <div class="continue-icon" style="background:var(--sage-pale);">🤝</div>
-                <div class="continue-info">
-                  <h4>Shared Decision Making</h4>
-                  <p>Open Reflection — not started</p>
-                  <div class="mini-progress"><div class="mini-progress-fill" style="width:0%"></div></div>
-                </div>
-                <div class="continue-arrow">→</div>
-              </div>
-              <div class="continue-card" onclick="openLesson('wtm')">
-                <div class="continue-icon" style="background:var(--amber-pale);">🎯</div>
-                <div class="continue-info">
-                  <h4>Understanding What Matters</h4>
-                  <p>Practical Tools — 40% complete</p>
-                  <div class="mini-progress"><div class="mini-progress-fill" style="width:40%"></div></div>
-                </div>
-                <div class="continue-arrow">→</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="right-panel">
-            <div class="panel-card">
-              <h4>✨ Try This Today</h4>
-              <div class="try-this-card">
-                <div class="try-this-tag">Person-Centred Conversations</div>
-                <p>"Before your next appointment, take 30 seconds to set aside your agenda. Ask yourself: what might matter most to them today?"</p>
-              </div>
-              <div style="font-size:0.75rem;color:var(--ink-l);text-align:right;">Refreshes daily</div>
-            </div>
-
-            <div class="panel-card">
-              <h4>Recent Activity</h4>
-              <div class="activity-list">
-                <div class="activity-item">
-                  <div class="activity-dot" style="background:var(--sage)"></div>
-                  <div>
-                    <div class="activity-text">Completed <strong>Open Reflection</strong> in Person-Centred Conversations</div>
-                    <div class="activity-time">2 hours ago</div>
-                  </div>
-                </div>
-                <div class="activity-item">
-                  <div class="activity-dot" style="background:var(--amber)"></div>
-                  <div>
-                    <div class="activity-text">Earned badge: <strong>Curious Listener</strong></div>
-                    <div class="activity-time">Yesterday</div>
-                  </div>
-                </div>
-                <div class="activity-item">
-                  <div class="activity-dot" style="background:var(--teal)"></div>
-                  <div>
-                    <div class="activity-text">Started <strong>Shared Decision Making</strong></div>
-                    <div class="activity-time">2 days ago</div>
-                  </div>
-                </div>
-                <div class="activity-item">
-                  <div class="activity-dot" style="background:var(--lav)"></div>
-                  <div>
-                    <div class="activity-text">Logged 1.5h CPD — <strong>Micro-training</strong></div>
-                    <div class="activity-time">3 days ago</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- COMPANION AREAS VIEW -->
-      <div class="view" id="view-companion">
-        <div class="companion-intro">
-          <h2>Companion Areas</h2>
-          <p>Support for different moments in practice. Each area contains structured reflection, micro-learning, practical tools, and Try This prompts.</p>
-        </div>
-
-        <div class="filter-bar">
-          <button class="filter-btn active" onclick="filterAreas('all',this)">All Areas</button>
-          <button class="filter-btn" onclick="filterAreas('in-progress',this)">In Progress</button>
-          <button class="filter-btn" onclick="filterAreas('conversations',this)">Conversations</button>
-          <button class="filter-btn" onclick="filterAreas('systems',this)">Systems & Complexity</button>
-          <button class="filter-btn" onclick="filterAreas('change',this)">Change & Support</button>
-        </div>
-
-        <div class="areas-grid" id="areas-grid">
-
-          <div class="area-card" data-tags="in-progress conversations" onclick="openLesson('pcc')">
-            <div class="area-card-accent" style="background:linear-gradient(90deg,#9aafcc,#6a82a0)"></div>
-            <div class="area-card-top">
-              <div class="area-badge-row">
-                <span class="area-badge" style="background:var(--blue-pale);color:var(--blue)">In Progress</span>
-                <span class="area-badge" style="background:var(--sage-pale);color:var(--sage)">Conversations</span>
-              </div>
-              <h3>Person-Centred Conversations</h3>
-              <p class="area-q">How do I really listen and respond, without rushing to fix things?</p>
-            </div>
-            <div class="area-card-footer">
-              <div class="area-meta">
-                <span class="area-meta-item">📚 5 modules</span>
-                <span class="area-meta-item">⏱ 25 min</span>
-              </div>
-              <div class="area-go" style="background:var(--blue-pale);color:var(--blue)">→</div>
-            </div>
-          </div>
-
-          <div class="area-card" data-tags="conversations" onclick="openLesson('wtm')">
-            <div class="area-card-accent" style="background:linear-gradient(90deg,#7ab5a0,#5a7a6a)"></div>
-            <div class="area-card-top">
-              <div class="area-badge-row">
-                <span class="area-badge" style="background:var(--amber-pale);color:var(--amber)">In Progress</span>
-                <span class="area-badge" style="background:var(--sage-pale);color:var(--sage)">Conversations</span>
-              </div>
-              <h3>Understanding What Matters</h3>
-              <p class="area-q">What's really important to this person right now?</p>
-            </div>
-            <div class="area-card-footer">
-              <div class="area-meta">
-                <span class="area-meta-item">📚 4 modules</span>
-                <span class="area-meta-item">⏱ 20 min</span>
-              </div>
-              <div class="area-go" style="background:var(--sage-pale);color:var(--sage)">→</div>
-            </div>
-          </div>
-
-          <div class="area-card" data-tags="conversations" onclick="openLesson('ncla')">
-            <div class="area-card-accent" style="background:linear-gradient(90deg,#e8b87a,#c8813a)"></div>
-            <div class="area-card-top">
-              <div class="area-badge-row">
-                <span class="area-badge" style="background:var(--sage-pale);color:var(--sage)">New</span>
-                <span class="area-badge" style="background:var(--amber-pale);color:var(--amber)">Conversations</span>
-              </div>
-              <h3>When There's No Clear Answer</h3>
-              <p class="area-q">Call out a feature, benefit, or value that can stand on its own.</p>
-            </div>
-            <div class="area-card-footer">
-              <div class="area-meta">
-                <span class="area-meta-item">📚 3 modules</span>
-                <span class="area-meta-item">⏱ 15 min</span>
-              </div>
-              <div class="area-go" style="background:var(--amber-pale);color:var(--amber)">→</div>
-            </div>
-          </div>
-
-          <div class="area-card" data-tags="in-progress conversations" onclick="openLesson('sdm')">
-            <div class="area-card-accent" style="background:linear-gradient(90deg,#a0c8b8,#70a890)"></div>
-            <div class="area-card-top">
-              <div class="area-badge-row">
-                <span class="area-badge" style="background:var(--teal-l);color:var(--teal)">In Progress</span>
-                <span class="area-badge" style="background:var(--sage-pale);color:var(--sage)">Conversations</span>
-              </div>
-              <h3>Shared Decision Making</h3>
-              <p class="area-q">How do we decide together, not for?</p>
-            </div>
-            <div class="area-card-footer">
-              <div class="area-meta">
-                <span class="area-meta-item">📚 4 modules</span>
-                <span class="area-meta-item">⏱ 22 min</span>
-              </div>
-              <div class="area-go" style="background:var(--teal-l);color:var(--teal)">→</div>
-            </div>
-          </div>
-
-          <div class="area-card" data-tags="change conversations" onclick="openLesson('conf')">
-            <div class="area-card-accent" style="background:linear-gradient(90deg,#d4a8c8,#a878a0)"></div>
-            <div class="area-card-top">
-              <div class="area-badge-row">
-                <span class="area-badge" style="background:var(--lav-pale);color:var(--lav)">Change & Support</span>
-              </div>
-              <h3>Supporting Confidence & Self-Management</h3>
-              <p class="area-q">How do I really listen and respond?</p>
-            </div>
-            <div class="area-card-footer">
-              <div class="area-meta">
-                <span class="area-meta-item">📚 6 modules</span>
-                <span class="area-meta-item">⏱ 30 min</span>
-              </div>
-              <div class="area-go" style="background:var(--lav-pale);color:var(--lav)">→</div>
-            </div>
-          </div>
-
-          <div class="area-card" data-tags="conversations" onclick="openLesson('pvc')">
-            <div class="area-card-accent" style="background:linear-gradient(90deg,#f0c878,#d8a050)"></div>
-            <div class="area-card-top">
-              <div class="area-badge-row">
-                <span class="area-badge" style="background:var(--amber-pale);color:var(--amber)">Conversations</span>
-              </div>
-              <h3>Power, Voice, and Choice</h3>
-              <p class="area-q">Person Centred Conversations</p>
-            </div>
-            <div class="area-card-footer">
-              <div class="area-meta">
-                <span class="area-meta-item">📚 4 modules</span>
-                <span class="area-meta-item">⏱ 20 min</span>
-              </div>
-              <div class="area-go" style="background:var(--amber-pale);color:var(--amber)">→</div>
-            </div>
-          </div>
-
-          <div class="area-card" data-tags="conversations" onclick="openLesson('hmec')">
-            <div class="area-card-accent" style="background:linear-gradient(90deg,#90c8a8,#5a9878)"></div>
-            <div class="area-card-top">
-              <div class="area-badge-row">
-                <span class="area-badge" style="background:var(--sage-pale);color:var(--sage)">Conversations</span>
-              </div>
-              <h3>How to Make Every Contact Count</h3>
-              <p class="area-q">What's really important to this person right now?</p>
-            </div>
-            <div class="area-card-footer">
-              <div class="area-meta">
-                <span class="area-meta-item">📚 3 modules</span>
-                <span class="area-meta-item">⏱ 15 min</span>
-              </div>
-              <div class="area-go" style="background:var(--sage-pale);color:var(--sage)">→</div>
-            </div>
-          </div>
-
-          <div class="area-card" data-tags="conversations" onclick="openLesson('wcfc')">
-            <div class="area-card-accent" style="background:linear-gradient(90deg,#c8a8e8,#9878c0)"></div>
-            <div class="area-card-top">
-              <div class="area-badge-row">
-                <span class="area-badge" style="background:var(--rose-pale);color:var(--rose)">Conversations</span>
-              </div>
-              <h3>When Conversations Feel Charged</h3>
-              <p class="area-q">Call out a feature, benefit, or value that can stand on its own.</p>
-            </div>
-            <div class="area-card-footer">
-              <div class="area-meta">
-                <span class="area-meta-item">📚 4 modules</span>
-                <span class="area-meta-item">⏱ 20 min</span>
-              </div>
-              <div class="area-go" style="background:var(--rose-pale);color:var(--rose)">→</div>
-            </div>
-          </div>
-
-          <div class="area-card" data-tags="systems" onclick="openLesson('nav')">
-            <div class="area-card-accent" style="background:linear-gradient(90deg,#78a8d0,#4878a8)"></div>
-            <div class="area-card-top">
-              <div class="area-badge-row">
-                <span class="area-badge" style="background:var(--blue-pale);color:var(--blue)">Systems & Complexity</span>
-              </div>
-              <h3>Navigating Systems and Services</h3>
-              <p class="area-q">What am I learning from this work?</p>
-            </div>
-            <div class="area-card-footer">
-              <div class="area-meta">
-                <span class="area-meta-item">📚 5 modules</span>
-                <span class="area-meta-item">⏱ 25 min</span>
-              </div>
-              <div class="area-go" style="background:var(--blue-pale);color:var(--blue)">→</div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- LESSON VIEW -->
-      <div class="view" id="view-lesson">
-        <div class="lesson-header">
-          <div class="breadcrumb" onclick="showView('companion', document.querySelector('[onclick*=companion]'))">
-            ← Back to <span id="lesson-breadcrumb">Companion Areas</span>
-          </div>
-        </div>
-
-        <div class="lesson-layout">
-          <div class="lesson-main">
-            <div class="lesson-nav-tabs">
-              <div class="lesson-tab active" onclick="switchTab('reflect',this)">Open Reflection</div>
-              <div class="lesson-tab" onclick="switchTab('microtraining',this)">Micro-training</div>
-              <div class="lesson-tab" onclick="switchTab('tools',this)">Practical Tools</div>
-              <div class="lesson-tab" onclick="switchTab('trythis',this)">Try This</div>
-              <div class="lesson-tab" onclick="switchTab('keythings',this)">Key Things</div>
-            </div>
-
-            <div class="lesson-body">
-
-              <!-- REFLECT -->
-              <div class="lesson-section active" id="tab-reflect">
-                <div class="intro-banner">
-                  <p>Listening without fixing: this space is here to help you pause, notice what happened, and reflect without judgement.</p>
-                  <div class="time-note">5–10 minutes. No preparation needed.</div>
-                </div>
-                <div class="reflection-area">
-                  <label>What happened in a recent conversation that's stayed with you?</label>
-                  <textarea placeholder="Describe the situation briefly — no need to include names or identifying details…"></textarea>
-                  <div class="reflection-prompt">Try to focus on what you noticed, rather than what you did or didn't do right.</div>
-                </div>
-                <div class="ai-prompt-box" style="margin-top:16px">
-                  <div class="ai-label">✦ AI Reflection Prompt</div>
-                  <p>"What do you think the person in that conversation most needed from you in that moment — and how close did you get to meeting that?"</p>
-                </div>
-                <button class="lesson-complete-btn" onclick="markComplete('Open Reflection')">Save Reflection ✓</button>
-              </div>
-
-              <!-- MICRO-TRAINING -->
-              <div class="lesson-section" id="tab-microtraining">
-                <div class="intro-banner">
-                  <p><strong>Foundations of Person-Centred Conversations</strong></p>
-                  <p style="margin-top:6px">A short overview of listening, curiosity, and responding in ways that keep the person at the centre of the conversation.</p>
-                  <div class="time-note">5–8 minutes read</div>
-                </div>
-                <div class="content-block">
-                  <h4>What does person-centred really mean?</h4>
-                  <p>Person-centred practice is often described as putting the individual first — but in the day-to-day reality of care coordination, it's more than a phrase. It's a set of habits and dispositions that take practice to develop.</p>
-                  <p>At its heart, person-centred practice means being genuinely curious about what matters to the person in front of you — not just ticking boxes about their condition or circumstances.</p>
-                </div>
-                <div class="content-block">
-                  <h4>Three foundations to come back to</h4>
-                  <div class="principle-list">
-                    <div class="principle-item">
-                      <div class="principle-num">1</div>
-                      <div>
-                        <h5>Curiosity before conclusions</h5>
-                        <p>Before explaining, advising, or signposting — pause and ask. What does this person already know? What have they already tried? What feels most urgent to them?</p>
-                      </div>
-                    </div>
-                    <div class="principle-item">
-                      <div class="principle-num">2</div>
-                      <div>
-                        <h5>Listen for the whole picture</h5>
-                        <p>People rarely lead with what matters most. The real concern often emerges in the second half of a conversation, or when you reflect something back.</p>
-                      </div>
-                    </div>
-                    <div class="principle-item">
-                      <div class="principle-num">3</div>
-                      <div>
-                        <h5>Hold back the fix</h5>
-                        <p>The urge to help by solving is natural. But responding too quickly with a solution can close down a conversation before the person feels heard.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <button class="lesson-complete-btn" onclick="markComplete('Micro-training: Foundations')">Mark as Complete ✓</button>
-              </div>
-
-              <!-- PRACTICAL TOOLS -->
-              <div class="lesson-section" id="tab-tools">
-                <div class="intro-banner">
-                  <p>Simple tools you can draw on in real conversations. These aren't rules or scripts — just ways of approaching moments that often feel difficult.</p>
-                </div>
-                <div class="content-block">
-                  <h4>The OARS Framework</h4>
-                  <p>OARS is a set of communication skills drawn from motivational interviewing. They work together to create conversations that feel collaborative rather than directive.</p>
-                </div>
-                <div class="content-block">
-                  <h4>Reflective Listening Starters</h4>
-                  <div class="principle-list">
-                    <div class="principle-item" style="background:var(--sage-pale);border-color:rgba(90,122,106,0.2)">
-                      <div class="principle-num">💬</div>
-                      <div>
-                        <h5>"So what I'm hearing is…"</h5>
-                        <p>Reflecting back what you've understood — not parroting, but checking you've got the essence of it.</p>
-                      </div>
-                    </div>
-                    <div class="principle-item" style="background:var(--amber-pale);border-color:rgba(200,129,58,0.2)">
-                      <div class="principle-num">💬</div>
-                      <div>
-                        <h5>"It sounds like this has been going on for a while…"</h5>
-                        <p>Acknowledging time and persistence without minimising. Invites the person to say more.</p>
-                      </div>
-                    </div>
-                    <div class="principle-item" style="background:var(--teal-l);border-color:rgba(45,106,106,0.2)">
-                      <div class="principle-num">💬</div>
-                      <div>
-                        <h5>"What would feel most helpful right now?"</h5>
-                        <p>Checking in rather than assuming. Keeps the agenda with the person.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <button class="lesson-complete-btn" onclick="markComplete('Practical Tools')">Save to My Tools ✓</button>
-              </div>
-
-              <!-- TRY THIS -->
-              <div class="lesson-section" id="tab-trythis">
-                <div class="intro-banner">
-                  <p>Something you might try, if it feels helpful. A small shift that can sometimes open up a conversation in a different way.</p>
-                </div>
-                <div class="try-this-box">
-                  <div class="tt-label">✨ Try This — This Week</div>
-                  <h5>The 30-second reset</h5>
-                  <p>Before your next appointment, take 30 seconds to set aside your own agenda. Ask yourself: "What might matter most to this person today?" — and notice whether it changes how you open the conversation.</p>
-                </div>
-                <div class="try-this-box">
-                  <div class="tt-label">✨ Try This — In the Moment</div>
-                  <h5>Pause before the plan</h5>
-                  <p>When you feel the urge to offer a solution or signpost, wait one more question. "Is there anything else on your mind about this?" can surface what's really going on.</p>
-                </div>
-                <div class="try-this-box">
-                  <div class="tt-label">✨ Try This — To Reflect On</div>
-                  <h5>Notice your fixing reflex</h5>
-                  <p>At the end of a difficult conversation, ask yourself: did I try to fix before I'd really understood? What would I do differently next time?</p>
-                </div>
-                <button class="lesson-complete-btn" onclick="markComplete('Try This prompts')">I'll Try This ✓</button>
-              </div>
-
-              <!-- KEY THINGS -->
-              <div class="lesson-section" id="tab-keythings">
-                <div class="intro-banner">
-                  <p>Things that often stay true, even when situations change.</p>
-                </div>
-                <div class="key-things">
-                  <div class="key-thing"><p>People know themselves best. Your role is to help them access and articulate that knowledge, not to add to it.</p></div>
-                  <div class="key-thing"><p>Silence is not awkward — it's often where the most important things are being worked out. Get comfortable with a pause.</p></div>
-                  <div class="key-thing"><p>Being heard is, for many people, genuinely rare. The experience of being listened to well can itself be therapeutic.</p></div>
-                  <div class="key-thing"><p>You don't have to have the answer. "I'm not sure, but let's think about this together" is a valid and powerful response.</p></div>
-                  <div class="key-thing"><p>Every conversation is different. The frameworks are starting points — your judgement and attunement matter more.</p></div>
-                  <div class="key-thing"><p>Personalised care is not a technique. It's an orientation — a way of seeing the person first, the problem second.</p></div>
-                </div>
-                <button class="lesson-complete-btn" onclick="markComplete('Key Things to Hold Onto')">Save These ✓</button>
-              </div>
-
-            </div>
-          </div>
-
-          <!-- LESSON SIDEBAR -->
-          <div class="lesson-sidebar">
-            <div class="module-list-card">
-              <div class="module-list-head" id="lesson-title">Person-Centred Conversations</div>
-              <div class="module-items">
-                <div class="module-item active">
-                  <div class="module-check current">●</div>
-                  <div class="module-item-text"><strong>Open Reflection</strong><span>5–10 min</span></div>
-                </div>
-                <div class="module-item">
-                  <div class="module-check done">✓</div>
-                  <div class="module-item-text"><strong>Micro-training</strong><span>5–8 min</span></div>
-                </div>
-                <div class="module-item">
-                  <div class="module-check locked">○</div>
-                  <div class="module-item-text"><strong>Practical Tools</strong><span>8 min</span></div>
-                </div>
-                <div class="module-item">
-                  <div class="module-check locked">○</div>
-                  <div class="module-item-text"><strong>Try This</strong><span>3 min</span></div>
-                </div>
-                <div class="module-item">
-                  <div class="module-check locked">○</div>
-                  <div class="module-item-text"><strong>Key Things</strong><span>5 min</span></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="framework-card">
-              <h4>🧰 OARS at a Glance</h4>
-              <div class="oars-item">
-                <div><span class="oars-letter">O</span> <span class="oars-word">Open Questions</span></div>
-                <div class="oars-desc">Invite the person to share more. Avoid yes/no questions.</div>
-              </div>
-              <div class="oars-item">
-                <div><span class="oars-letter">A</span> <span class="oars-word">Affirmations</span></div>
-                <div class="oars-desc">Acknowledge strengths and efforts genuinely.</div>
-              </div>
-              <div class="oars-item">
-                <div><span class="oars-letter">R</span> <span class="oars-word">Reflections</span></div>
-                <div class="oars-desc">Mirror back what you hear to show understanding.</div>
-              </div>
-              <div class="oars-item" style="margin-bottom:0">
-                <div><span class="oars-letter">S</span> <span class="oars-word">Summaries</span></div>
-                <div class="oars-desc">Bring together key themes and check understanding.</div>
-              </div>
-            </div>
-
-            <div class="panel-card" style="background:white;border:1px solid var(--stone);border-radius:var(--r);padding:18px">
-              <h4>Your Progress</h4>
-              <div style="margin-top:8px">
-                <div style="display:flex;justify-content:space-between;margin-bottom:6px">
-                  <span style="font-size:0.75rem;color:var(--ink-l)">This area</span>
-                  <span style="font-size:0.75rem;font-weight:700;color:var(--sage)">65%</span>
-                </div>
-                <div class="cpd-bar"><div class="cpd-fill" style="width:65%"></div></div>
-                <div style="font-size:0.72rem;color:var(--ink-l);margin-top:8px">2 of 5 modules complete · 1.5h CPD earned</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- REFLECTION VIEW -->
-      <div class="view" id="view-reflection">
-        <div class="reflection-view">
-          <div class="r-intro">
-            <h2>Reflect on Practice</h2>
-            <p>Use this space to make sense of a conversation or situation from your work. Reflection helps you notice patterns, build confidence, and identify what you'd do differently.</p>
-          </div>
-
-          <div class="reflection-card">
-            <h4>About this reflection</h4>
-            <div class="r-field">
-              <label>Companion Area (optional)</label>
-              <select>
-                <option value="">— Select an area —</option>
-                <option>Person-Centred Conversations</option>
-                <option>Understanding What Matters</option>
-                <option>Shared Decision Making</option>
-                <option>Supporting Confidence & Self-Management</option>
-                <option>When Conversations Feel Charged</option>
-                <option>Power, Voice, and Choice</option>
-                <option>Navigating Systems and Services</option>
-              </select>
-            </div>
-            <div class="r-field">
-              <label>What happened? (Brief description — no identifiable details)</label>
-              <textarea placeholder="Describe the situation or conversation you're reflecting on…"></textarea>
-            </div>
-          </div>
-
-          <div class="reflection-card">
-            <h4>Going deeper</h4>
-            <div class="r-field">
-              <label>What did you notice — about the person, the conversation, yourself?</label>
-              <textarea placeholder="What were you aware of during or after the interaction?"></textarea>
-            </div>
-            <div class="r-field">
-              <label>What worked well, even if it felt imperfect?</label>
-              <textarea placeholder="Try to find something, even in difficult situations…" style="min-height:70px"></textarea>
-            </div>
-            <div class="r-field">
-              <label>What would you do differently, or try next time?</label>
-              <textarea placeholder="A small shift, not a complete overhaul…" style="min-height:70px"></textarea>
-            </div>
-            <div class="ai-prompt-box">
-              <div class="ai-label">✦ AI Prompt — based on what you've written</div>
-              <p>"You mentioned noticing something about the conversation. What do you think that tells you about what the person needed — and how did your response land for them?"</p>
-            </div>
-          </div>
-
-          <div style="display:flex;gap:12px">
-            <button class="btn-sm btn-primary-sm" style="padding:13px 28px;font-size:0.88rem" onclick="markComplete('Reflection saved')">Save Reflection</button>
-            <button class="btn-sm btn-outline" style="padding:13px 24px;font-size:0.88rem">Save as Draft</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- JOURNEY VIEW -->
-      <div class="view" id="view-journey">
-        <div style="margin-bottom:24px">
-          <h2 style="font-family:'Lora',serif;font-size:1.4rem;font-weight:600;color:var(--ink);margin-bottom:6px">My Journey</h2>
-          <p style="font-size:0.87rem;color:var(--ink-m)">Your CPD log, badges, and progress across all Companion Areas.</p>
-        </div>
-
-        <div class="journey-grid">
-          <div class="journey-card" style="grid-column:span 2">
-            <h4>CPD Log — March 2025</h4>
-            <div class="cpd-entries">
-              <div class="cpd-entry">
-                <div class="cpd-entry-icon" style="background:var(--sage-pale)">🪞</div>
-                <div class="cpd-entry-info"><strong>Open Reflection — Person-Centred Conversations</strong><span>Completed · 18 Mar 2025</span></div>
-                <div class="cpd-entry-hrs">0.25h</div>
-              </div>
-              <div class="cpd-entry">
-                <div class="cpd-entry-icon" style="background:var(--blue-pale)">📚</div>
-                <div class="cpd-entry-info"><strong>Micro-training: Foundations of PCC</strong><span>Completed · 16 Mar 2025</span></div>
-                <div class="cpd-entry-hrs">0.5h</div>
-              </div>
-              <div class="cpd-entry">
-                <div class="cpd-entry-icon" style="background:var(--amber-pale)">🎯</div>
-                <div class="cpd-entry-info"><strong>Understanding What Matters — Practical Tools</strong><span>In progress · 14 Mar 2025</span></div>
-                <div class="cpd-entry-hrs">0.75h</div>
-              </div>
-              <div class="cpd-entry">
-                <div class="cpd-entry-icon" style="background:var(--teal-l)">🤝</div>
-                <div class="cpd-entry-info"><strong>Shared Decision Making — Micro-training</strong><span>Completed · 10 Mar 2025</span></div>
-                <div class="cpd-entry-hrs">0.5h</div>
-              </div>
-              <div class="cpd-entry">
-                <div class="cpd-entry-icon" style="background:var(--lav-pale)">🪞</div>
-                <div class="cpd-entry-info"><strong>3× Open Reflections (various areas)</strong><span>Completed · Mar 2025</span></div>
-                <div class="cpd-entry-hrs">3.5h</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="journey-card">
-            <h4>Badges Earned</h4>
-            <div class="badges-grid">
-              <div class="badge-item">
-                <div class="badge-icon">👂</div>
-                <div class="badge-name">Curious Listener</div>
-              </div>
-              <div class="badge-item">
-                <div class="badge-icon">🌱</div>
-                <div class="badge-name">First Reflection</div>
-              </div>
-              <div class="badge-item">
-                <div class="badge-icon">🗺️</div>
-                <div class="badge-name">Explorer</div>
-              </div>
-              <div class="badge-item">
-                <div class="badge-icon">⚡</div>
-                <div class="badge-name">Quick Learner</div>
-              </div>
-              <div class="badge-item locked">
-                <div class="badge-icon">🔥</div>
-                <div class="badge-name">7-Day Streak</div>
-              </div>
-              <div class="badge-item locked">
-                <div class="badge-icon">🏅</div>
-                <div class="badge-name">10h CPD</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="journey-card">
-            <h4>Areas Progress</h4>
-            <div style="display:flex;flex-direction:column;gap:12px;margin-top:4px">
-              <div>
-                <div style="display:flex;justify-content:space-between;margin-bottom:5px">
-                  <span style="font-size:0.78rem;font-weight:500;color:var(--ink)">Person-Centred Conversations</span>
-                  <span style="font-size:0.75rem;font-weight:700;color:var(--sage)">65%</span>
-                </div>
-                <div class="cpd-bar" style="height:6px"><div class="cpd-fill" style="width:65%"></div></div>
-              </div>
-              <div>
-                <div style="display:flex;justify-content:space-between;margin-bottom:5px">
-                  <span style="font-size:0.78rem;font-weight:500;color:var(--ink)">Understanding What Matters</span>
-                  <span style="font-size:0.75rem;font-weight:700;color:var(--amber)">40%</span>
-                </div>
-                <div class="cpd-bar" style="height:6px"><div class="cpd-fill" style="width:40%;background:var(--amber)"></div></div>
-              </div>
-              <div>
-                <div style="display:flex;justify-content:space-between;margin-bottom:5px">
-                  <span style="font-size:0.78rem;font-weight:500;color:var(--ink)">Shared Decision Making</span>
-                  <span style="font-size:0.75rem;font-weight:700;color:var(--teal)">25%</span>
-                </div>
-                <div class="cpd-bar" style="height:6px"><div class="cpd-fill" style="width:25%;background:var(--teal)"></div></div>
-              </div>
-              <div>
-                <div style="display:flex;justify-content:space-between;margin-bottom:5px">
-                  <span style="font-size:0.78rem;font-weight:500;color:var(--ink)">Power, Voice & Choice</span>
-                  <span style="font-size:0.75rem;font-weight:700;color:var(--ink-l)">0%</span>
-                </div>
-                <div class="cpd-bar" style="height:6px"><div class="cpd-fill" style="width:0%"></div></div>
-              </div>
-            </div>
+            <div class="t-name">Karen H.</div>
+            <div class="t-role">PCN Manager, East Midlands</div>
           </div>
         </div>
       </div>
 
     </div>
   </div>
-</div>
 
-<!-- BOTTOM TAB BAR (mobile) -->
-<nav class="bottom-tab-bar">
-  <div class="tab-item active" id="tab-home" onclick="showView('home',this,'tab-home')">
-    <div class="tab-icon">🏠</div>
-    <div class="tab-label">Home</div>
-  </div>
-  <div class="tab-item" id="tab-companion" onclick="showView('companion',this,'tab-companion')">
-    <div class="tab-icon">🗺️</div>
-    <div class="tab-label">Areas</div>
-    <div class="tab-badge">9</div>
-  </div>
-  <div class="tab-item" id="tab-reflection" onclick="showView('reflection',this,'tab-reflection')">
-    <div class="tab-icon">🪞</div>
-    <div class="tab-label">Reflect</div>
-  </div>
-  <div class="tab-item" id="tab-journey" onclick="showView('journey',this,'tab-journey')">
-    <div class="tab-icon">📈</div>
-    <div class="tab-label">Journey</div>
-  </div>
-</nav>
+  <!-- ── RIGHT: FORM ── -->
+  <div class="right">
 
-<!-- MODAL -->
-<div class="modal-overlay" id="modal" onclick="closeModal(event)">
-  <div class="modal" id="modal-content">
-    <div class="modal-icon" id="modal-icon">✨</div>
-    <h3 id="modal-title">Today's Nudge</h3>
-    <p id="modal-body">Start with curiosity, not a question list. Before your next appointment, take 30 seconds to set aside your own agenda. What might matter most to this person today?</p>
-    <div class="modal-actions">
-      <button class="btn-sm btn-primary-sm" onclick="closeModal()">Got it</button>
-      <button class="btn-sm btn-outline" onclick="closeModal()">Save to My Tools</button>
+    <!-- FORM STATE -->
+    <div id="form-state">
+      <div class="form-header">
+        <div class="form-eyebrow"><div class="eyebrow-dot"></div>Book a Demo</div>
+        <h2>Let's find a time that works for you</h2>
+        <p>Fill in your details below and we'll confirm a 30-minute slot within one working day.</p>
+      </div>
+
+      <form class="signup-form" onsubmit="handleSubmit(event)" novalidate>
+
+        <div class="form-row">
+          <div class="field">
+            <label>First name <span class="req">*</span></label>
+            <input type="text" id="fname" placeholder="Sarah" required autocomplete="given-name">
+          </div>
+          <div class="field">
+            <label>Last name <span class="req">*</span></label>
+            <input type="text" id="lname" placeholder="Clarke" required autocomplete="family-name">
+          </div>
+        </div>
+
+        <div class="form-row full" style="margin-bottom:14px;">
+          <div class="field">
+            <label>Work email <span class="req">*</span></label>
+            <input type="email" id="email" placeholder="sarah@southwarkpcn.nhs.uk" required autocomplete="email">
+          </div>
+        </div>
+
+        <div class="form-row full" style="margin-bottom:14px;">
+          <div class="field">
+            <label>Organisation / PCN name <span class="req">*</span></label>
+            <input type="text" id="org" placeholder="e.g. Southwark PCN, Mind in the City…" required autocomplete="organization">
+          </div>
+        </div>
+
+        <div class="form-row full" style="margin-bottom:14px;">
+          <div class="field">
+            <label>Your role <span class="req">*</span></label>
+            <select id="role" required>
+              <option value="" disabled selected>Select your role…</option>
+              <option value="care-coordinator">Care Coordinator</option>
+              <option value="social-prescriber">Social Prescribing Link Worker</option>
+              <option value="hwb-coach">Health & Wellbeing Coach</option>
+              <option value="pcn-manager">PCN Manager / Lead</option>
+              <option value="training-lead">Training / Workforce Lead</option>
+              <option value="commissioner">Commissioner / ICS</option>
+              <option value="vcse">VCSE Organisation</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row full" style="margin-bottom:6px;">
+          <div class="field">
+            <label>Team size <span style="color:var(--ink-l);font-weight:400;">(optional)</span></label>
+            <select id="teamsize">
+              <option value="" disabled selected>How many people in your team?</option>
+              <option value="1">Just me</option>
+              <option value="2-5">2–5</option>
+              <option value="6-15">6–15</option>
+              <option value="16-30">16–30</option>
+              <option value="30+">30+</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="margin-bottom:14px;">
+          <div class="time-slots-label">Preferred time <span style="color:var(--ink-l);font-weight:400;">(select all that suit)</span></div>
+          <div class="time-slots">
+            <div class="time-slot" onclick="toggleSlot(this)">Mon–Fri morning</div>
+            <div class="time-slot" onclick="toggleSlot(this)">Mon–Fri afternoon</div>
+            <div class="time-slot" onclick="toggleSlot(this)">Early morning</div>
+            <div class="time-slot" onclick="toggleSlot(this)">Lunchtime</div>
+            <div class="time-slot" onclick="toggleSlot(this)">Late afternoon</div>
+            <div class="time-slot" onclick="toggleSlot(this)">Flexible</div>
+          </div>
+        </div>
+
+        <div class="form-row full" style="margin-bottom:14px;">
+          <div class="field">
+            <label>Anything you'd like us to focus on? <span style="color:var(--ink-l);font-weight:400;">(optional)</span></label>
+            <textarea id="notes" placeholder="e.g. We're a new team just starting out with social prescribing, or we're particularly interested in CPD tracking…"></textarea>
+          </div>
+        </div>
+
+        <div class="consent-row">
+          <input type="checkbox" id="consent" required>
+          <label class="consent-text" for="consent">
+            I'm happy for AlongsideYou.care to contact me about this demo and send occasional relevant updates. I can unsubscribe at any time. See our <a href="privacy.html">privacy policy</a>.
+          </label>
+        </div>
+
+        <button type="submit" class="submit-btn">
+          <span id="btn-text">Book My Demo</span>
+          <span id="btn-arrow">→</span>
+        </button>
+
+        <div class="trust-strip">
+          <div class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.5 3.5L7 9.5 4 11l.5-3.5L2 5l3.5-.5L7 1z" stroke="var(--ink-l)" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg>
+            No spam, ever
+          </div>
+          <div class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="5" width="10" height="8" rx="2" stroke="var(--ink-l)" stroke-width="1.2"/><path d="M5 5V4a2 2 0 014 0v1" stroke="var(--ink-l)" stroke-width="1.2" stroke-linecap="round"/></svg>
+            Your data is safe
+          </div>
+          <div class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="var(--ink-l)" stroke-width="1.2"/><path d="M7 4v3l2 1.5" stroke="var(--ink-l)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Reply within 1 working day
+          </div>
+          <div class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3.5" stroke="var(--ink-l)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            No obligation
+          </div>
+        </div>
+
+      </form>
     </div>
+
+    <!-- SUCCESS STATE -->
+    <div class="success-state" id="success-state">
+      <div class="success-icon">🎉</div>
+      <h3>You're booked in!</h3>
+      <p>Thanks — we've received your request and will confirm your demo slot by email within one working day.</p>
+      <div class="success-detail" id="success-detail">
+        <div class="success-detail-row">
+          <span>Name</span><span id="s-name">—</span>
+        </div>
+        <div class="success-detail-row">
+          <span>Email</span><span id="s-email">—</span>
+        </div>
+        <div class="success-detail-row">
+          <span>Organisation</span><span id="s-org">—</span>
+        </div>
+        <div class="success-detail-row">
+          <span>Role</span><span id="s-role">—</span>
+        </div>
+        <div class="success-detail-row" style="border-bottom:none;">
+          <span>Duration</span><span>30 minutes</span>
+        </div>
+      </div>
+      <button class="add-cal-btn" onclick="showToast()">
+        📅 &nbsp;Add to calendar
+      </button>
+    </div>
+
   </div>
 </div>
 
-<!-- TOAST -->
-<div class="toast" id="toast">
-  <span class="toast-icon" id="toast-icon">✓</span>
-  <span id="toast-msg">Saved!</span>
+<!-- Config banner (only visible until credentials are added) -->
+<div id="config-banner" style="display:none;position:fixed;top:0;left:0;right:0;z-index:999;background:#fef3cd;border-bottom:1px solid #f0d080;padding:10px 20px;font-size:0.82rem;color:#7a5c10;align-items:center;gap:10px;flex-wrap:wrap;">
+  <span>⚙️</span>
+  <strong>Supabase not configured yet.</strong>
+  <span>Open the file, find <code style="background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:4px;">SUPABASE_URL</code> and <code style="background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:4px;">SUPABASE_ANON_KEY</code> near the bottom and paste in your project credentials. <a href="https://supabase.com/dashboard" target="_blank" style="color:#7a5c10;font-weight:600;">Open Supabase →</a></span>
 </div>
+
+<!-- Toast -->
+<div id="toast" style="
+  position:fixed;bottom:24px;right:24px;
+  background:var(--ink);color:white;
+  border-radius:12px;padding:14px 20px;
+  font-size:0.84rem;font-weight:500;
+  box-shadow:0 8px 32px rgba(0,0,0,0.2);
+  display:flex;align-items:center;gap:10px;
+  transform:translateY(80px);opacity:0;
+  transition:all 0.35s cubic-bezier(0.22,1,0.36,1);
+  z-index:999;max-width:300px;
+">
+  <span>📅</span>
+  <span>We'll include a calendar invite in your confirmation email!</span>
+</div>
+
+<!-- Supabase JS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 
 <script>
-const topbarTitles = {
-  home: ['Good morning, Sarah 👋', 'Thursday · Your practice companion is ready'],
-  companion: ['Companion Areas', 'Support for different moments in practice'],
-  lesson: ['Person-Centred Conversations', 'Companion Area · 5 modules'],
-  reflection: ['Reflect on Practice', 'A space to pause and notice'],
-  journey: ['My Journey', 'Your CPD log, badges, and progress']
+// ── ⚙️  PASTE YOUR SUPABASE CREDENTIALS HERE ────────────
+const SUPABASE_URL      = 'https://YOUR_PROJECT_REF.supabase.co';
+const SUPABASE_ANON_KEY = 'YOUR_ANON_PUBLIC_KEY';
+// ─────────────────────────────────────────────────────────
+
+const { createClient } = supabase;
+const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// Show setup banner in browser if credentials not yet filled in
+window.addEventListener('DOMContentLoaded', () => {
+  if (SUPABASE_URL.includes('YOUR_PROJECT_REF')) {
+    document.getElementById('config-banner').style.display = 'flex';
+  }
+});
+
+const roleLabels = {
+  'care-coordinator':  'Care Coordinator',
+  'social-prescriber': 'Social Prescribing Link Worker',
+  'hwb-coach':         'Health & Wellbeing Coach',
+  'pcn-manager':       'PCN Manager / Lead',
+  'training-lead':     'Training / Workforce Lead',
+  'commissioner':      'Commissioner / ICS',
+  'vcse':              'VCSE Organisation',
+  'other':             'Other'
 };
 
-function showView(id, clickedEl, tabId) {
-  // Switch view
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById('view-' + id)?.classList.add('active');
-
-  // Sync desktop sidebar nav items
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  if (clickedEl && clickedEl.classList.contains('nav-item')) clickedEl.classList.add('active');
-
-  // Sync mobile bottom tab bar
-  document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
-  const mobileTab = tabId
-    ? document.getElementById(tabId)
-    : document.getElementById('tab-' + id);
-  if (mobileTab) mobileTab.classList.add('active');
-
-  // Update topbar
-  const t = topbarTitles[id] || topbarTitles.home;
-  document.getElementById('topbar-title').textContent = t[0];
-  document.getElementById('topbar-sub').textContent = t[1];
-
-  // Scroll content to top on mobile
-  const content = document.querySelector('.content');
-  if (content) content.scrollTop = 0;
+function toggleSlot(el) {
+  el.classList.toggle('selected');
 }
 
-function openLesson(areaId) {
-  const titles = {
-    pcc: 'Person-Centred Conversations',
-    wtm: 'Understanding What Matters',
-    sdm: 'Shared Decision Making',
-    ncla: 'When There\'s No Clear Answer',
-    conf: 'Supporting Confidence & Self-Management',
-    pvc: 'Power, Voice, and Choice',
-    hmec: 'How to Make Every Contact Count',
-    wcfc: 'When Conversations Feel Charged',
-    nav: 'Navigating Systems and Services'
-  };
-  const title = titles[areaId] || 'Companion Area';
-  document.getElementById('lesson-title').textContent = title;
-  document.getElementById('lesson-breadcrumb').textContent = 'Companion Areas';
-  document.getElementById('topbar-title').textContent = title;
-  document.getElementById('topbar-sub').textContent = 'Companion Area · Learning journey';
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById('view-lesson').classList.add('active');
-  // Keep companion tab active on mobile when in a lesson
-  document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
-  const tab = document.getElementById('tab-companion');
-  if (tab) tab.classList.add('active');
-  switchTab('reflect', document.querySelector('.lesson-tab'));
-  const content = document.querySelector('.content');
-  if (content) content.scrollTop = 0;
-}
+async function handleSubmit(e) {
+  e.preventDefault();
+  clearErrors();
 
-function switchTab(id, el) {
-  document.querySelectorAll('.lesson-tab').forEach(t => t.classList.remove('active'));
-  if (el) el.classList.add('active');
-  else document.querySelectorAll('.lesson-tab')[0].classList.add('active');
-  document.querySelectorAll('.lesson-section').forEach(s => s.classList.remove('active'));
-  document.getElementById('tab-' + id)?.classList.add('active');
-}
+  // Collect values
+  const fname    = document.getElementById('fname').value.trim();
+  const lname    = document.getElementById('lname').value.trim();
+  const email    = document.getElementById('email').value.trim();
+  const org      = document.getElementById('org').value.trim();
+  const role     = document.getElementById('role').value;
+  const teamsize = document.getElementById('teamsize').value;
+  const notes    = document.getElementById('notes').value.trim();
+  const consent  = document.getElementById('consent').checked;
+  const times    = [...document.querySelectorAll('.time-slot.selected')].map(el => el.textContent.trim());
 
-function filterAreas(filter, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.area-card').forEach(card => {
-    if (filter === 'all' || card.dataset.tags?.includes(filter)) {
-      card.style.display = '';
-    } else {
-      card.style.display = 'none';
-    }
-  });
-}
-
-function markComplete(label) {
-  showToast('✓', `"${label}" saved to your CPD log`);
-}
-
-function showToast(icon, msg) {
-  const t = document.getElementById('toast');
-  document.getElementById('toast-icon').textContent = icon;
-  document.getElementById('toast-msg').textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3200);
-}
-
-function showTryThisModal() {
-  document.getElementById('modal').classList.add('open');
-}
-
-function closeModal(e) {
-  if (!e || e.target === document.getElementById('modal') || e.currentTarget === document.querySelector('.modal-overlay')) {
-    document.getElementById('modal').classList.remove('open');
+  // Validation
+  if (!fname || !lname || !email || !org || !role) {
+    shakeBtn();
+    ['fname','lname','email','org','role'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el && !el.value.trim()) el.style.borderColor = '#c08090';
+    });
+    return;
   }
+  if (!email.includes('@') || !email.includes('.')) {
+    const el = document.getElementById('email');
+    el.style.borderColor = '#c08090';
+    el.focus();
+    showFieldError(el, 'Please enter a valid email address');
+    return;
+  }
+  if (!consent) {
+    document.getElementById('consent').style.outline = '2px solid var(--amber)';
+    return;
+  }
+
+  // Animate button to loading state
+  const btn     = document.querySelector('.submit-btn');
+  const btnText = document.getElementById('btn-text');
+  const btnArrow= document.getElementById('btn-arrow');
+  btn.disabled  = true;
+  btn.style.opacity = '0.85';
+  btnText.textContent = 'Booking…';
+  btnArrow.textContent = '⏳';
+
+  // Insert row into Supabase
+  const { error } = await db
+    .from('demo_requests')
+    .insert([{
+      first_name:      fname,
+      last_name:       lname,
+      email:           email,
+      organisation:    org,
+      role:            role,
+      team_size:       teamsize || null,
+      preferred_times: times.length ? times : null,
+      notes:           notes || null,
+      consent:         true
+    }]);
+
+  if (error) {
+    // Reset button
+    btn.disabled = false;
+    btn.style.opacity = '1';
+    btnText.textContent = 'Book My Demo';
+    btnArrow.textContent = '→';
+
+    // Show friendly error above submit button
+    const errEl = document.createElement('div');
+    errEl.id = 'submit-error';
+    errEl.style.cssText = 'background:#faeef0;border:1px solid #e8bec4;border-radius:10px;padding:12px 16px;font-size:0.82rem;color:#9a4a58;margin-bottom:14px;display:flex;gap:10px;align-items:flex-start;line-height:1.55;';
+    errEl.innerHTML = `<span>⚠️</span><div>Something went wrong — please try again, or email us at <strong>hello@alongsideyou.care</strong>.<br><small style="opacity:0.6;display:block;margin-top:3px;">Error: ${error.message}</small></div>`;
+    btn.parentNode.insertBefore(errEl, btn);
+    return;
+  }
+
+  // Success — show confirmation
+  document.getElementById('s-name').textContent  = fname + ' ' + lname;
+  document.getElementById('s-email').textContent = email;
+  document.getElementById('s-org').textContent   = org;
+  document.getElementById('s-role').textContent  = roleLabels[role] || role;
+
+  document.getElementById('form-state').style.display = 'none';
+  document.getElementById('success-state').classList.add('show');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+function clearErrors() {
+  document.querySelectorAll('input,select,textarea').forEach(el => el.style.borderColor = '');
+  document.querySelectorAll('.field-error').forEach(el => el.remove());
+  const sub = document.getElementById('submit-error');
+  if (sub) sub.remove();
+}
+
+function showFieldError(el, msg) {
+  const err = document.createElement('div');
+  err.className = 'field-error';
+  err.style.cssText = 'font-size:0.74rem;color:#c08090;margin-top:4px;';
+  err.textContent = msg;
+  el.parentNode.appendChild(err);
+}
+
+function shakeBtn() {
+  const btn = document.querySelector('.submit-btn');
+  btn.style.animation = 'shake 0.4s ease';
+  setTimeout(() => btn.style.animation = '', 500);
+}
+
+function showToast() {
+  const t = document.getElementById('toast');
+  t.style.transform = 'none'; t.style.opacity = '1';
+  setTimeout(() => { t.style.transform = 'translateY(80px)'; t.style.opacity = '0'; }, 3500);
+}
+
+// Clear errors on input
+document.querySelectorAll('input,select,textarea').forEach(el => {
+  el.addEventListener('input', () => {
+    el.style.borderColor = '';
+    el.parentNode.querySelectorAll('.field-error').forEach(e => e.remove());
+  });
+});
+document.getElementById('consent').addEventListener('change', function() {
+  this.style.outline = '';
+});
 </script>
+
+<style>
+@keyframes shake{
+  0%,100%{transform:translateX(0);}
+  20%{transform:translateX(-6px);}
+  40%{transform:translateX(6px);}
+  60%{transform:translateX(-4px);}
+  80%{transform:translateX(4px);}
+}
+</style>
 </body>
 </html>
