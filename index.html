@@ -5,20 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AlongsideYou.care — Personalised Care Workforce Platform</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 :root{
-  --blue:#2d6480;--blue-l:#4a88a8;--blue-d:#1c4d63;
-  --blue-bg:#eef5f9;--blue-mid:#d4e8f2;
+  --sage:#c1e1bd;--sage-l:#d4ecd1;--sage-d:#6a9e66;
+  --sage-bg:#f4fbf3;--sage-mid:#d8efd5;
   --amber:#c47a3a;--amber-bg:#fdf3e8;
   --teal:#2a8a7a;--teal-bg:#eaf5f2;
-  --ink:#0c1c28;--ink-2:#2a3f50;--ink-3:#5a7080;--ink-4:#92aab8;
-  --surface:#ffffff;--bg:#f5f7f9;--border:#dde5ea;--border-d:#b8c8d5;
+  --ink:#1a2e1e;--ink-2:#2e4a32;--ink-3:#5a7a5e;--ink-4:#8aaa8e;
+  --surface:#ffffff;--bg:#f5f8f5;--border:#dce8dc;--border-d:#b4ccb4;
   --r:12px;--r-lg:18px;
 }
-body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--surface);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+body{font-family:'DM Sans',sans-serif;background:var(--surface);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 
 /* NAV */
 nav{
@@ -29,16 +29,16 @@ nav{
 }
 nav.scrolled{box-shadow:0 1px 24px rgba(0,0,0,0.06);}
 .logo{display:flex;align-items:center;gap:9px;text-decoration:none;}
-.lm{width:30px;height:30px;border-radius:50%;background:var(--blue);flex-shrink:0;display:grid;place-items:center;position:relative;overflow:hidden;}
+.lm{width:30px;height:30px;border-radius:50%;background:var(--sage-d);flex-shrink:0;display:grid;place-items:center;position:relative;overflow:hidden;}
 .lm::before{content:'';position:absolute;width:13px;height:13px;border:2px solid white;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-58%);}
 .lm::after{content:'';position:absolute;width:16px;height:7px;border:2px solid white;border-radius:0 0 8px 8px;border-top:none;bottom:5px;left:50%;transform:translateX(-50%);}
 .lt{font-size:0.88rem;font-weight:600;color:var(--ink);letter-spacing:-0.01em;}
-.lt span{color:var(--blue);}
+.lt span{color:var(--sage-d);}
 .nav-links{list-style:none;display:flex;align-items:center;gap:26px;}
 .nav-links a{font-size:0.82rem;font-weight:500;color:var(--ink-3);text-decoration:none;transition:color 0.15s;}
 .nav-links a:hover{color:var(--ink);}
-.nav-cta{background:var(--blue)!important;color:white!important;padding:7px 18px;border-radius:100px;font-size:0.82rem!important;font-weight:600!important;transition:background 0.2s,transform 0.15s!important;box-shadow:0 2px 10px rgba(45,100,128,0.25);}
-.nav-cta:hover{background:var(--blue-d)!important;transform:translateY(-1px);}
+.nav-cta{background:var(--sage-d)!important;color:white!important;padding:7px 18px;border-radius:100px;font-size:0.82rem!important;font-weight:600!important;transition:background 0.2s,transform 0.15s!important;box-shadow:0 2px 10px rgba(106,158,102,0.3);}
+.nav-cta:hover{background:var(--ink-2)!important;transform:translateY(-1px);}
 
 /* HERO */
 .hero{
@@ -46,24 +46,24 @@ nav.scrolled{box-shadow:0 1px 24px rgba(0,0,0,0.06);}
   align-items:center;justify-content:center;text-align:center;
   padding:96px 6% 72px;position:relative;background:var(--surface);overflow:hidden;
 }
-.hero::before{content:'';position:absolute;width:1000px;height:600px;background:radial-gradient(ellipse,rgba(45,100,128,0.06) 0%,transparent 70%);top:-120px;left:50%;transform:translateX(-50%);pointer-events:none;}
-.hero::after{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(45,100,128,0.08) 1px,transparent 1px);background-size:30px 30px;mask-image:radial-gradient(ellipse 65% 65% at 50% 50%,black 10%,transparent 80%);pointer-events:none;}
+.hero::before{content:'';position:absolute;width:1000px;height:600px;background:radial-gradient(ellipse,rgba(74,124,106,0.06) 0%,transparent 70%);top:-120px;left:50%;transform:translateX(-50%);pointer-events:none;}
+.hero::after{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(74,124,106,0.07) 1px,transparent 1px);background-size:30px 30px;mask-image:radial-gradient(ellipse 65% 65% at 50% 50%,black 10%,transparent 80%);pointer-events:none;}
 .hi{position:relative;z-index:1;max-width:740px;margin:0 auto;}
-.htag{display:inline-flex;align-items:center;gap:7px;background:var(--blue-bg);border:1px solid var(--blue-mid);border-radius:100px;padding:5px 14px;font-size:0.7rem;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:var(--blue-d);margin-bottom:28px;animation:up 0.65s 0.1s cubic-bezier(0.22,1,0.36,1) both;}
-.tdot{width:6px;height:6px;border-radius:50%;background:var(--blue);animation:blink 2.5s ease-in-out infinite;}
+.htag{display:inline-flex;align-items:center;gap:7px;background:var(--sage-bg);border:1px solid var(--sage-mid);border-radius:100px;padding:5px 14px;font-size:0.7rem;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:var(--sage-d);margin-bottom:28px;animation:up 0.65s 0.1s cubic-bezier(0.22,1,0.36,1) both;}
+.tdot{width:6px;height:6px;border-radius:50%;background:var(--sage-d);animation:blink 2.5s ease-in-out infinite;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
-h1{font-family:'Instrument Serif',serif;font-size:clamp(2.6rem,5.2vw,4.6rem);font-weight:400;line-height:1.07;letter-spacing:-0.025em;color:var(--ink);margin-bottom:22px;animation:up 0.65s 0.15s cubic-bezier(0.22,1,0.36,1) both;}
-h1 em{font-style:italic;color:var(--blue);}
+h1{font-family:'DM Sans',sans-serif;font-size:clamp(2.6rem,5.2vw,4.8rem);font-weight:700;line-height:1.05;letter-spacing:-0.03em;color:var(--ink);margin-bottom:22px;animation:up 0.65s 0.15s cubic-bezier(0.22,1,0.36,1) both;}
+h1 em{font-style:normal;color:var(--ink);}
 .hsub{font-size:1.05rem;line-height:1.72;color:var(--ink-3);font-weight:300;max-width:540px;margin:0 auto 38px;animation:up 0.65s 0.2s cubic-bezier(0.22,1,0.36,1) both;}
 .hbtns{display:flex;gap:11px;justify-content:center;flex-wrap:wrap;animation:up 0.65s 0.25s cubic-bezier(0.22,1,0.36,1) both;}
-.bp{background:var(--blue);color:white;padding:13px 28px;border-radius:100px;font-size:0.87rem;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:background 0.2s,transform 0.15s,box-shadow 0.2s;box-shadow:0 4px 18px rgba(45,100,128,0.28);}
-.bp:hover{background:var(--blue-d);transform:translateY(-2px);box-shadow:0 8px 26px rgba(45,100,128,0.38);}
+.bp{background:var(--sage-d);color:white;padding:13px 28px;border-radius:100px;font-size:0.87rem;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:background 0.2s,transform 0.15s,box-shadow 0.2s;box-shadow:0 4px 18px rgba(106,158,102,0.3);}
+.bp:hover{background:var(--ink-2);transform:translateY(-2px);box-shadow:0 8px 26px rgba(74,124,106,0.4);}
 .bs{background:white;color:var(--ink-2);padding:13px 24px;border-radius:100px;font-size:0.87rem;font-weight:500;text-decoration:none;border:1.5px solid var(--border-d);transition:all 0.2s;}
-.bs:hover{border-color:var(--blue-l);color:var(--blue);transform:translateY(-2px);}
+.bs:hover{border-color:var(--sage-d);color:var(--sage-d);transform:translateY(-2px);}
 .hstats{display:flex;margin-top:52px;border:1px solid var(--border);border-radius:var(--r-lg);background:white;overflow:hidden;box-shadow:0 2px 14px rgba(0,0,0,0.05);animation:up 0.65s 0.3s cubic-bezier(0.22,1,0.36,1) both;}
 .stat{flex:1;padding:20px;border-right:1px solid var(--border);text-align:center;}
 .stat:last-child{border-right:none;}
-.sn{font-family:'Instrument Serif',serif;font-size:1.8rem;color:var(--blue);line-height:1;margin-bottom:5px;}
+.sn{font-family:'DM Sans',sans-serif;font-size:1.8rem;font-weight:700;color:var(--sage-d);line-height:1;margin-bottom:5px;}
 .sl{font-size:0.7rem;color:var(--ink-4);font-weight:500;line-height:1.4;}
 .hby{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:28px;flex-wrap:wrap;animation:up 0.65s 0.35s cubic-bezier(0.22,1,0.36,1) both;}
 .byl{font-size:0.7rem;font-weight:500;color:var(--ink-4);letter-spacing:0.05em;text-transform:uppercase;}
@@ -73,9 +73,9 @@ h1 em{font-style:italic;color:var(--blue);}
 
 /* SHARED */
 section{padding:84px 6%;}
-.ey{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);margin-bottom:10px;}
-.sh{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3vw,2.7rem);font-weight:400;line-height:1.12;letter-spacing:-0.02em;color:var(--ink);margin-bottom:12px;}
-.sh em{font-style:italic;color:var(--blue);}
+.ey{font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage-d);margin-bottom:10px;}
+.sh{font-family:'DM Sans',sans-serif;font-size:clamp(1.9rem,3vw,2.8rem);font-weight:700;line-height:1.08;letter-spacing:-0.025em;color:var(--ink);margin-bottom:12px;}
+.sh em{font-style:normal;color:var(--sage-d);}
 .sp{font-size:0.92rem;color:var(--ink-3);line-height:1.75;font-weight:300;max-width:480px;}
 .reveal{opacity:0;transform:translateY(16px);transition:opacity 0.6s cubic-bezier(0.22,1,0.36,1),transform 0.6s cubic-bezier(0.22,1,0.36,1);}
 .reveal.visible{opacity:1;transform:none;}
@@ -86,14 +86,14 @@ section{padding:84px 6%;}
 .fwg{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start;margin-top:44px;}
 .rl{display:flex;flex-direction:column;gap:9px;}
 .rr{display:flex;align-items:center;gap:14px;background:white;border-radius:var(--r);padding:13px 16px;border:1px solid var(--border);transition:border-color 0.2s,transform 0.2s;}
-.rr:hover{border-color:var(--blue-l);transform:translateX(3px);}
-.ri{width:36px;height:36px;border-radius:9px;background:var(--blue-bg);display:grid;place-items:center;font-size:1rem;flex-shrink:0;}
+.rr:hover{border-color:var(--sage-l);transform:translateX(3px);}
+.ri{width:36px;height:36px;border-radius:9px;background:var(--sage-bg);display:grid;place-items:center;font-size:1rem;flex-shrink:0;}
 .rn{font-size:0.83rem;font-weight:600;color:var(--ink);}
 .rd{font-size:0.73rem;color:var(--ink-4);margin-top:1px;}
 .qcard{background:white;border-radius:var(--r-lg);padding:28px;border:1px solid var(--border);position:sticky;top:78px;}
-.qcard blockquote{font-family:'Instrument Serif',serif;font-style:italic;font-size:1.05rem;line-height:1.65;color:var(--ink);margin-bottom:16px;}
+.qcard blockquote{font-family:'DM Sans',sans-serif;font-size:1.05rem;font-weight:600;line-height:1.55;color:var(--ink);margin-bottom:16px;letter-spacing:-0.01em;}
 .qa{font-size:0.76rem;color:var(--ink-4);margin-bottom:16px;}
-.nhst{display:inline-flex;align-items:center;gap:6px;background:var(--blue-bg);border:1px solid var(--blue-mid);border-radius:100px;padding:5px 13px;font-size:0.73rem;font-weight:600;color:var(--blue-d);}
+.nhst{display:inline-flex;align-items:center;gap:6px;background:var(--sage-bg);border:1px solid var(--sage-mid);border-radius:100px;padding:5px 13px;font-size:0.73rem;font-weight:600;color:var(--sage-d);}
 
 /* FEATURES */
 .fg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:44px;}
@@ -101,61 +101,61 @@ section{padding:84px 6%;}
 .fc:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,0.07);}
 .fa{position:absolute;top:0;left:0;right:0;height:3px;}
 .fi{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;font-size:1.25rem;margin-bottom:14px;}
-.fc h3{font-family:'Instrument Serif',serif;font-size:1rem;font-weight:400;color:var(--ink);margin-bottom:7px;letter-spacing:-0.01em;}
+.fc h3{font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:600;color:var(--ink);margin-bottom:7px;letter-spacing:-0.01em;}
 .fc p{font-size:0.81rem;color:var(--ink-3);line-height:1.65;margin-bottom:13px;}
 .fts{display:flex;flex-wrap:wrap;gap:5px;}
 .ft{font-size:0.66rem;font-weight:600;padding:3px 8px;border-radius:100px;}
 
 /* HOW */
 .how{background:var(--ink);position:relative;overflow:hidden;}
-.how::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:rgba(45,100,128,0.1);top:-200px;right:-150px;pointer-events:none;}
-.how .ey{color:var(--blue-l);}
+.how::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:rgba(74,124,106,0.12);top:-200px;right:-150px;pointer-events:none;}
+.how .ey{color:var(--sage-l);}
 .how .sh{color:white;}
-.how .sh em{color:var(--blue-l);}
+.how .sh em{color:var(--sage-l);}
 .how .sp{color:rgba(255,255,255,0.45);}
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:48px;position:relative;}
 .steps::before{content:'';position:absolute;top:25px;left:58px;right:58px;height:1px;background:rgba(255,255,255,0.07);}
 .step{padding:0 18px 0 0;}
-.stnum{width:50px;height:50px;border-radius:50%;border:1.5px solid rgba(74,136,168,0.35);display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',serif;font-size:1.2rem;color:var(--blue-l);margin-bottom:18px;position:relative;z-index:1;background:var(--ink);}
-.step h4{font-family:'Instrument Serif',serif;font-size:0.92rem;font-weight:400;color:white;margin-bottom:7px;}
+.stnum{width:50px;height:50px;border-radius:50%;border:1.5px solid rgba(111,160,140,0.4);display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;font-size:1.2rem;font-weight:700;color:var(--sage-l);margin-bottom:18px;position:relative;z-index:1;background:var(--ink);}
+.step h4{font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:600;color:white;margin-bottom:7px;}
 .step p{font-size:0.78rem;color:rgba(255,255,255,0.38);line-height:1.6;}
 
 /* COMPANION */
 .chd{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:28px;gap:20px;}
 .cg{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;}
 .cc{background:white;border-radius:var(--r-lg);border:1px solid var(--border);cursor:pointer;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s;}
-.cc:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,0,0,0.07);border-color:var(--blue-l);}
+.cc:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,0,0,0.07);border-color:var(--sage-l);}
 .cct{padding:18px 18px 0;}
 .cca{height:3px;margin:-1px -1px 0;}
 .ccbs{display:flex;gap:5px;margin:14px 0 8px;}
 .ccb{font-size:0.62rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;padding:3px 8px;border-radius:100px;}
-.cc h3{font-family:'Instrument Serif',serif;font-size:0.92rem;font-weight:400;color:var(--ink);margin-bottom:4px;letter-spacing:-0.01em;}
+.cc h3{font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;color:var(--ink);margin-bottom:4px;}
 .ccq{font-size:0.74rem;color:var(--ink-4);line-height:1.5;font-style:italic;margin-bottom:14px;}
 .ccf{padding:11px 18px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
 .ccm{font-size:0.68rem;color:var(--ink-4);display:flex;gap:9px;}
 .ccar{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:0.72rem;transition:all 0.18s;}
-.cc:hover .ccar{background:var(--blue);color:white;}
+.cc:hover .ccar{background:var(--sage-d);color:white;}
 
 /* NHS */
 .nhs{background:var(--ink);position:relative;overflow:hidden;}
-.nhs::after{content:'';position:absolute;width:500px;height:500px;border-radius:50%;background:rgba(45,100,128,0.09);bottom:-200px;left:-100px;pointer-events:none;}
-.nhs .ey{color:var(--blue-l);}
+.nhs::after{content:'';position:absolute;width:500px;height:500px;border-radius:50%;background:rgba(74,124,106,0.1);bottom:-200px;left:-100px;pointer-events:none;}
+.nhs .ey{color:var(--sage-l);}
 .nhs .sh{color:white;}
-.nhs .sh em{color:var(--blue-l);}
+.nhs .sh em{color:var(--sage-l);}
 .nhs .sp{color:rgba(255,255,255,0.45);}
 .nhsg{display:grid;grid-template-columns:1fr 1fr;gap:52px;margin-top:44px;align-items:start;}
 .nhsl{display:flex;flex-direction:column;gap:9px;}
-.nhsr{display:flex;gap:13px;align-items:flex-start;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);border-radius:var(--r);padding:14px;}
-.nhsi{width:34px;height:34px;border-radius:8px;background:rgba(45,100,128,0.25);display:grid;place-items:center;font-size:0.85rem;flex-shrink:0;}
-.nhsn{font-size:0.81rem;font-weight:600;color:white;margin-bottom:2px;}
-.nhsd{font-size:0.72rem;color:rgba(255,255,255,0.38);line-height:1.5;}
-.nhscard{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);border-radius:var(--r-lg);padding:26px;}
-.nhsctl{font-size:0.66rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(--blue-l);margin-bottom:18px;}
+.nhsr{display:flex;gap:13px;align-items:flex-start;background:rgba(74,124,106,0.18);border:1px solid rgba(111,160,140,0.35);border-radius:var(--r);padding:14px;}
+.nhsi{width:34px;height:34px;border-radius:8px;background:rgba(74,124,106,0.3);display:grid;place-items:center;font-size:0.85rem;flex-shrink:0;}
+.nhsn{font-size:0.83rem;font-weight:600;color:white;margin-bottom:2px;}
+.nhsd{font-size:0.72rem;color:rgba(255,255,255,0.55);line-height:1.5;}
+.nhscard{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:var(--r-lg);padding:26px;}
+.nhsctl{font-size:0.66rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(--sage-l);margin-bottom:18px;}
 .nhscl{display:flex;flex-direction:column;gap:13px;margin-bottom:24px;}
 .nhscr{display:flex;gap:11px;align-items:flex-start;}
-.nhsci{width:22px;height:22px;border-radius:50%;background:rgba(45,100,128,0.3);display:grid;place-items:center;font-size:0.66rem;color:var(--blue-l);font-weight:700;flex-shrink:0;}
-.nhsct{font-size:0.81rem;font-weight:600;color:white;margin-bottom:2px;}
-.nhscd{font-size:0.72rem;color:rgba(255,255,255,0.38);line-height:1.5;}
+.nhsci{width:22px;height:22px;border-radius:50%;background:rgba(74,124,106,0.4);display:grid;place-items:center;font-size:0.66rem;color:var(--sage-l);font-weight:700;flex-shrink:0;}
+.nhsct{font-size:0.83rem;font-weight:600;color:white;margin-bottom:2px;}
+.nhscd{font-size:0.72rem;color:rgba(255,255,255,0.5);line-height:1.5;}
 
 /* PRODUCT */
 .pg{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin-top:44px;}
@@ -163,7 +163,7 @@ section{padding:84px 6%;}
 .pc:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,0,0,0.07);}
 .pt{padding:20px;display:flex;gap:13px;align-items:center;border-bottom:1px solid var(--border);}
 .pio{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;font-size:1.15rem;flex-shrink:0;}
-.ptt{font-size:0.86rem;font-weight:600;color:var(--ink);}
+.ptt{font-size:0.88rem;font-weight:600;color:var(--ink);}
 .pts{font-size:0.71rem;color:var(--ink-4);margin-top:1px;}
 .pb{padding:16px;}
 .pb p{font-size:0.8rem;color:var(--ink-3);line-height:1.65;}
@@ -174,10 +174,10 @@ section{padding:84px 6%;}
 .eac{background:white;border-radius:var(--r-lg);border:1.5px solid var(--border);padding:28px;text-align:center;transition:transform 0.2s,box-shadow 0.2s;}
 .eac:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,0,0,0.07);}
 .eac.feat{background:var(--ink);border-color:var(--ink);position:relative;overflow:hidden;}
-.eac.feat::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--blue-l));}
+.eac.feat::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--sage),var(--sage-l));}
 .eaico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:1.2rem;margin:0 auto 14px;}
 .ealbl{font-size:0.66rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:7px;}
-.eath{font-family:'Instrument Serif',serif;font-size:1.45rem;font-weight:400;color:var(--ink);margin-bottom:7px;letter-spacing:-0.01em;}
+.eath{font-family:'DM Sans',sans-serif;font-size:1.5rem;font-weight:700;color:var(--ink);margin-bottom:7px;letter-spacing:-0.02em;}
 .eac.feat .eath{color:white;}
 .eadesc{font-size:0.8rem;color:var(--ink-3);line-height:1.6;margin-bottom:20px;}
 .eac.feat .eadesc{color:rgba(255,255,255,0.45);}
@@ -185,19 +185,19 @@ section{padding:84px 6%;}
 
 /* CTA */
 .ctas{text-align:center;padding:96px 6%;background:white;position:relative;overflow:hidden;}
-.ctas::before{content:'';position:absolute;width:800px;height:400px;background:radial-gradient(ellipse,rgba(45,100,128,0.05) 0%,transparent 70%);bottom:-80px;left:50%;transform:translateX(-50%);}
+.ctas::before{content:'';position:absolute;width:800px;height:400px;background:radial-gradient(ellipse,rgba(74,124,106,0.05) 0%,transparent 70%);bottom:-80px;left:50%;transform:translateX(-50%);}
 
 /* FOOTER */
 footer{background:var(--ink);padding:48px 6% 26px;}
 .fg2{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;margin-bottom:36px;}
-.fb p{font-size:0.8rem;color:rgba(255,255,255,0.3);line-height:1.7;margin-top:12px;max-width:240px;}
-.fc2 h5{font-size:0.67rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:12px;}
+.fb p{font-size:0.8rem;color:rgba(255,255,255,0.35);line-height:1.7;margin-top:12px;max-width:240px;}
+.fc2 h5{font-size:0.67rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:12px;}
 .fc2 ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
-.fc2 ul li a{font-size:0.8rem;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s;}
-.fc2 ul li a:hover{color:rgba(255,255,255,0.75);}
-.fbot{display:flex;justify-content:space-between;align-items:center;padding-top:20px;border-top:1px solid rgba(255,255,255,0.07);font-size:0.73rem;color:rgba(255,255,255,0.28);flex-wrap:wrap;gap:9px;}
-.fbot a{color:rgba(255,255,255,0.28);text-decoration:none;}
-.fbot a:hover{color:rgba(255,255,255,0.6);}
+.fc2 ul li a{font-size:0.8rem;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;}
+.fc2 ul li a:hover{color:rgba(255,255,255,0.85);}
+.fbot{display:flex;justify-content:space-between;align-items:center;padding-top:20px;border-top:1px solid rgba(255,255,255,0.1);font-size:0.73rem;color:rgba(255,255,255,0.4);flex-wrap:wrap;gap:9px;}
+.fbot a{color:rgba(255,255,255,0.4);text-decoration:none;}
+.fbot a:hover{color:rgba(255,255,255,0.75);}
 .fbl{display:flex;gap:16px;}
 
 /* RESPONSIVE */
@@ -294,11 +294,11 @@ footer{background:var(--ink);padding:48px 6% 26px;}
 <section id="features">
   <div class="reveal"><div class="ey">What's inside</div><h2 class="sh">Everything you need to <em>grow in practice</em></h2><p class="sp">Five interconnected areas designed to support practitioners before, during, and after every interaction.</p></div>
   <div class="fg">
-    <div class="fc reveal d1"><div class="fa" style="background:var(--blue)"></div><div class="fi" style="background:var(--blue-bg)">🪞</div><h3>Reflection &amp; Learning</h3><p>Structured tools to help practitioners pause and make sense of what happened — with AI-supported prompts that meet them where they are.</p><div class="fts"><span class="ft" style="background:var(--blue-bg);color:var(--blue-d)">Case Reflection</span><span class="ft" style="background:var(--blue-bg);color:var(--blue-d)">AI Prompts</span><span class="ft" style="background:var(--blue-bg);color:var(--blue-d)">Competency Links</span></div></div>
+    <div class="fc reveal d1"><div class="fa" style="background:var(--sage)"></div><div class="fi" style="background:var(--sage-bg)">🤔</div><h3>Reflection &amp; Learning</h3><p>Structured tools to help practitioners pause and make sense of what happened — with AI-supported prompts that meet them where they are.</p><div class="fts"><span class="ft" style="background:var(--sage-bg);color:var(--sage-d)">Case Reflection</span><span class="ft" style="background:var(--sage-bg);color:var(--sage-d)">AI Prompts</span><span class="ft" style="background:var(--sage-bg);color:var(--sage-d)">Competency Links</span></div></div>
     <div class="fc reveal d2"><div class="fa" style="background:var(--teal)"></div><div class="fi" style="background:var(--teal-bg)">⚡</div><h3>Micro-Learning</h3><p>Short, practical modules usable in 5 minutes. Scenario-based tips and Try This nudges aligned to real practice situations.</p><div class="fts"><span class="ft" style="background:var(--teal-bg);color:#1a6a5c">5-Min Modules</span><span class="ft" style="background:var(--teal-bg);color:#1a6a5c">Scenarios</span><span class="ft" style="background:var(--teal-bg);color:#1a6a5c">Try This</span></div></div>
     <div class="fc reveal d3"><div class="fa" style="background:var(--amber)"></div><div class="fi" style="background:var(--amber-bg)">🧰</div><h3>Practical Tools</h3><p>Conversation frameworks, care planning templates, and coaching tools — not scripts, just starting points for moments that feel difficult.</p><div class="fts"><span class="ft" style="background:var(--amber-bg);color:#8a4a1a">OARS Framework</span><span class="ft" style="background:var(--amber-bg);color:#8a4a1a">Care Planning</span></div></div>
     <div class="fc reveal d1"><div class="fa" style="background:#6a5a9a"></div><div class="fi" style="background:#f0eefa">👥</div><h3>Community &amp; Peer Learning</h3><p>Shared insights from practitioners across the workforce. Real examples of what works — and what's hard — from people doing the same work.</p><div class="fts"><span class="ft" style="background:#f0eefa;color:#4a3a7a">Shared Insights</span><span class="ft" style="background:#f0eefa;color:#4a3a7a">Peer Support</span></div></div>
-    <div class="fc reveal d2"><div class="fa" style="background:linear-gradient(90deg,var(--blue),var(--teal))"></div><div class="fi" style="background:var(--blue-bg)">📈</div><h3>CPD &amp; Development</h3><p>Automatic CPD tracking, links to Person Centred Academy programmes, and alignment with the latest NHS personalised care developments.</p><div class="fts"><span class="ft" style="background:var(--blue-bg);color:var(--blue-d)">CPD Tracking</span><span class="ft" style="background:var(--blue-bg);color:var(--blue-d)">PCA Links</span><span class="ft" style="background:var(--blue-bg);color:var(--blue-d)">NHS Aligned</span></div></div>
+    <div class="fc reveal d2"><div class="fa" style="background:linear-gradient(90deg,var(--sage),var(--teal))"></div><div class="fi" style="background:var(--sage-bg)">📈</div><h3>CPD &amp; Development</h3><p>Automatic CPD tracking, links to Person Centred Academy programmes, and alignment with the latest NHS personalised care developments.</p><div class="fts"><span class="ft" style="background:var(--sage-bg);color:var(--sage-d)">CPD Tracking</span><span class="ft" style="background:var(--sage-bg);color:var(--sage-d)">PCA Links</span><span class="ft" style="background:var(--sage-bg);color:var(--sage-d)">NHS Aligned</span></div></div>
   </div>
 </section>
 
@@ -320,10 +320,10 @@ footer{background:var(--ink);padding:48px 6% 26px;}
     <a href="demo.html" class="bs" style="white-space:nowrap;flex-shrink:0;">View all areas</a>
   </div>
   <div class="cg">
-    <div class="cc reveal" onclick="location.href='demo.html'"><div class="cca" style="background:linear-gradient(90deg,#5a9ab0,#3a7a95)"></div><div class="cct"><div class="ccbs"><span class="ccb" style="background:var(--blue-bg);color:var(--blue-d)">In Progress</span></div><h3>Person-Centred Conversations</h3><p class="ccq">How do I really listen and respond, without rushing to fix things?</p></div><div class="ccf"><div class="ccm"><span>📚 5 modules</span><span>⏱ 25 min</span></div><div class="ccar" style="background:var(--blue-bg);color:var(--blue)">→</div></div></div>
+    <div class="cc reveal" onclick="location.href='demo.html'"><div class="cca" style="background:linear-gradient(90deg,#5a9a80,#3a7a60)"></div><div class="cct"><div class="ccbs"><span class="ccb" style="background:var(--sage-bg);color:var(--sage-d)">In Progress</span></div><h3>Person-Centred Conversations</h3><p class="ccq">How do I really listen and respond, without rushing to fix things?</p></div><div class="ccf"><div class="ccm"><span>📚 5 modules</span><span>⏱ 25 min</span></div><div class="ccar" style="background:var(--sage-bg);color:var(--sage-d)">→</div></div></div>
     <div class="cc reveal d1" onclick="location.href='demo.html'"><div class="cca" style="background:linear-gradient(90deg,#5aab8a,#3a8a6a)"></div><div class="cct"><div class="ccbs"><span class="ccb" style="background:var(--amber-bg);color:#8a4a1a">In Progress</span></div><h3>Understanding What Matters</h3><p class="ccq">What's really important to this person right now?</p></div><div class="ccf"><div class="ccm"><span>📚 4 modules</span><span>⏱ 20 min</span></div><div class="ccar" style="background:var(--teal-bg);color:var(--teal)">→</div></div></div>
-    <div class="cc reveal d2" onclick="location.href='demo.html'"><div class="cca" style="background:linear-gradient(90deg,#e8b87a,#c8813a)"></div><div class="cct"><div class="ccbs"><span class="ccb" style="background:var(--blue-bg);color:var(--blue-d)">New</span></div><h3>When There's No Clear Answer</h3><p class="ccq">Finding a way forward when things are uncertain.</p></div><div class="ccf"><div class="ccm"><span>📚 3 modules</span><span>⏱ 15 min</span></div><div class="ccar" style="background:var(--amber-bg);color:var(--amber)">→</div></div></div>
-    <div class="cc reveal" onclick="location.href='demo.html'"><div class="cca" style="background:linear-gradient(90deg,#7ab5c8,#4a8aaa)"></div><div class="cct"><div class="ccbs"><span class="ccb" style="background:var(--blue-bg);color:var(--blue-d)">Conversations</span></div><h3>Shared Decision Making</h3><p class="ccq">How do we decide together, not for?</p></div><div class="ccf"><div class="ccm"><span>📚 4 modules</span><span>⏱ 22 min</span></div><div class="ccar" style="background:var(--blue-bg);color:var(--blue)">→</div></div></div>
+    <div class="cc reveal d2" onclick="location.href='demo.html'"><div class="cca" style="background:linear-gradient(90deg,#e8b87a,#c8813a)"></div><div class="cct"><div class="ccbs"><span class="ccb" style="background:var(--sage-bg);color:var(--sage-d)">New</span></div><h3>When There's No Clear Answer</h3><p class="ccq">Finding a way forward when things are uncertain.</p></div><div class="ccf"><div class="ccm"><span>📚 3 modules</span><span>⏱ 15 min</span></div><div class="ccar" style="background:var(--amber-bg);color:var(--amber)">→</div></div></div>
+    <div class="cc reveal" onclick="location.href='demo.html'"><div class="cca" style="background:linear-gradient(90deg,#7ab8c8,#4a90aa)"></div><div class="cct"><div class="ccbs"><span class="ccb" style="background:var(--sage-bg);color:var(--sage-d)">Conversations</span></div><h3>Shared Decision Making</h3><p class="ccq">How do we decide together, not for?</p></div><div class="ccf"><div class="ccm"><span>📚 4 modules</span><span>⏱ 22 min</span></div><div class="ccar" style="background:var(--sage-bg);color:var(--sage-d)">→</div></div></div>
     <div class="cc reveal d1" onclick="location.href='demo.html'"><div class="cca" style="background:linear-gradient(90deg,#c8a8d8,#9878b8)"></div><div class="cct"><div class="ccbs"><span class="ccb" style="background:#f0eefa;color:#4a3a7a">Change &amp; Support</span></div><h3>Supporting Confidence &amp; Self-Management</h3><p class="ccq">How do I build on what people already know how to do?</p></div><div class="ccf"><div class="ccm"><span>📚 6 modules</span><span>⏱ 30 min</span></div><div class="ccar" style="background:#f0eefa;color:#6a5a9a">→</div></div></div>
     <div class="cc reveal d2" onclick="location.href='demo.html'"><div class="cca" style="background:linear-gradient(90deg,#f0c878,#d8a050)"></div><div class="cct"><div class="ccbs"><span class="ccb" style="background:var(--amber-bg);color:#8a4a1a">Conversations</span></div><h3>Power, Voice, and Choice</h3><p class="ccq">Helping people feel heard and in control of their care.</p></div><div class="ccf"><div class="ccm"><span>📚 4 modules</span><span>⏱ 20 min</span></div><div class="ccar" style="background:var(--amber-bg);color:var(--amber)">→</div></div></div>
   </div>
@@ -356,10 +356,10 @@ footer{background:var(--ink);padding:48px 6% 26px;}
 <section>
   <div class="reveal" style="text-align:center;max-width:580px;margin:0 auto 44px;"><div class="ey">The platform</div><h2 class="sh">Everything in one place, <em>ready when they need it</em></h2><p class="sp" style="margin:0 auto;">A practitioner logs in between appointments, after a difficult conversation, or before a supervision — and finds exactly what they need.</p></div>
   <div class="pg">
-    <div class="pc reveal"><div class="pt" style="background:var(--blue-bg)"><div class="pio" style="background:var(--blue);color:white">🗺️</div><div><div class="ptt">9 Companion Areas</div><div class="pts">Covering the full range of practice</div></div></div><div class="pb"><p>From person-centred conversations to navigating complex systems — each area contains structured reflection, micro-learning, practical tools and Try This prompts.</p></div></div>
-    <div class="pc reveal d1"><div class="pt" style="background:var(--amber-bg)"><div class="pio" style="background:var(--amber);color:white">🪞</div><div><div class="ptt">AI-Guided Reflection</div><div class="pts">Structured, not scripted</div></div></div><div class="pb"><p>Practitioners reflect on real cases with prompts that adapt to what they've written — turning everyday experience into evidence of learning.</p></div></div>
+    <div class="pc reveal"><div class="pt" style="background:var(--sage-bg)"><div class="pio" style="background:var(--sage-d);color:white">🗺️</div><div><div class="ptt">9 Companion Areas</div><div class="pts">Covering the full range of practice</div></div></div><div class="pb"><p>From person-centred conversations to navigating complex systems — each area contains structured reflection, micro-learning, practical tools and Try This prompts.</p></div></div>
+    <div class="pc reveal d1"><div class="pt" style="background:var(--amber-bg)"><div class="pio" style="background:var(--amber);color:white">🤔</div><div><div class="ptt">AI-Guided Reflection</div><div class="pts">Structured, not scripted</div></div></div><div class="pb"><p>Practitioners reflect on real cases with prompts that adapt to what they've written — turning everyday experience into evidence of learning.</p></div></div>
     <div class="pc reveal d2"><div class="pt" style="background:var(--teal-bg)"><div class="pio" style="background:var(--teal);color:white">📈</div><div><div class="ptt">Automatic CPD Tracking</div><div class="pts">For practitioners and teams</div></div></div><div class="pb"><p>Every reflection, module and tool interaction is logged automatically. Practitioners keep a personal record. Workforce leads get team-level oversight.</p></div></div>
-    <div class="pc reveal d3"><div class="pt" style="background:var(--blue-bg)"><div class="pio" style="background:var(--blue-l);color:white">⚡</div><div><div class="ptt">Micro-Learning &amp; Tools</div><div class="pts">5 minutes or less</div></div></div><div class="pb"><p>Short modules, conversation frameworks and Try This nudges — designed to be used between appointments, not saved for a training day.</p></div></div>
+    <div class="pc reveal d3"><div class="pt" style="background:var(--sage-bg)"><div class="pio" style="background:var(--sage-l);color:white">⚡</div><div><div class="ptt">Micro-Learning &amp; Tools</div><div class="pts">5 minutes or less</div></div></div><div class="pb"><p>Short modules, conversation frameworks and Try This nudges — designed to be used between appointments, not saved for a training day.</p></div></div>
   </div>
   <div class="reveal" style="text-align:center;margin-top:28px;"><a href="demo.html" class="bp" style="display:inline-flex;">Explore the platform →</a></div>
 </section>
@@ -368,8 +368,8 @@ footer{background:var(--ink);padding:48px 6% 26px;}
 <section id="early-access" class="ea">
   <div class="reveal" style="text-align:center;max-width:580px;margin:0 auto;"><div class="ey">Early access</div><h2 class="sh">We're building this <em>with the sector</em></h2><p class="sp" style="margin:0 auto 44px;">AlongsideYou.care is in early access. Pricing for organisations will be confirmed shortly — designed to be fair, flexible, and accessible.</p></div>
   <div class="eag">
-    <div class="eac reveal"><div class="eaico" style="background:var(--blue-bg)">🧑‍💼</div><div class="ealbl" style="color:var(--blue)">Individual practitioners</div><div class="eath">Free to try</div><p class="eadesc">Any practitioner can access core features at no cost. No card required.</p><a href="demo.html" class="eabtn" style="background:var(--blue-bg);color:var(--blue-d);">Explore the platform →</a></div>
-    <div class="eac feat reveal d1"><div class="eaico" style="background:rgba(255,255,255,0.1)">🏥</div><div class="ealbl" style="color:var(--blue-l)">PCNs · ICSs · VCSE Orgs</div><div class="eath">Organisational pricing</div><p class="eadesc">Flexible team licensing, NHS billing options, onboarding support and workforce reporting. Pricing on request during early access.</p><a href="book-demo.html" class="eabtn" style="background:var(--blue);color:white;box-shadow:0 4px 14px rgba(45,100,128,0.4);">Book a demo to discuss →</a></div>
+    <div class="eac reveal"><div class="eaico" style="background:var(--sage-bg)">🧑‍💼</div><div class="ealbl" style="color:var(--sage-d)">Individual practitioners</div><div class="eath">Free to try</div><p class="eadesc">Any practitioner can access core features at no cost. No card required.</p><a href="demo.html" class="eabtn" style="background:var(--sage-bg);color:var(--sage-d);">Explore the platform →</a></div>
+    <div class="eac feat reveal d1"><div class="eaico" style="background:rgba(255,255,255,0.1)">🏥</div><div class="ealbl" style="color:var(--sage-l)">PCNs · ICSs · VCSE Orgs</div><div class="eath">Organisational pricing</div><p class="eadesc">Flexible team licensing, NHS billing options, onboarding support and workforce reporting. Pricing on request during early access.</p><a href="book-demo.html" class="eabtn" style="background:var(--sage-d);color:white;box-shadow:0 4px 14px rgba(106,158,102,0.4);">Book a demo to discuss →</a></div>
     <div class="eac reveal d2"><div class="eaico" style="background:var(--amber-bg)">🤝</div><div class="ealbl" style="color:var(--amber)">Shape what we build</div><div class="eath">Early adopters</div><p class="eadesc">Organisations joining now help shape the platform and benefit from founder pricing at launch.</p><a href="book-demo.html" class="eabtn" style="background:var(--amber-bg);color:var(--amber);">Get involved →</a></div>
   </div>
 </section>
