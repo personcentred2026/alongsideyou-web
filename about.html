@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — AlongsideYou.care</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+:root{
+  --sage:#c1e1bd;--sage-d:#6a9e66;--sage-bg:#f4fbf3;--sage-mid:#d8efd5;
+  --amber:#c47a3a;--amber-bg:#fdf3e8;
+  --ink:#1a2e1e;--ink-2:#2e4a32;--ink-3:#5a7a5e;--ink-4:#8aaa8e;
+  --surface:#fff;--bg:#f5f8f5;--border:#dce8dc;--border-d:#b4ccb4;
+  --r:12px;--r-lg:18px;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--surface);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;height:62px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none;}
+.lm{width:30px;height:30px;border-radius:50%;background:var(--sage-d);flex-shrink:0;display:grid;place-items:center;position:relative;overflow:hidden;}
+.lm::before{content:'';position:absolute;width:13px;height:13px;border:2px solid white;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-58%);}
+.lm::after{content:'';position:absolute;width:16px;height:7px;border:2px solid white;border-radius:0 0 8px 8px;border-top:none;bottom:5px;left:50%;transform:translateX(-50%);}
+.lt{font-size:0.88rem;font-weight:600;color:var(--ink);letter-spacing:-0.01em;}
+.lt span{color:var(--sage-d);}
+.nav-back{font-size:0.82rem;font-weight:500;color:var(--ink-3);text-decoration:none;display:flex;align-items:center;gap:5px;transition:color 0.15s;}
+.nav-back:hover{color:var(--sage-d);}
+
+/* PAGE */
+.page{max-width:760px;margin:0 auto;padding:64px 24px 100px;}
+
+/* HERO */
+.about-hero{margin-bottom:56px;padding-bottom:48px;border-bottom:1px solid var(--border);}
+.eyebrow{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage-d);margin-bottom:14px;}
+.page-title{font-size:clamp(2rem,4vw,3.2rem);font-weight:700;line-height:1.05;letter-spacing:-0.03em;color:var(--ink);margin-bottom:20px;}
+.hero-intro{font-size:1.05rem;color:var(--ink-3);line-height:1.75;font-weight:300;max-width:600px;text-align:justify;}
+
+/* SECTIONS */
+.about-section{margin-bottom:52px;}
+.section-label{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage-d);margin-bottom:14px;}
+.about-section h2{font-size:1.3rem;font-weight:700;color:var(--ink);margin-bottom:14px;letter-spacing:-0.02em;line-height:1.2;}
+.about-section p{font-size:0.92rem;color:var(--ink-3);line-height:1.8;font-weight:300;margin-bottom:14px;text-align:justify;}
+.about-section p:last-child{margin-bottom:0;}
+.about-section strong{font-weight:600;color:var(--ink-2);}
+
+/* PULL QUOTE */
+.pull-quote{background:var(--sage-bg);border-left:3px solid var(--sage-d);border-radius:0 var(--r) var(--r) 0;padding:22px 26px;margin:28px 0;}
+.pull-quote p{font-size:1rem;font-weight:500;color:var(--ink-2);line-height:1.65;font-style:italic;margin:0;}
+
+/* HYBRID WORKING BOX */
+.context-box{background:var(--bg);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px 28px;margin:28px 0;}
+.context-box-label{font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--sage-d);margin-bottom:10px;}
+.context-box p{font-size:0.88rem;color:var(--ink-3);line-height:1.75;font-weight:300;margin-bottom:10px;text-align:justify;}
+.context-box p:last-child{margin-bottom:0;}
+
+/* FOUNDER CARD */
+.founder-card{background:white;border:1px solid var(--border);border-radius:var(--r-lg);padding:28px;display:flex;gap:24px;align-items:flex-start;margin-bottom:24px;}
+.founder-avatar{width:60px;height:60px;border-radius:50%;background:var(--sage-d);display:grid;place-items:center;font-size:1rem;font-weight:700;color:white;flex-shrink:0;letter-spacing:-0.01em;}
+.founder-name{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:4px;letter-spacing:-0.01em;}
+.founder-title{font-size:0.78rem;color:var(--sage-d);font-weight:600;margin-bottom:10px;}
+.founder-bio{font-size:0.84rem;color:var(--ink-3);line-height:1.7;font-weight:300;text-align:justify;}
+
+/* CREDENTIALS GRID */
+.cred-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px;}
+.cred-item{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:13px 15px;}
+.cred-org{font-size:0.68rem;font-weight:700;color:var(--sage-d);letter-spacing:0.04em;margin-bottom:4px;text-transform:uppercase;}
+.cred-role{font-size:0.81rem;font-weight:600;color:var(--ink);margin-bottom:2px;}
+.cred-period{font-size:0.7rem;color:var(--ink-4);}
+
+/* PCA BOX */
+.pca-box{background:var(--ink);border-radius:var(--r-lg);padding:28px 32px;margin:36px 0;display:flex;gap:20px;align-items:flex-start;}
+.pca-icon{font-size:1.4rem;flex-shrink:0;margin-top:2px;}
+.pca-box h3{font-size:0.95rem;font-weight:700;color:white;margin-bottom:6px;letter-spacing:-0.01em;}
+.pca-box p{font-size:0.84rem;color:rgba(255,255,255,0.55);line-height:1.7;font-weight:300;margin:0;text-align:justify;}
+.pca-box a{color:var(--sage);text-decoration:none;font-weight:600;}
+.pca-box a:hover{text-decoration:underline;}
+
+/* WHO IS INVOLVED */
+.involved-list{display:flex;flex-direction:column;gap:10px;margin-top:16px;}
+.involved-item{display:flex;gap:14px;align-items:flex-start;background:white;border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;}
+.involved-dot{width:7px;height:7px;border-radius:50%;background:var(--sage-d);flex-shrink:0;margin-top:6px;}
+.involved-text{font-size:0.86rem;color:var(--ink-3);line-height:1.65;font-weight:300;text-align:justify;}
+.involved-text strong{font-weight:600;color:var(--ink);}
+
+/* BELIEFS */
+.belief-list{display:flex;flex-direction:column;gap:14px;margin-top:4px;}
+.belief-item{padding:16px 18px;background:white;border:1px solid var(--border);border-radius:var(--r);}
+.belief-item strong{font-size:0.88rem;font-weight:700;color:var(--ink);display:block;margin-bottom:5px;}
+.belief-item p{font-size:0.84rem;color:var(--ink-3);line-height:1.65;font-weight:300;margin:0;text-align:justify;}
+
+/* CTA */
+.about-cta{background:var(--sage-bg);border:1px solid var(--sage-mid);border-radius:var(--r-lg);padding:32px;text-align:center;margin-top:52px;}
+.about-cta h3{font-size:1.1rem;font-weight:700;color:var(--ink);margin-bottom:8px;letter-spacing:-0.02em;}
+.about-cta p{font-size:0.88rem;color:var(--ink-3);line-height:1.65;margin-bottom:22px;font-weight:300;text-align:justify;}
+.btn-p{display:inline-flex;align-items:center;gap:7px;background:var(--sage-d);color:white;padding:13px 28px;border-radius:100px;font-size:0.87rem;font-weight:600;text-decoration:none;transition:background 0.2s,transform 0.15s;box-shadow:0 4px 18px rgba(106,158,102,0.3);}
+.btn-p:hover{background:var(--ink-2);transform:translateY(-1px);}
+
+/* FOOTER */
+.page-footer{display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--border);margin-top:60px;flex-wrap:wrap;gap:10px;}
+.page-footer span{font-size:0.75rem;color:var(--ink-4);}
+.page-footer a{font-size:0.75rem;color:var(--sage-d);text-decoration:none;font-weight:500;}
+
+@media(max-width:600px){
+  .page{padding:40px 18px 80px;}
+  .founder-card{flex-direction:column;gap:16px;}
+  .cred-grid{grid-template-columns:1fr;}
+  .pca-box{flex-direction:column;gap:14px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">
+    <div class="lm"></div>
+    <span class="lt">AlongsideYou<span>.care</span></span>
+  </a>
+  <a href="index.html" class="nav-back">← Back to site</a>
+</nav>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="about-hero">
+    <div class="eyebrow">About</div>
+    <h1 class="page-title">Built by people who know the work from the inside</h1>
+    <p class="hero-intro">AlongsideYou.care exists because of a gap we kept hearing about, and eventually could not ignore. People were leaving training feeling inspired and equipped. Then going back to work and finding themselves alone with the hard moments, with no quick way to reconnect with what they had learned.</p>
+  </div>
+
+  <!-- WHY WE BUILT IT -->
+  <div class="about-section">
+    <div class="section-label">Why we built this</div>
+    <h2>Training ends. Practice does not.</h2>
+    <p>Over more than a decade working in personalised care workforce development, designing training programmes, writing national competency frameworks, and working directly with Care Coordinators, Social Prescribers, and Health and Wellbeing Coaches, one thing kept coming up.</p>
+    <p>People had the training. They understood person-centred practice in theory. But back in a busy PCN, between appointments, after a conversation that did not go quite right, there was nothing to turn to. No quick reference, no space to reflect, no way to reconnect with what they had learned when it actually mattered.</p>
+
+    <div class="pull-quote">
+      <p>"We kept hearing the same thing: the training was good, but there was nothing after. We wanted to change that, to build something that sat alongside people in their day-to-day work, not just on training days."</p>
+    </div>
+
+    <p>AlongsideYou.care is the answer to that gap. Not a replacement for training, but an extension of it. A digital companion that gives practitioners quick access to what they need, space to reflect on what is happening in their practice, and a way to keep growing between formal learning opportunities.</p>
+
+    <div class="context-box">
+      <div class="context-box-label">Why this matters even more now</div>
+      <p>The shift to hybrid working and the growth of neighbourhood and community-based roles has changed how the personalised care workforce operates. Practitioners are increasingly working more independently, away from office environments and the informal support that came with them.</p>
+      <p>For a Care Coordinator working across multiple sites, a Social Prescriber embedded in a community setting, or a Health and Wellbeing Coach visiting people at home, the gap between training and day-to-day practice support has widened. AlongsideYou.care is built precisely for that context, providing the kind of accessible, flexible, on-demand support that fits how this workforce actually works today.</p>
+    </div>
+  </div>
+
+  <!-- DIRECTORS -->
+  <div class="about-section">
+    <div class="section-label">Who is behind it</div>
+    <h2>Founded and led by experienced practitioners</h2>
+
+    <!-- THOMAS -->
+    <div class="founder-card">
+      <div class="founder-avatar">TL</div>
+      <div>
+        <div class="founder-name">Thomas Lawrence</div>
+        <div class="founder-title">Director and Co-Founder, AlongsideYou.care and Person Centred Academy</div>
+        <p class="founder-bio">Thomas has spent 15 years at the intersection of personalised care, workforce development, and health policy. As Director of the Personalised Care Centre at Birmingham City University, he led the design and delivery of nationally accredited Care Coordination training and co-produced the NHS England Care Coordination Competency Framework. He has worked with NHS England, the World Health Organisation, and health systems across Europe and Australia, and brings that depth of experience directly into everything AlongsideYou.care is built on.</p>
+      </div>
+    </div>
+
+    <div class="cred-grid" style="margin-bottom:28px;">
+      <div class="cred-item">
+        <div class="cred-org">Birmingham City University</div>
+        <div class="cred-role">Director, Personalised Care Centre</div>
+        <div class="cred-period">2016 to 2025</div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-org">NHS England</div>
+        <div class="cred-role">Policy Advisor, Personalised Care</div>
+        <div class="cred-period">2015 to 2016</div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-org">World Health Organisation</div>
+        <div class="cred-role">Health Policy Consultant, Europe</div>
+        <div class="cred-period">2011 to 2015</div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-org">NHS England and BCU</div>
+        <div class="cred-role">Author, Care Coordination Competency Framework</div>
+        <div class="cred-period">2022</div>
+      </div>
+    </div>
+
+    <!-- NATALIE -->
+    <div class="founder-card">
+      <div class="founder-avatar">NC</div>
+      <div>
+        <div class="founder-name">Natalie Cording</div>
+        <div class="founder-title">Director, AlongsideYou.care and Person Centred Academy</div>
+        <p class="founder-bio">Natalie is a registered Social Worker with over 15 years of experience in Children and Families Safeguarding. For the past seven years she has worked as an Advanced Social Work Practitioner within Worcestershire Children First, with her current role centred on training and development, reflective supervision, and quality assurance. She supports both newly qualified and experienced practitioners to grow in confidence, competence, and resilience. Natalie brings a relationship-based, reflective style to teaching, tailoring sessions to diverse learning styles and drawing on her own practice experience to bridge theory and real-world application.</p>
+      </div>
+    </div>
+
+    <p>Natalie brings a perspective that is essential to AlongsideYou.care. Social work and personalised care share the same values: empowerment, dignity, and working alongside people to achieve outcomes that matter to them. Her expertise in reflective supervision, practice education, and CPD design has directly shaped how the platform approaches reflection and practitioner development.</p>
+
+    <div class="cred-grid">
+      <div class="cred-item">
+        <div class="cred-org">Worcestershire Children First</div>
+        <div class="cred-role">Advanced Social Work Practitioner</div>
+        <div class="cred-period">7 years</div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-org">CPD Design and Delivery</div>
+        <div class="cred-role">Signs of Safety, CSA, Safeguarding Practice Reviews</div>
+        <div class="cred-period">Ongoing</div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-org">Practice Education</div>
+        <div class="cred-role">Supervising social work students in practice placements</div>
+        <div class="cred-period">Ongoing</div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-org">National Contributions</div>
+        <div class="cred-role">Safeguarding reviews, research pilots, and strategic improvement plans</div>
+        <div class="cred-period">Ongoing</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PCA -->
+  <div class="pca-box">
+    <div class="pca-icon">🎓</div>
+    <div>
+      <h3>Owned and backed by the Person Centred Academy</h3>
+      <p>AlongsideYou.care is owned by the Person Centred Academy, which means every Companion Theme, every micro-training module, and every piece of content is grounded in the same evidence base that underpins accredited personalised care training across England. This is not a technology platform with training bolted on. It is a training organisation that built a platform. <a href="#">Learn more about the PCA →</a></p>
+    </div>
+  </div>
+
+  <!-- WHO IS INVOLVED -->
+  <div class="about-section">
+    <div class="section-label">Who is involved</div>
+    <h2>Built with the sector, not just for it</h2>
+    <p>AlongsideYou.care has been shaped from the start by the people it is designed to support. We are working with experienced practitioners, trainers, and NHS organisations to make sure what we build is genuinely useful, not just technically well made.</p>
+    <div class="involved-list">
+      <div class="involved-item">
+        <div class="involved-dot"></div>
+        <div class="involved-text"><strong>Experienced personalised care trainers</strong> contributing content, reviewing Companion Themes, and helping make sure the platform reflects real practice, not just theory.</div>
+      </div>
+      <div class="involved-item">
+        <div class="involved-dot"></div>
+        <div class="involved-text"><strong>Practitioners in active roles</strong> including Care Coordinators, Social Prescribing Link Workers, and Health and Wellbeing Coaches who have helped shape what the platform actually needs to do.</div>
+      </div>
+      <div class="involved-item">
+        <div class="involved-dot"></div>
+        <div class="involved-text"><strong>NHS organisations and PCNs</strong> working with us during early access to test the platform in real workforce contexts and help refine what commissioning looks like.</div>
+      </div>
+      <div class="involved-item">
+        <div class="involved-dot"></div>
+        <div class="involved-text"><strong>The Person Centred Academy</strong> providing the content foundation, credibility, and existing relationships with training hubs, ICSs, and commissioners across England.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT WE BELIEVE -->
+  <div class="about-section">
+    <div class="section-label">What we believe</div>
+    <h2>A few things we hold to be true</h2>
+    <div class="belief-list">
+      <div class="belief-item">
+        <strong>Training days are necessary but not sufficient.</strong>
+        <p>The gap between learning something and being able to use it confidently in practice is real, and it is where most workforce development investment is lost.</p>
+      </div>
+      <div class="belief-item">
+        <strong>Reflection is not a luxury.</strong>
+        <p>For practitioners doing emotionally demanding, complex work, the ability to pause and make sense of what happened is not a nice-to-have. It is what separates practice that improves from practice that stagnates. This is particularly true for those working in hybrid, remote, and neighbourhood settings where the informal support of a shared office is no longer available.</p>
+      </div>
+      <div class="belief-item">
+        <strong>The workforce deserves better tools.</strong>
+        <p>Care Coordinators, Social Prescribers, and Health and Wellbeing Coaches are doing some of the most important work in primary care. The support available to them in their day-to-day work should reflect that.</p>
+      </div>
+      <div class="belief-item">
+        <strong>Technology should follow practice, not lead it.</strong>
+        <p>AlongsideYou.care was designed around how practitioners actually work, between appointments, in five spare minutes, after a conversation that stuck with them, not around what is technically impressive.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="about-cta">
+    <h3>Want to see it in action?</h3>
+    <p>Book a 30-minute demo and we will show you exactly how AlongsideYou.care supports your workforce, and what commissioning it looks like for your organisation.</p>
+    <a href="book-demo.html" class="btn-p">Book an organisational demo →</a>
+  </div>
+
+  <div class="page-footer">
+    <span>© 2026 AlongsideYou.care</span>
+    <a href="index.html">← Back to site</a>
+  </div>
+
+</div>
+</body>
+</html>
