@@ -331,6 +331,40 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
 }
 .intro-banner p { font-size:0.85rem; color:var(--ink); line-height:1.65; }
 .intro-banner .time-note { font-size:0.76rem; color:var(--ink-l); margin-top:8px; font-weight:500; }
+.lesson-tool-list{display:flex;flex-direction:column;gap:9px;margin-top:4px;}
+.lesson-tool-card{background:white;border:1px solid var(--stone);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:transform 0.18s,box-shadow 0.18s,border-color 0.18s;}
+.lesson-tool-card:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,0.07);border-color:var(--sage-l);}
+.lesson-tool-card.open{border-color:var(--sage-l);}
+.lesson-tool-head{display:flex;align-items:center;gap:12px;padding:14px 16px;}
+.lesson-tool-icon{width:28px;height:28px;border-radius:7px;background:var(--sage-pale);display:grid;place-items:center;font-size:0.72rem;font-weight:700;color:var(--sage);flex-shrink:0;transition:all 0.18s;}
+.lesson-tool-card.open .lesson-tool-icon{background:var(--sage);color:white;}
+.lesson-tool-name{font-size:0.85rem;font-weight:600;color:var(--ink);flex:1;}
+.lesson-tool-type{font-size:0.62rem;font-weight:700;background:#f0eef8;color:#6a649a;padding:2px 8px;border-radius:100px;flex-shrink:0;}
+.lesson-tool-chevron{font-size:1rem;color:var(--ink-l);transition:transform 0.2s;margin-left:4px;}
+.lesson-tool-card.open .lesson-tool-chevron{transform:rotate(90deg);}
+.lesson-tool-body{display:none;padding:0 16px 16px;border-top:1px solid var(--stone);}
+.lesson-tool-card.open .lesson-tool-body{display:block;}
+.lesson-tool-desc{font-size:0.82rem;color:var(--ink-m);line-height:1.65;padding-top:12px;margin-bottom:12px;}
+.lesson-tool-dl{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:100px;background:var(--sage-pale);color:var(--sage);font-size:0.76rem;font-weight:600;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;}
+.lesson-tool-dl:hover{background:var(--sage);color:white;}
+
+.micro-topics{display:flex;flex-direction:column;gap:10px;margin-top:4px;}
+.micro-topic-card{background:white;border:1px solid var(--stone);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:transform 0.18s,box-shadow 0.18s,border-color 0.18s;}
+.micro-topic-card:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,0.07);border-color:var(--sage-l);}
+.micro-topic-card.open{border-color:var(--sage-l);}
+.micro-topic-head{display:flex;align-items:center;gap:14px;padding:16px 18px;}
+.micro-topic-num{width:30px;height:30px;border-radius:50%;background:var(--sage-pale);display:grid;place-items:center;font-size:0.78rem;font-weight:700;color:var(--sage);flex-shrink:0;}
+.micro-topic-card.open .micro-topic-num{background:var(--sage);color:white;}
+.micro-topic-title{font-size:0.87rem;font-weight:600;color:var(--ink);flex:1;}
+.micro-topic-duration{font-size:0.7rem;color:var(--ink-l);white-space:nowrap;}
+.micro-topic-chevron{font-size:1rem;color:var(--ink-l);transition:transform 0.2s;margin-left:4px;}
+.micro-topic-card.open .micro-topic-chevron{transform:rotate(90deg);}
+.micro-topic-body{display:none;padding:0 18px 18px;border-top:1px solid var(--stone);}
+.micro-topic-card.open .micro-topic-body{display:block;}
+.micro-topic-overview{font-size:0.84rem;color:var(--ink-m);line-height:1.7;padding-top:14px;}
+.micro-topic-start{display:inline-flex;align-items:center;gap:6px;margin-top:14px;padding:8px 18px;border-radius:100px;background:var(--sage-pale);color:var(--sage);font-size:0.78rem;font-weight:600;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;}
+.micro-topic-start:hover{background:var(--sage);color:white;}
+
 .prompt-card{background:var(--warm);border:1px solid var(--stone);border-radius:8px;padding:10px 12px;font-size:0.78rem;color:var(--ink-m);line-height:1.5;}
 
 .content-block { margin-bottom:24px; }
@@ -1195,61 +1229,19 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
               <!-- MICRO-TRAINING -->
               <div class="lesson-section" id="tab-microtraining">
                 <div class="intro-banner">
-                  <p><strong>Foundations of Person-Centred Conversations</strong></p>
-                  <p style="margin-top:6px">A short overview of listening, curiosity, and responding in ways that keep the person at the centre of the conversation.</p>
-                  <div class="time-note">5–8 minutes</div>
+                  <p><strong class="micro-title">Foundations of Person-Centred Conversations</strong></p>
+                  <p class="micro-sub" style="margin-top:6px">A short overview of listening, curiosity, and responding in ways that keep the person at the centre of the conversation.</p>
+                  <div class="time-note">5–8 minutes per topic</div>
                 </div>
-                <div class="content-block">
-                  <h4 class="micro-h">What does person-centred really mean?</h4>
-                  <p class="micro-p">Person-centred practice is often described as putting the individual first — but in the day-to-day reality of care coordination, it's more than a phrase. It's a set of habits and dispositions that take practice to develop. At its heart, it means being genuinely curious about what matters to the person in front of you — not just ticking boxes about their condition or circumstances.</p>
-                </div>
-                <div class="content-block">
-                  <h4>Three foundations to come back to</h4>
-                  <div class="principle-list">
-                    <div class="principle-item"><div class="principle-num">1</div><div><h5>Curiosity before conclusions</h5><p>Before explaining, advising, or signposting — pause and ask. What does this person already know? What have they already tried?</p></div></div>
-                    <div class="principle-item"><div class="principle-num">2</div><div><h5>Listen for the whole picture</h5><p>People rarely lead with what matters most. The real concern often emerges in the second half of a conversation.</p></div></div>
-                    <div class="principle-item"><div class="principle-num">3</div><div><h5>Hold back the fix</h5><p>The urge to help by solving is natural. But responding too quickly can close down a conversation before the person feels heard.</p></div></div>
-                  </div>
-                </div>
-                <button class="lesson-complete-btn" onclick="markComplete('Micro-training')">Mark as Complete ✓</button>
+                <div class="micro-topics" id="micro-topics"></div>
               </div>
 
               <!-- PRACTICAL TOOLS -->
               <div class="lesson-section" id="tab-tools">
                 <div class="intro-banner">
-                  <p>Simple tools you can draw on in real conversations. These aren't rules or scripts — just ways of approaching moments that often feel difficult.</p>
+                  <p>Tools you can draw on in real conversations and practice. Click any tool to see what it covers and download it.</p>
                 </div>
-                <div class="content-block">
-                  <h4>The OARS Framework</h4>
-                  <p>OARS is a set of communication skills drawn from motivational interviewing. They work together to create conversations that feel collaborative rather than directive.</p>
-                </div>
-                <div class="content-block">
-                  <h4>Reflective Listening Starters</h4>
-                  <div class="principle-list">
-                    <div class="principle-item" style="background:var(--sage-pale);border-color:rgba(90,122,106,0.2)">
-                      <div class="principle-num">💬</div>
-                      <div>
-                        <h5>"So what I'm hearing is…"</h5>
-                        <p>Reflecting back what you've understood — not parroting, but checking you've got the essence of it.</p>
-                      </div>
-                    </div>
-                    <div class="principle-item" style="background:var(--amber-pale);border-color:rgba(200,129,58,0.2)">
-                      <div class="principle-num">💬</div>
-                      <div>
-                        <h5>"It sounds like this has been going on for a while…"</h5>
-                        <p>Acknowledging time and persistence without minimising. Invites the person to say more.</p>
-                      </div>
-                    </div>
-                    <div class="principle-item" style="background:var(--teal-l);border-color:rgba(45,106,106,0.2)">
-                      <div class="principle-num">💬</div>
-                      <div>
-                        <h5>"What would feel most helpful right now?"</h5>
-                        <p>Checking in rather than assuming. Keeps the agenda with the person.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <button class="lesson-complete-btn" onclick="markComplete('Practical Tools')">Save to My Tools ✓</button>
+                <div class="lesson-tool-list" id="lesson-tool-list"></div>
               </div>
 
               <!-- TRY THIS -->
@@ -2619,38 +2611,188 @@ const themeData = {
     microH: 'The system is not designed around the person',
     microP: 'Most health and care systems were not designed with the person at the centre. They were designed around conditions, specialties, and organisational boundaries. For many people — especially those with complex needs, low confidence, or multiple services involved — navigating these systems is genuinely difficult, disempowering, and sometimes harmful. Your role as a connector and navigator is not a small one.',
     principles: [['Start with what the person wants, not what\'s available', 'Understanding what someone is hoping for — before diving into what services exist — keeps their needs at the centre.'], ['Be honest about what the system can and can\'t do', 'Managing expectations kindly is more helpful than overpromising. People can handle "it\'s complicated" better than a broken promise.'], ['Build their capacity, not just their access', 'Where possible, help people understand how to navigate — not just do it for them. Dependency on a navigator is still dependency.']],
-    keyThings: ['The gaps between services are often where people fall. Your job is sometimes just to make sure that doesn\'t happen.', 'Advocacy is part of the work. Sometimes the most person-centred thing you can do is push back on a system on someone\'s behalf.', 'People who\'ve had bad experiences with services don\'t trust them. That\'s rational, not resistant.', 'Knowing what you don\'t know — and being honest about it — is more helpful than bluffing.', 'Even one person who knows the system and is on their side can change a person\'s experience entirely.']
+    keyThings: ['The gaps between services are often where people fall. Your job is sometimes just to make sure that doesn\'t happen.', 'Advocacy is part of the work. Sometimes the most person-centred thing you can do is push back on a system on someone\'s behalf.', 'People who\'ve had bad experiences with services don\'t trust them. That\'s rational, not resistant.', 'Knowing what you don\'t know — and being honest about it — is more helpful than bluffing.', 'Even one person who knows the system and is on their side can change a person\'s experience entirely.'],
+    topics: [
+      { title: 'Why systems feel so hard to navigate', overview: 'Explores how health and care systems were designed — and why that often works against the people who need them most. Includes examples from primary care, VCSE, and social care settings.' },
+      { title: 'Helping without taking over', overview: 'The difference between navigating for someone and navigating with them. How to build someone\'s confidence in managing systems themselves without leaving them unsupported.' },
+      { title: 'When the system says no', overview: 'What to do when referrals are declined, waiting lists are long, or services don\'t fit. Practical approaches to advocacy, escalation, and making the best of limited options.' },
+      { title: 'Keeping the person at the centre', overview: 'How to stay focused on what the person actually needs when the bureaucracy pulls in another direction. Includes reflection on common moments where practitioners lose the thread.' },
+      { title: 'Building your local knowledge', overview: 'How to develop and maintain a working map of local services, community assets, and informal support — and how to share that knowledge across your team.' }
+    ]
   }
 };
+
+// Add topics to all themes that don't yet have them
+themeData.pcc.topics = [
+  { title: 'What listening really involves', overview: 'Goes beyond "active listening" to explore what it actually means to hear someone — including what gets in the way, and why practitioners often find it harder than they expect.' },
+  { title: 'The fixing reflex — and what to do instead', overview: 'Why the urge to solve and signpost is natural, when it helps and when it doesn\'t, and practical ways to stay curious for longer before moving to action.' },
+  { title: 'Using questions well', overview: 'The difference between open and closed questions, how to follow someone\'s thread rather than directing it, and common question habits that close conversations down.' },
+  { title: 'Reflecting and summarising', overview: 'How to show someone you\'ve understood them — not by repeating what they said, but by reflecting the meaning back. Includes worked examples and practice scenarios.' },
+  { title: 'Silence and pace in conversations', overview: 'Why silence is not a problem to solve. How to use pace and pause deliberately, and how to get comfortable with the discomfort of not filling every gap.' }
+];
+themeData.wtm.topics = [
+  { title: 'Why what matters is often hidden', overview: 'People rarely lead with what\'s most important to them. This module explores why, and how to create the conditions where someone feels safe to say what\'s really going on.' },
+  { title: 'Asking the right questions', overview: 'How to move from condition-focused questions to life-focused ones. Includes examples of questions that open things up versus questions that close them down.' },
+  { title: 'Following the thread', overview: 'When someone mentions something in passing, it often matters most. This module looks at how to notice and follow those moments without derailing the conversation.' },
+  { title: 'What matters can change', overview: 'Understanding that what matters to someone today may not be what mattered last month — and how to revisit and check rather than assume.' }
+];
+themeData.ncla.topics = [
+  { title: 'Why uncertainty is part of the work', overview: 'Explores why so much of personalised care work involves situations without clear answers, and why that\'s not a failure — it\'s the nature of complex human experience.' },
+  { title: 'Staying present without fixing', overview: 'Practical approaches to being helpful when you don\'t know the answer. How to hold uncertainty with someone rather than retreating to premature solutions.' },
+  { title: 'Breaking complexity into smaller steps', overview: 'When the big picture is unclear, how to help someone identify what the next small step might look like — without pretending there\'s a simple path forward.' }
+];
+themeData.sdm.topics = [
+  { title: 'What shared decision making actually means', overview: 'More than giving people information and asking what they want. This module explores the full meaning of shared decision making and why it\'s harder than it sounds.' },
+  { title: 'Presenting options without directing', overview: 'How to share what\'s possible before suggesting what you think someone should do — and why the order matters.' },
+  { title: 'Helping someone know what they value', overview: 'People often don\'t know what they want until they know what they value. Approaches for exploring values rather than just preferences.' },
+  { title: 'Checking the decision is really theirs', overview: '"Does this feel right for you?" is a simple question that changes everything. This module looks at how to check whether someone genuinely owns a decision.' }
+];
+themeData.conf.topics = [
+  { title: 'Starting from strength', overview: 'How to orient a conversation around what someone already knows and does, rather than what they\'re not doing. Includes practical approaches to strength-based questions.' },
+  { title: 'Affirmations that actually land', overview: 'The difference between vague encouragement and specific affirmation. How to acknowledge someone\'s efforts in a way that feels genuine and builds confidence.' },
+  { title: 'Goals that belong to the person', overview: 'Why goals from a care plan template are less likely to stick than goals that come from the person. How to help someone set goals they actually own.' },
+  { title: 'The confidence ruler', overview: 'A simple conversational tool — asking someone to rate their confidence on a 1–10 scale — and how to use the response to explore readiness and build motivation.' },
+  { title: 'When progress stalls', overview: 'What to do when someone isn\'t making progress toward their goals. How to stay alongside without taking over, and how to explore what might be getting in the way.' },
+  { title: 'Supporting without creating dependency', overview: 'The fine line between support that builds capability and support that creates reliance. How to gradually step back in a way that feels safe for the person.' }
+];
+themeData.pvc.topics = [
+  { title: 'Power in care conversations', overview: 'How power operates in every care interaction — and why understanding it isn\'t about guilt, but about creating the conditions where someone can speak and choose freely.' },
+  { title: 'Creating psychological safety', overview: 'What makes a person feel safe enough to disagree, change their mind, or say "that doesn\'t work for me" — and what practitioners can do to make that easier.' },
+  { title: 'Real choices vs token choices', overview: 'The difference between offering genuine options and going through the motions of choice. How to make sure the choices you\'re offering are real ones.' },
+  { title: 'Making space for quieter voices', overview: 'In conversations involving families or multiple professionals, the person most directly affected is sometimes the quietest. How to make deliberate space for them.' }
+];
+themeData.hmec.topics = [
+  { title: 'What it means to make contact count', overview: 'Every interaction — however brief — is an opportunity to notice, connect, or affirm. This module explores what that looks like in practice and why it matters.' },
+  { title: 'Presence as a form of care', overview: 'How giving someone your full attention — even for two minutes — can have disproportionate impact, especially for people who feel isolated or overlooked.' },
+  { title: 'Asking one good question', overview: '"How are you really doing?" asked with genuine curiosity can open something important. How to choose and ask a question that invites a real answer.' },
+  { title: 'Ending well', overview: 'How you close a contact matters as much as how you open it. Simple ways to end an interaction that leave someone feeling seen rather than processed.' }
+];
+themeData.wcfc.topics = [
+  { title: 'Why some conversations feel different', overview: 'The emotional and physiological experience of charged conversations — and why understanding your own reactions is the starting point for staying present.' },
+  { title: 'Staying curious when it\'s hard', overview: 'When someone is angry, distressed, or frustrated, the question isn\'t "how do I manage this?" but "what is this person carrying right now?" How to stay curious rather than defensive.' },
+  { title: 'Using pace and silence under pressure', overview: 'How slowing down — speaking more quietly, pausing more — often de-escalates tension without having to name it. Practical techniques for grounding yourself in the moment.' },
+  { title: 'After a hard conversation', overview: 'What to do with the residue of a difficult interaction. How to debrief yourself, process what happened, and avoid carrying it into the next conversation.' }
+];
+
+// ── PRACTICAL TOOLS per theme ──────────────────────────────
+themeData.pcc.tools = [
+  { name: 'Reflective Listening Starters', desc: 'Phrases and prompts for reflecting back what you hear without parroting. Includes worked examples for common conversation moments.' },
+  { name: 'OARS Quick Reference', desc: 'A pocket guide to Open questions, Affirmations, Reflections, and Summaries — drawn from motivational interviewing practice.' },
+  { name: 'Conversation Preparation Prompt Card', desc: 'A short checklist for before difficult conversations — helping you set aside your own agenda and approach with curiosity.' }
+];
+themeData.wtm.tools = [
+  { name: 'What Matters to Me — Conversation Guide', desc: 'A structured set of questions to help uncover what matters most to someone, beyond their presenting need.' },
+  { name: 'Values & Priorities Card Sort', desc: 'A simple facilitation tool to help people identify and rank what matters most to them right now.' },
+  { name: 'Good Day / Hard Day Template', desc: 'A one-page sheet for exploring what a good life looks like for someone — useful for goal-setting and care planning conversations.' }
+];
+themeData.ncla.tools = [
+  { name: 'Holding Uncertainty — Practitioner Guide', desc: 'A reflective guide for staying present and helpful when there\'s no clear path forward. Includes language for naming uncertainty without alarming someone.' },
+  { name: 'Breaking It Down Worksheet', desc: 'A simple tool for turning a complex or overwhelming situation into smaller, manageable next steps.' }
+];
+themeData.sdm.tools = [
+  { name: 'Options & Considerations Framework', desc: 'A structured way to present choices to someone that puts them in control of the decision, rather than steering them toward a particular outcome.' },
+  { name: 'Decision Support Prompt Sheet', desc: 'Questions to help someone reach a decision that genuinely reflects their values — not just their immediate preferences.' },
+  { name: 'Checking the Decision — Quick Card', desc: 'Simple prompts to check whether someone truly owns a decision, or whether they\'ve just agreed to avoid conflict.' }
+];
+themeData.conf.tools = [
+  { name: 'Strengths & Resources Map', desc: 'A visual tool to help someone identify what they already have — skills, relationships, experience — that can support their goals.' },
+  { name: 'Goal Setting — Person-Led Template', desc: 'A simple one-page goal framework where the person sets the direction. Designed to sit alongside, not replace, formal care planning.' },
+  { name: 'Confidence Ruler Conversation Guide', desc: 'How to use a 1–10 confidence scale in conversation to explore readiness, understand barriers, and build motivation.' }
+];
+themeData.pvc.tools = [
+  { name: 'Creating Space for Voice — Facilitation Guide', desc: 'Practical approaches for making a conversation feel genuinely safe for the person — including what to do when family or professionals dominate.' },
+  { name: 'Real Choices Checklist', desc: 'A reflective checklist for practitioners to check whether the choices they\'re offering are genuine, or token ones.' }
+];
+themeData.hmec.tools = [
+  { name: 'Every Contact Counts — Pocket Prompt', desc: 'A small reference card for bringing presence and intention to any interaction, however brief — including unplanned contacts.' },
+  { name: 'Closing Well — Conversation Endings Guide', desc: 'How to end contacts in a way that leaves people feeling seen rather than processed. Includes phrases that work across different contexts.' }
+];
+themeData.wcfc.tools = [
+  { name: 'Staying Grounded — Practitioner Self-Check', desc: 'A short reflective tool for noticing your own reactions before and after difficult conversations, and what to do with them.' },
+  { name: 'De-escalation Prompt Card', desc: 'Language and approaches for tense or emotionally charged moments. Practical phrases and pacing techniques for the conversation itself.' },
+  { name: 'After a Hard Conversation — Reflection Sheet', desc: 'A structured debrief for yourself after something difficult. Helps you process what happened without carrying it into the next interaction.' }
+];
+themeData.nav.tools = [
+  { name: 'Service Navigator — Local Mapping Template', desc: 'A simple template for mapping your local services, referral routes, and community assets — and keeping that knowledge up to date.' },
+  { name: 'Advocacy Conversation Guide', desc: 'How to push back on a system on someone\'s behalf — clearly, confidently, and without burning bridges.' },
+  { name: 'Navigating With Someone — Step-by-Step Guide', desc: 'Supporting someone to find their way through a system without doing it all for them. Includes how to build capability gradually.' }
+];
+
+function renderLessonTools(tools) {
+  const container = document.getElementById('lesson-tool-list');
+  if (!tools || !tools.length) { container.innerHTML = '<p style="font-size:0.84rem;color:var(--ink-l);padding:8px 0;">No tools added yet for this theme.</p>'; return; }
+  container.innerHTML = tools.map(t => `
+    <div class="lesson-tool-card" onclick="toggleLessonTool(this)">
+      <div class="lesson-tool-head">
+        <div class="lesson-tool-icon">⬇</div>
+        <div class="lesson-tool-name">${t.name}</div>
+        <div class="lesson-tool-type">PDF</div>
+        <div class="lesson-tool-chevron">›</div>
+      </div>
+      <div class="lesson-tool-body">
+        <p class="lesson-tool-desc">${t.desc}</p>
+        <button class="lesson-tool-dl" onclick="event.stopPropagation();showToast('⬇','${t.name.replace(/'/g,"\\'")} — coming soon')">Download PDF →</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleLessonTool(card) {
+  const isOpen = card.classList.contains('open');
+  document.querySelectorAll('.lesson-tool-card').forEach(c => c.classList.remove('open'));
+  if (!isOpen) card.classList.add('open');
+}
+
+function renderMicroTopics(topics) {
+  const container = document.getElementById('micro-topics');
+  container.innerHTML = topics.map((t, i) => `
+    <div class="micro-topic-card" onclick="toggleMicroTopic(this)">
+      <div class="micro-topic-head">
+        <div class="micro-topic-num">${i + 1}</div>
+        <div class="micro-topic-title">${t.title}</div>
+        <div class="micro-topic-duration">5–8 min</div>
+        <div class="micro-topic-chevron">›</div>
+      </div>
+      <div class="micro-topic-body">
+        <p class="micro-topic-overview">${t.overview}</p>
+        <button class="micro-topic-start" onclick="event.stopPropagation();showToast('📖','Starting: ${t.title.replace(/'/g,"\\'")}')">Start this topic →</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleMicroTopic(card) {
+  const isOpen = card.classList.contains('open');
+  document.querySelectorAll('.micro-topic-card').forEach(c => c.classList.remove('open'));
+  if (!isOpen) card.classList.add('open');
+}
 
 function openLesson(areaId) {
   const d = themeData[areaId];
   if (!d) return;
 
-  // Update title
+  // Titles
   document.getElementById('lesson-title').textContent = d.title;
   document.getElementById('lesson-breadcrumb').textContent = 'Companion Themes';
   document.getElementById('topbar-title').textContent = d.title;
   document.getElementById('topbar-sub').textContent = 'Companion Theme · Learning journey';
 
-  // Update Reflect tab
+  // Reflect tab
   document.querySelector('#tab-reflect .intro-banner p').textContent = d.reflectIntro;
   const promptGrid = document.querySelector('#tab-reflect .prompt-grid');
   promptGrid.innerHTML = d.reflectPrompts.map(p => `<div class="prompt-card">${p}</div>`).join('');
   document.querySelector('#tab-reflect .reflection-prompt').textContent = d.reflectHint;
   document.querySelector('#tab-reflect .ai-prompt-box p').textContent = d.aiPrompt;
 
-  // Update Micro-training tab
+  // Micro-training tab — intro banner + topic cards
   document.querySelector('#tab-microtraining .intro-banner').innerHTML =
-    `<p><strong>${d.microTitle}</strong></p><p style="margin-top:6px">${d.microSub}</p><div class="time-note">5–8 minutes</div>`;
-  document.querySelector('#tab-microtraining .micro-h').textContent = d.microH;
-  document.querySelector('#tab-microtraining .micro-p').textContent = d.microP;
-  const princList = document.querySelector('#tab-microtraining .principle-list');
-  princList.innerHTML = d.principles.map((p,i) =>
-    `<div class="principle-item"><div class="principle-num">${i+1}</div><div><h5>${p[0]}</h5><p>${p[1]}</p></div></div>`
-  ).join('');
+    `<p><strong>${d.microTitle}</strong></p><p style="margin-top:6px">${d.microSub}</p><div class="time-note">5–8 minutes per topic</div>`;
+  renderMicroTopics(d.topics || []);
 
-  // Update Key Things tab
+  // Practical Tools tab
+  renderLessonTools(d.tools || []);
+
+  // Key Things tab
   const ktList = document.getElementById('key-things-list');
   ktList.innerHTML = d.keyThings.map(k => `<div class="key-thing"><p>${k}</p></div>`).join('');
 
