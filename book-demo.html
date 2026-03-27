@@ -5,376 +5,238 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Book a Demo — AlongsideYou.care</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{font-family:'DM Sans',sans-serif;background:#f5f7f5;min-height:100vh;color:#3a4a42;}
-
 :root{
-  --sage:#6b8f7e;--sage-d:#527066;--sage-l:#9dbdad;--sage-pale:#f0f5f2;
-  --teal:#4a8282;--teal-l:#eef6f6;
-  --amber:#c49060;--amber-pale:#fef8f1;
-  --ink:#3a4a42;--ink-m:#6a7e74;--ink-l:#9ab0a8;
-  --stone:#ece9e4;--warm:#fbfaf8;
-  --r:14px;
+  --blue:#2d6480;--blue-l:#4a88a8;--blue-d:#1c4d63;
+  --blue-bg:#eef5f9;--blue-mid:#d4e8f2;
+  --amber:#c47a3a;--amber-bg:#fdf3e8;
+  --ink:#0c1c28;--ink-2:#2a3f50;--ink-3:#5a7080;--ink-4:#92aab8;
+  --surface:#fff;--bg:#f5f7f9;--border:#dde5ea;--border-d:#b8c8d5;
+  --r:12px;--r-lg:18px;
 }
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--surface);color:var(--ink);-webkit-font-smoothing:antialiased;min-height:100vh;}
 
-/* ── PAGE LAYOUT ── */
-.page{
-  min-height:100vh;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-}
+/* ── LAYOUT ── */
+.page{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;}
 
-/* ── LEFT PANEL ── */
+/* ── LEFT ── */
 .left{
-  background:linear-gradient(160deg,#3e5a4e 0%,#4d7268 55%,#3a6060 100%);
+  background:var(--ink);
   padding:52px 56px;
-  display:flex;
-  flex-direction:column;
-  position:relative;
-  overflow:hidden;
+  display:flex;flex-direction:column;
+  position:relative;overflow:hidden;
 }
-
-/* Decorative circles */
 .left::before{
   content:'';position:absolute;
-  width:420px;height:420px;border-radius:50%;
-  border:1px solid rgba(255,255,255,0.08);
-  top:-120px;right:-140px;
+  width:500px;height:500px;border-radius:50%;
+  background:rgba(45,100,128,0.12);
+  top:-150px;right:-150px;pointer-events:none;
 }
 .left::after{
   content:'';position:absolute;
-  width:260px;height:260px;border-radius:50%;
-  border:1px solid rgba(255,255,255,0.06);
-  bottom:-60px;left:-80px;
+  width:300px;height:300px;border-radius:50%;
+  background:rgba(45,100,128,0.08);
+  bottom:-80px;left:-80px;pointer-events:none;
 }
-
 .left-inner{position:relative;z-index:1;display:flex;flex-direction:column;height:100%;}
 
 /* Logo */
-.logo{display:flex;align-items:center;gap:11px;margin-bottom:60px;}
-.logo-mark{
-  width:38px;height:38px;border-radius:50%;
-  background:rgba(255,255,255,0.15);
-  border:1.5px solid rgba(255,255,255,0.3);
-  flex-shrink:0;display:grid;place-items:center;
-  position:relative;overflow:hidden;
-}
-.logo-mark::before{
-  content:'';position:absolute;
-  width:17px;height:17px;border:2px solid white;border-radius:50%;
-  top:50%;left:50%;transform:translate(-50%,-58%);
-}
-.logo-mark::after{
-  content:'';position:absolute;
-  width:20px;height:9px;border:2px solid white;
-  border-radius:0 0 11px 11px;border-top:none;
-  bottom:7px;left:50%;transform:translateX(-50%);
-}
-.logo-text{font-family:'Lora',serif;font-size:1rem;font-weight:600;color:white;line-height:1.25;}
-.logo-text span{color:rgba(255,255,255,0.6);}
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:56px;text-decoration:none;}
+.lm{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.12);border:1.5px solid rgba(255,255,255,0.2);flex-shrink:0;display:grid;place-items:center;position:relative;overflow:hidden;}
+.lm::before{content:'';position:absolute;width:14px;height:14px;border:2px solid white;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-58%);}
+.lm::after{content:'';position:absolute;width:17px;height:7px;border:2px solid white;border-radius:0 0 9px 9px;border-top:none;bottom:6px;left:50%;transform:translateX(-50%);}
+.lt{font-size:0.9rem;font-weight:600;color:white;letter-spacing:-0.01em;}
+.lt span{color:rgba(255,255,255,0.5);}
+
+/* Back link */
+.back-link{font-size:0.78rem;color:rgba(255,255,255,0.4);text-decoration:none;display:flex;align-items:center;gap:5px;margin-left:auto;transition:color 0.15s;}
+.back-link:hover{color:rgba(255,255,255,0.7);}
 
 /* Headline */
 .left h1{
-  font-family:'Lora',serif;
-  font-size:clamp(1.8rem,3vw,2.6rem);
-  font-weight:600;
-  color:white;
-  line-height:1.2;
-  margin-bottom:18px;
+  font-family:'Instrument Serif',serif;
+  font-size:clamp(1.8rem,2.8vw,2.6rem);
+  font-weight:400;color:white;
+  line-height:1.15;margin-bottom:16px;
+  letter-spacing:-0.02em;
 }
-.left h1 em{font-style:italic;color:rgba(255,255,255,0.7);}
+.left h1 em{font-style:italic;color:var(--blue-l);}
+.left-sub{font-size:0.9rem;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:44px;max-width:380px;font-weight:300;}
 
-.left-sub{
-  font-size:0.95rem;
-  color:rgba(255,255,255,0.6);
-  line-height:1.7;
-  margin-bottom:48px;
-  max-width:400px;
-  font-weight:300;
+/* Expect list */
+.expect-label{font-size:0.67rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:14px;}
+.expect-list{display:flex;flex-direction:column;gap:11px;margin-bottom:auto;}
+.expect-item{display:flex;align-items:flex-start;gap:13px;}
+.expect-icon{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);display:grid;place-items:center;font-size:0.95rem;flex-shrink:0;}
+.expect-text strong{display:block;font-size:0.83rem;font-weight:600;color:white;margin-bottom:2px;}
+.expect-text span{font-size:0.76rem;color:rgba(255,255,255,0.4);line-height:1.5;}
+
+/* NHS badge */
+.nhs-badge{
+  margin-top:36px;
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(45,100,128,0.2);border:1px solid rgba(74,136,168,0.3);
+  border-radius:100px;padding:7px 14px;
+  font-size:0.73rem;font-weight:600;color:var(--blue-l);
 }
 
-/* What to expect */
-.expect-label{
-  font-size:0.7rem;font-weight:700;letter-spacing:0.1em;
-  text-transform:uppercase;color:rgba(255,255,255,0.4);
-  margin-bottom:16px;
-}
-.expect-list{display:flex;flex-direction:column;gap:12px;margin-bottom:auto;}
-.expect-item{
-  display:flex;align-items:flex-start;gap:14px;
-}
-.expect-icon{
-  width:36px;height:36px;border-radius:10px;
-  background:rgba(255,255,255,0.1);
-  border:1px solid rgba(255,255,255,0.12);
-  display:grid;place-items:center;
-  font-size:1rem;flex-shrink:0;
-  margin-top:1px;
-}
-.expect-text strong{
-  display:block;font-size:0.85rem;font-weight:600;
-  color:white;margin-bottom:2px;
-}
-.expect-text span{font-size:0.78rem;color:rgba(255,255,255,0.5);line-height:1.5;}
-
-/* Testimonial */
-.testimonial{
-  margin-top:48px;
-  background:rgba(255,255,255,0.07);
-  border:1px solid rgba(255,255,255,0.1);
-  border-radius:var(--r);
-  padding:20px 22px;
-}
-.testimonial blockquote{
-  font-family:'Lora',serif;
-  font-style:italic;
-  font-size:0.88rem;
-  color:rgba(255,255,255,0.8);
-  line-height:1.65;
-  margin-bottom:14px;
-}
-.testimonial-attr{display:flex;align-items:center;gap:10px;}
-.t-avatar{
-  width:32px;height:32px;border-radius:50%;
-  background:rgba(255,255,255,0.2);
-  display:grid;place-items:center;
-  font-size:0.72rem;font-weight:700;color:white;flex-shrink:0;
-}
-.t-name{font-size:0.78rem;font-weight:600;color:rgba(255,255,255,0.8);}
-.t-role{font-size:0.7rem;color:rgba(255,255,255,0.45);margin-top:1px;}
-
-/* ── RIGHT PANEL ── */
+/* ── RIGHT ── */
 .right{
-  background:var(--warm);
+  background:var(--bg);
   padding:52px 56px;
-  display:flex;
-  flex-direction:column;
+  display:flex;flex-direction:column;
   justify-content:center;
+  overflow-y:auto;
 }
 
-.form-header{margin-bottom:36px;}
+/* Form header */
+.form-header{margin-bottom:32px;}
 .form-eyebrow{
   display:inline-flex;align-items:center;gap:7px;
-  background:var(--sage-pale);
-  border:1px solid rgba(107,143,126,0.2);
+  background:var(--blue-bg);border:1px solid var(--blue-mid);
   border-radius:100px;padding:5px 14px;
-  font-size:0.72rem;font-weight:700;
-  letter-spacing:0.06em;text-transform:uppercase;
-  color:var(--sage);margin-bottom:16px;
+  font-size:0.69rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;
+  color:var(--blue-d);margin-bottom:14px;
 }
-.eyebrow-dot{width:6px;height:6px;background:var(--sage);border-radius:50%;animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.7);}}
-
+.eyebrow-dot{width:6px;height:6px;background:var(--blue);border-radius:50%;animation:blink 2.5s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
 .form-header h2{
-  font-family:'Lora',serif;
-  font-size:clamp(1.4rem,2.5vw,2rem);
-  font-weight:600;color:var(--ink);
-  line-height:1.25;margin-bottom:8px;
+  font-family:'Instrument Serif',serif;
+  font-size:clamp(1.5rem,2.5vw,2.1rem);
+  font-weight:400;color:var(--ink);
+  line-height:1.15;margin-bottom:8px;letter-spacing:-0.02em;
 }
-.form-header p{font-size:0.88rem;color:var(--ink-m);line-height:1.6;}
+.form-header p{font-size:0.86rem;color:var(--ink-3);line-height:1.65;font-weight:300;}
 
 /* Form */
-.signup-form{display:flex;flex-direction:column;gap:0;}
-
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.signup-form{display:flex;flex-direction:column;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
 .form-row.full{grid-template-columns:1fr;}
-
-.field{display:flex;flex-direction:column;gap:6px;}
-
-.field label{
-  font-size:0.78rem;font-weight:600;color:var(--ink);
-  display:flex;align-items:center;gap:4px;
-}
-.field label .req{color:var(--sage);font-size:0.7rem;}
-
-.field input,
-.field select,
-.field textarea{
-  width:100%;
-  padding:11px 14px;
-  border:1.5px solid var(--stone);
-  border-radius:10px;
-  font-size:0.86rem;
-  font-family:'DM Sans',sans-serif;
-  color:var(--ink);
-  background:white;
+.field{display:flex;flex-direction:column;gap:5px;}
+.field label{font-size:0.76rem;font-weight:600;color:var(--ink-2);display:flex;align-items:center;gap:4px;}
+.field label .req{color:var(--blue);font-size:0.68rem;}
+.field input,.field select,.field textarea{
+  width:100%;padding:11px 14px;
+  border:1.5px solid var(--border);border-radius:var(--r);
+  font-size:0.85rem;font-family:'Plus Jakarta Sans',sans-serif;
+  color:var(--ink);background:white;
   transition:border-color 0.2s,box-shadow 0.2s;
-  appearance:none;
-  -webkit-appearance:none;
+  appearance:none;-webkit-appearance:none;
 }
-.field input:focus,
-.field select:focus,
-.field textarea:focus{
-  outline:none;
-  border-color:var(--sage-l);
-  box-shadow:0 0 0 3px rgba(107,143,126,0.12);
+.field input:focus,.field select:focus,.field textarea:focus{
+  outline:none;border-color:var(--blue-l);
+  box-shadow:0 0 0 3px rgba(45,100,128,0.1);
 }
-.field input::placeholder,
-.field textarea::placeholder{color:var(--ink-l);}
+.field input::placeholder,.field textarea::placeholder{color:var(--ink-4);}
 .field select{
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239ab0a8' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;
-  background-position:right 14px center;
-  padding-right:36px;
-  cursor:pointer;
-  color:var(--ink);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2392aab8' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;
+  padding-right:36px;cursor:pointer;
 }
-.field select option[value=""]{color:var(--ink-l);}
-.field textarea{min-height:90px;resize:vertical;line-height:1.6;}
+.field textarea{min-height:80px;resize:vertical;line-height:1.6;}
 
-/* Preferred time */
-.time-slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;}
+/* Time slots */
+.time-slots-label{font-size:0.76rem;font-weight:600;color:var(--ink-2);margin-bottom:8px;}
+.time-slots{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:12px;}
 .time-slot{
-  padding:9px 8px;
-  border:1.5px solid var(--stone);
-  border-radius:9px;
-  font-size:0.75rem;font-weight:500;
-  color:var(--ink-m);
-  text-align:center;
-  cursor:pointer;
-  transition:all 0.15s;
-  background:white;
-  user-select:none;
+  padding:8px 6px;border:1.5px solid var(--border);border-radius:9px;
+  font-size:0.73rem;font-weight:500;color:var(--ink-3);
+  text-align:center;cursor:pointer;background:white;
+  transition:all 0.15s;user-select:none;
 }
-.time-slot:hover{border-color:var(--sage-l);color:var(--sage);}
-.time-slot.selected{
-  background:var(--sage-pale);
-  border-color:var(--sage);
-  color:var(--sage);
-  font-weight:600;
-}
-.time-slots-label{font-size:0.78rem;font-weight:600;color:var(--ink);margin-bottom:8px;}
+.time-slot:hover{border-color:var(--blue-l);color:var(--blue);}
+.time-slot.selected{background:var(--blue-bg);border-color:var(--blue);color:var(--blue-d);font-weight:600;}
 
 /* Consent */
-.consent-row{
-  display:flex;gap:11px;align-items:flex-start;
-  margin-bottom:22px;margin-top:6px;
-}
-.consent-row input[type=checkbox]{
-  width:18px;height:18px;flex-shrink:0;
-  margin-top:2px;cursor:pointer;
-  accent-color:var(--sage);
-}
-.consent-text{font-size:0.76rem;color:var(--ink-m);line-height:1.55;}
-.consent-text a{color:var(--sage);text-decoration:none;}
-.consent-text a:hover{text-decoration:underline;}
+.consent-row{display:flex;gap:10px;align-items:flex-start;margin:12px 0 20px;}
+.consent-row input[type=checkbox]{width:17px;height:17px;flex-shrink:0;margin-top:2px;cursor:pointer;accent-color:var(--blue);}
+.consent-text{font-size:0.74rem;color:var(--ink-3);line-height:1.6;}
+.consent-text a{color:var(--blue);text-decoration:none;border-bottom:1px solid var(--blue-mid);}
+.consent-text a:hover{border-bottom-color:var(--blue);}
 
-/* Submit button */
+/* Submit */
 .submit-btn{
-  width:100%;padding:15px;
-  background:var(--sage);color:white;
-  border:none;border-radius:100px;
-  font-size:0.95rem;font-weight:600;
-  font-family:'DM Sans',sans-serif;
-  cursor:pointer;
+  width:100%;padding:14px;
+  background:var(--blue);color:white;border:none;border-radius:100px;
+  font-size:0.9rem;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif;
+  cursor:pointer;letter-spacing:0.005em;
   transition:background 0.2s,transform 0.15s,box-shadow 0.2s;
-  box-shadow:0 4px 18px rgba(107,143,126,0.3);
+  box-shadow:0 4px 16px rgba(45,100,128,0.28);
   display:flex;align-items:center;justify-content:center;gap:8px;
-  letter-spacing:0.01em;
 }
-.submit-btn:hover{background:var(--sage-d);transform:translateY(-1px);box-shadow:0 8px 28px rgba(107,143,126,0.35);}
+.submit-btn:hover{background:var(--blue-d);transform:translateY(-1px);box-shadow:0 8px 24px rgba(45,100,128,0.38);}
 .submit-btn:active{transform:translateY(0);}
 
 /* Trust strip */
-.trust-strip{
-  display:flex;align-items:center;gap:16px;
-  margin-top:18px;flex-wrap:wrap;
-}
-.trust-item{
-  display:flex;align-items:center;gap:6px;
-  font-size:0.74rem;color:var(--ink-l);font-weight:500;
-}
-.trust-item svg{flex-shrink:0;}
+.trust-strip{display:flex;align-items:center;gap:14px;margin-top:16px;flex-wrap:wrap;}
+.trust-item{display:flex;align-items:center;gap:5px;font-size:0.72rem;color:var(--ink-4);font-weight:500;}
 
-/* ── SUCCESS STATE ── */
-.success-state{
-  display:none;flex-direction:column;
-  align-items:center;justify-content:center;
-  text-align:center;padding:40px 0;
-  animation:fadeUp 0.5s ease;
-}
+/* Success */
+.success-state{display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 0;animation:fadeUp 0.5s ease;}
 .success-state.show{display:flex;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
-
-.success-icon{
-  width:72px;height:72px;border-radius:50%;
-  background:var(--sage-pale);
-  border:2px solid var(--sage-l);
-  display:grid;place-items:center;
-  font-size:2rem;margin-bottom:22px;
-}
-.success-state h3{
-  font-family:'Lora',serif;font-size:1.5rem;
-  font-weight:600;color:var(--ink);margin-bottom:10px;
-}
-.success-state p{font-size:0.9rem;color:var(--ink-m);line-height:1.65;max-width:360px;margin-bottom:28px;}
-.success-detail{
-  background:var(--sage-pale);border-radius:var(--r);
-  padding:18px 24px;border:1px solid rgba(107,143,126,0.2);
-  width:100%;max-width:380px;margin-bottom:20px;text-align:left;
-}
-.success-detail-row{
-  display:flex;justify-content:space-between;
-  font-size:0.8rem;padding:6px 0;
-  border-bottom:1px solid rgba(107,143,126,0.15);
-}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+.success-icon{width:68px;height:68px;border-radius:50%;background:var(--blue-bg);border:2px solid var(--blue-mid);display:grid;place-items:center;font-size:1.8rem;margin-bottom:20px;}
+.success-state h3{font-family:'Instrument Serif',serif;font-size:1.6rem;font-weight:400;color:var(--ink);margin-bottom:10px;letter-spacing:-0.02em;}
+.success-state p{font-size:0.87rem;color:var(--ink-3);line-height:1.65;max-width:360px;margin-bottom:26px;font-weight:300;}
+.success-detail{background:white;border-radius:var(--r-lg);padding:20px 24px;border:1px solid var(--border);width:100%;max-width:380px;margin-bottom:20px;text-align:left;}
+.success-detail-row{display:flex;justify-content:space-between;font-size:0.8rem;padding:7px 0;border-bottom:1px solid var(--border);}
 .success-detail-row:last-child{border-bottom:none;}
-.success-detail-row span:first-child{color:var(--ink-l);}
+.success-detail-row span:first-child{color:var(--ink-4);}
 .success-detail-row span:last-child{font-weight:600;color:var(--ink);}
+.add-cal-btn{display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:100px;border:1.5px solid var(--border-d);background:white;font-size:0.82rem;font-weight:600;color:var(--ink-3);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all 0.2s;}
+.add-cal-btn:hover{border-color:var(--blue-l);color:var(--blue);}
 
-.add-cal-btn{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:11px 22px;border-radius:100px;
-  border:1.5px solid var(--stone);
-  background:white;font-size:0.84rem;font-weight:600;
-  color:var(--ink-m);cursor:pointer;
-  font-family:'DM Sans',sans-serif;
-  transition:all 0.2s;
-}
-.add-cal-btn:hover{border-color:var(--sage-l);color:var(--sage);}
+/* Toast */
+#toast{position:fixed;bottom:24px;right:24px;background:var(--ink);color:white;border-radius:var(--r);padding:14px 20px;font-size:0.82rem;font-weight:500;box-shadow:0 8px 32px rgba(0,0,0,0.2);display:flex;align-items:center;gap:10px;transform:translateY(80px);opacity:0;transition:all 0.35s cubic-bezier(0.22,1,0.36,1);z-index:999;max-width:300px;}
 
-/* ── MOBILE ── */
+/* Config banner */
+#config-banner{display:none;position:fixed;top:0;left:0;right:0;z-index:999;background:#fef9e8;border-bottom:1px solid #f0d870;padding:10px 20px;font-size:0.8rem;color:#7a6010;align-items:center;gap:10px;flex-wrap:wrap;}
+
+/* Shake */
+@keyframes shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-5px);}40%{transform:translateX(5px);}60%{transform:translateX(-3px);}80%{transform:translateX(3px);}}
+
+/* MOBILE */
 @media(max-width:768px){
   .page{grid-template-columns:1fr;}
-  .left{padding:36px 24px 32px;}
-  .left h1{font-size:1.6rem;}
-  .left-sub{font-size:0.88rem;margin-bottom:32px;}
-  .testimonial{display:none;}
-  .right{padding:36px 24px 48px;}
+  .left{padding:32px 24px 28px;}
+  .left-sub{display:none;}
+  .nhs-badge{display:none;}
+  .right{padding:32px 24px 48px;}
   .form-row{grid-template-columns:1fr;}
   .time-slots{grid-template-columns:repeat(2,1fr);}
 }
-
 @media(max-width:480px){
-  .left{padding:28px 18px 24px;}
-  .right{padding:28px 18px 40px;}
-  .form-header h2{font-size:1.3rem;}
+  .left{padding:24px 18px 20px;}
+  .right{padding:24px 18px 40px;}
   .time-slots{grid-template-columns:1fr 1fr;}
-  .trust-strip{gap:12px;}
 }
 </style>
 </head>
 <body>
 
+<!-- Config banner -->
+<div id="config-banner">
+  <span>⚙️</span>
+  <strong>Supabase not configured yet.</strong>
+  <span>Find <code style="background:rgba(0,0,0,0.08);padding:1px 5px;border-radius:4px;">SUPABASE_URL</code> and <code style="background:rgba(0,0,0,0.08);padding:1px 5px;border-radius:4px;">SUPABASE_ANON_KEY</code> near the bottom of this file and paste in your credentials.</span>
+</div>
+
 <div class="page">
 
-  <!-- ── LEFT: VALUE PROP ── -->
+  <!-- LEFT -->
   <div class="left">
     <div class="left-inner">
-
       <div class="logo">
-        <a href="index.html" style="display:flex;align-items:center;gap:11px;text-decoration:none;">
-          <div class="logo-mark"></div>
-          <div class="logo-text">AlongsideYou<span>.care</span></div>
-        </a>
-        <a href="index.html" style="margin-left:auto;font-size:0.78rem;color:rgba(255,255,255,0.5);text-decoration:none;display:flex;align-items:center;gap:5px;">← Back to site</a>
+        <div class="lm"></div>
+        <span class="lt">AlongsideYou<span>.care</span></span>
+        <a href="index.html" class="back-link">← Back to site</a>
       </div>
 
-      <h1>See how it works <em>in practice</em></h1>
-      <p class="left-sub">A 30-minute demo tailored to your team — we'll walk through how AlongsideYou supports Care Coordinators, Social Prescribers, and Health & Wellbeing Coaches day to day.</p>
+      <h1>See how it works<br><em>in practice</em></h1>
+      <p class="left-sub">A 30-minute demo tailored to your team — we'll walk through how AlongsideYou supports Care Coordinators, Social Prescribers, and Health &amp; Wellbeing Coaches day to day.</p>
 
       <div class="expect-label">What to expect</div>
       <div class="expect-list">
@@ -408,21 +270,11 @@ body{font-family:'DM Sans',sans-serif;background:#f5f7f5;min-height:100vh;color:
         </div>
       </div>
 
-      <div class="testimonial">
-        <blockquote>"I wasn't sure what to expect from the demo, but it was genuinely useful — they focused on exactly the challenges our team was facing."</blockquote>
-        <div class="testimonial-attr">
-          <div class="t-avatar">KH</div>
-          <div>
-            <div class="t-name">Karen H.</div>
-            <div class="t-role">PCN Manager, East Midlands</div>
-          </div>
-        </div>
-      </div>
-
+      <div class="nhs-badge">🏥 &nbsp;Aligned with NHS Personalised Care frameworks</div>
     </div>
   </div>
 
-  <!-- ── RIGHT: FORM ── -->
+  <!-- RIGHT -->
   <div class="right">
 
     <!-- FORM STATE -->
@@ -438,36 +290,36 @@ body{font-family:'DM Sans',sans-serif;background:#f5f7f5;min-height:100vh;color:
         <div class="form-row">
           <div class="field">
             <label>First name <span class="req">*</span></label>
-            <input type="text" id="fname" placeholder="Sarah" required autocomplete="given-name">
+            <input type="text" id="fname" required autocomplete="given-name">
           </div>
           <div class="field">
             <label>Last name <span class="req">*</span></label>
-            <input type="text" id="lname" placeholder="Clarke" required autocomplete="family-name">
+            <input type="text" id="lname" required autocomplete="family-name">
           </div>
         </div>
 
-        <div class="form-row full" style="margin-bottom:14px;">
+        <div class="form-row full">
           <div class="field">
             <label>Work email <span class="req">*</span></label>
-            <input type="email" id="email" placeholder="sarah@southwarkpcn.nhs.uk" required autocomplete="email">
+            <input type="email" id="email" required autocomplete="email">
           </div>
         </div>
 
-        <div class="form-row full" style="margin-bottom:14px;">
+        <div class="form-row full">
           <div class="field">
             <label>Organisation / PCN name <span class="req">*</span></label>
-            <input type="text" id="org" placeholder="e.g. Southwark PCN, Mind in the City…" required autocomplete="organization">
+            <input type="text" id="org" required autocomplete="organization">
           </div>
         </div>
 
-        <div class="form-row full" style="margin-bottom:14px;">
+        <div class="form-row full">
           <div class="field">
             <label>Your role <span class="req">*</span></label>
             <select id="role" required>
               <option value="" disabled selected>Select your role…</option>
               <option value="care-coordinator">Care Coordinator</option>
               <option value="social-prescriber">Social Prescribing Link Worker</option>
-              <option value="hwb-coach">Health & Wellbeing Coach</option>
+              <option value="hwb-coach">Health &amp; Wellbeing Coach</option>
               <option value="pcn-manager">PCN Manager / Lead</option>
               <option value="training-lead">Training / Workforce Lead</option>
               <option value="commissioner">Commissioner / ICS</option>
@@ -477,9 +329,9 @@ body{font-family:'DM Sans',sans-serif;background:#f5f7f5;min-height:100vh;color:
           </div>
         </div>
 
-        <div class="form-row full" style="margin-bottom:6px;">
+        <div class="form-row full" style="margin-bottom:12px;">
           <div class="field">
-            <label>Team size <span style="color:var(--ink-l);font-weight:400;">(optional)</span></label>
+            <label>Team size <span style="color:var(--ink-4);font-weight:400;">(optional)</span></label>
             <select id="teamsize">
               <option value="" disabled selected>How many people in your team?</option>
               <option value="1">Just me</option>
@@ -491,8 +343,8 @@ body{font-family:'DM Sans',sans-serif;background:#f5f7f5;min-height:100vh;color:
           </div>
         </div>
 
-        <div style="margin-bottom:14px;">
-          <div class="time-slots-label">Preferred time <span style="color:var(--ink-l);font-weight:400;">(select all that suit)</span></div>
+        <div style="margin-bottom:12px;">
+          <div class="time-slots-label">Preferred time <span style="color:var(--ink-4);font-weight:400;">(select all that suit)</span></div>
           <div class="time-slots">
             <div class="time-slot" onclick="toggleSlot(this)">Mon–Fri morning</div>
             <div class="time-slot" onclick="toggleSlot(this)">Mon–Fri afternoon</div>
@@ -503,10 +355,10 @@ body{font-family:'DM Sans',sans-serif;background:#f5f7f5;min-height:100vh;color:
           </div>
         </div>
 
-        <div class="form-row full" style="margin-bottom:14px;">
+        <div class="form-row full">
           <div class="field">
-            <label>Anything you'd like us to focus on? <span style="color:var(--ink-l);font-weight:400;">(optional)</span></label>
-            <textarea id="notes" placeholder="e.g. We're a new team just starting out with social prescribing, or we're particularly interested in CPD tracking…"></textarea>
+            <label>Anything you'd like us to focus on? <span style="color:var(--ink-4);font-weight:400;">(optional)</span></label>
+            <textarea id="notes" placeholder="e.g. We're a new team just starting out, or we're particularly interested in CPD tracking…"></textarea>
           </div>
         </div>
 
@@ -524,19 +376,19 @@ body{font-family:'DM Sans',sans-serif;background:#f5f7f5;min-height:100vh;color:
 
         <div class="trust-strip">
           <div class="trust-item">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.5 3.5L7 9.5 4 11l.5-3.5L2 5l3.5-.5L7 1z" stroke="var(--ink-l)" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg>
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.5 3.5L7 9.5 4 11l.5-3.5L2 5l3.5-.5L7 1z" stroke="var(--ink-4)" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg>
             No spam, ever
           </div>
           <div class="trust-item">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="5" width="10" height="8" rx="2" stroke="var(--ink-l)" stroke-width="1.2"/><path d="M5 5V4a2 2 0 014 0v1" stroke="var(--ink-l)" stroke-width="1.2" stroke-linecap="round"/></svg>
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><rect x="2" y="5" width="10" height="8" rx="2" stroke="var(--ink-4)" stroke-width="1.2"/><path d="M5 5V4a2 2 0 014 0v1" stroke="var(--ink-4)" stroke-width="1.2" stroke-linecap="round"/></svg>
             Your data is safe
           </div>
           <div class="trust-item">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="var(--ink-l)" stroke-width="1.2"/><path d="M7 4v3l2 1.5" stroke="var(--ink-l)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="var(--ink-4)" stroke-width="1.2"/><path d="M7 4v3l2 1.5" stroke="var(--ink-4)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             Reply within 1 working day
           </div>
           <div class="trust-item">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3.5" stroke="var(--ink-l)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3.5" stroke="var(--ink-4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             No obligation
           </div>
         </div>
@@ -550,66 +402,36 @@ body{font-family:'DM Sans',sans-serif;background:#f5f7f5;min-height:100vh;color:
       <h3>You're booked in!</h3>
       <p>Thanks — we've received your request and will confirm your demo slot by email within one working day.</p>
       <div class="success-detail" id="success-detail">
-        <div class="success-detail-row">
-          <span>Name</span><span id="s-name">—</span>
-        </div>
-        <div class="success-detail-row">
-          <span>Email</span><span id="s-email">—</span>
-        </div>
-        <div class="success-detail-row">
-          <span>Organisation</span><span id="s-org">—</span>
-        </div>
-        <div class="success-detail-row">
-          <span>Role</span><span id="s-role">—</span>
-        </div>
-        <div class="success-detail-row" style="border-bottom:none;">
-          <span>Duration</span><span>30 minutes</span>
-        </div>
+        <div class="success-detail-row"><span>Name</span><span id="s-name">—</span></div>
+        <div class="success-detail-row"><span>Email</span><span id="s-email">—</span></div>
+        <div class="success-detail-row"><span>Organisation</span><span id="s-org">—</span></div>
+        <div class="success-detail-row"><span>Role</span><span id="s-role">—</span></div>
+        <div class="success-detail-row" style="border-bottom:none;"><span>Duration</span><span>30 minutes</span></div>
       </div>
-      <button class="add-cal-btn" onclick="showToast()">
-        📅 &nbsp;Add to calendar
-      </button>
+      <button class="add-cal-btn" onclick="showToast()">📅 &nbsp;Add to calendar</button>
     </div>
 
   </div>
 </div>
 
-<!-- Config banner (only visible until credentials are added) -->
-<div id="config-banner" style="display:none;position:fixed;top:0;left:0;right:0;z-index:999;background:#fef3cd;border-bottom:1px solid #f0d080;padding:10px 20px;font-size:0.82rem;color:#7a5c10;align-items:center;gap:10px;flex-wrap:wrap;">
-  <span>⚙️</span>
-  <strong>Supabase not configured yet.</strong>
-  <span>Open the file, find <code style="background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:4px;">SUPABASE_URL</code> and <code style="background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:4px;">SUPABASE_ANON_KEY</code> near the bottom and paste in your project credentials. <a href="https://supabase.com/dashboard" target="_blank" style="color:#7a5c10;font-weight:600;">Open Supabase →</a></span>
-</div>
-
 <!-- Toast -->
-<div id="toast" style="
-  position:fixed;bottom:24px;right:24px;
-  background:var(--ink);color:white;
-  border-radius:12px;padding:14px 20px;
-  font-size:0.84rem;font-weight:500;
-  box-shadow:0 8px 32px rgba(0,0,0,0.2);
-  display:flex;align-items:center;gap:10px;
-  transform:translateY(80px);opacity:0;
-  transition:all 0.35s cubic-bezier(0.22,1,0.36,1);
-  z-index:999;max-width:300px;
-">
+<div id="toast">
   <span>📅</span>
   <span>We'll include a calendar invite in your confirmation email!</span>
 </div>
 
-<!-- Supabase JS SDK -->
+<!-- Supabase SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 
 <script>
-// ── ⚙️  PASTE YOUR SUPABASE CREDENTIALS HERE ────────────
-const SUPABASE_URL      = 'https://YOUR_PROJECT_REF.supabase.co';
-const SUPABASE_ANON_KEY = 'YOUR_ANON_PUBLIC_KEY';
-// ─────────────────────────────────────────────────────────
+// ── PASTE YOUR SUPABASE CREDENTIALS HERE ──────────────────
+const SUPABASE_URL      = 'https://fkxyivkwhnraijrtious.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_QK8nMqtfl_pLLcQK0PG34w_HWBHGTzi';
+// ──────────────────────────────────────────────────────────
 
 const { createClient } = supabase;
 const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// Show setup banner in browser if credentials not yet filled in
 window.addEventListener('DOMContentLoaded', () => {
   if (SUPABASE_URL.includes('YOUR_PROJECT_REF')) {
     document.getElementById('config-banner').style.display = 'flex';
@@ -627,15 +449,12 @@ const roleLabels = {
   'other':             'Other'
 };
 
-function toggleSlot(el) {
-  el.classList.toggle('selected');
-}
+function toggleSlot(el) { el.classList.toggle('selected'); }
 
 async function handleSubmit(e) {
   e.preventDefault();
   clearErrors();
 
-  // Collect values
   const fname    = document.getElementById('fname').value.trim();
   const lname    = document.getElementById('lname').value.trim();
   const email    = document.getElementById('email').value.trim();
@@ -646,18 +465,17 @@ async function handleSubmit(e) {
   const consent  = document.getElementById('consent').checked;
   const times    = [...document.querySelectorAll('.time-slot.selected')].map(el => el.textContent.trim());
 
-  // Validation
   if (!fname || !lname || !email || !org || !role) {
     shakeBtn();
     ['fname','lname','email','org','role'].forEach(id => {
       const el = document.getElementById(id);
-      if (el && !el.value.trim()) el.style.borderColor = '#c08090';
+      if (el && !el.value.trim()) el.style.borderColor = '#c47a7a';
     });
     return;
   }
   if (!email.includes('@') || !email.includes('.')) {
     const el = document.getElementById('email');
-    el.style.borderColor = '#c08090';
+    el.style.borderColor = '#c47a7a';
     el.focus();
     showFieldError(el, 'Please enter a valid email address');
     return;
@@ -667,52 +485,43 @@ async function handleSubmit(e) {
     return;
   }
 
-  // Animate button to loading state
-  const btn     = document.querySelector('.submit-btn');
+  const btn = document.querySelector('.submit-btn');
   const btnText = document.getElementById('btn-text');
-  const btnArrow= document.getElementById('btn-arrow');
-  btn.disabled  = true;
-  btn.style.opacity = '0.85';
+  const btnArrow = document.getElementById('btn-arrow');
+  btn.disabled = true;
+  btn.style.opacity = '0.8';
   btnText.textContent = 'Booking…';
   btnArrow.textContent = '⏳';
 
-  // Insert row into Supabase
-  const { error } = await db
-    .from('demo_requests')
-    .insert([{
-      first_name:      fname,
-      last_name:       lname,
-      email:           email,
-      organisation:    org,
-      role:            role,
-      team_size:       teamsize || null,
-      preferred_times: times.length ? times : null,
-      notes:           notes || null,
-      consent:         true
-    }]);
+  const { error } = await db.from('demo_requests').insert([{
+    first_name:      fname,
+    last_name:       lname,
+    email:           email,
+    organisation:    org,
+    role:            role,
+    team_size:       teamsize || null,
+    preferred_times: times.length ? times : null,
+    notes:           notes || null,
+    consent:         true
+  }]);
 
   if (error) {
-    // Reset button
     btn.disabled = false;
     btn.style.opacity = '1';
     btnText.textContent = 'Book My Demo';
     btnArrow.textContent = '→';
-
-    // Show friendly error above submit button
     const errEl = document.createElement('div');
     errEl.id = 'submit-error';
-    errEl.style.cssText = 'background:#faeef0;border:1px solid #e8bec4;border-radius:10px;padding:12px 16px;font-size:0.82rem;color:#9a4a58;margin-bottom:14px;display:flex;gap:10px;align-items:flex-start;line-height:1.55;';
-    errEl.innerHTML = `<span>⚠️</span><div>Something went wrong — please try again, or email us at <strong>hello@alongsideyou.care</strong>.<br><small style="opacity:0.6;display:block;margin-top:3px;">Error: ${error.message}</small></div>`;
+    errEl.style.cssText = 'background:#fdf0f0;border:1px solid #e8c4c4;border-radius:10px;padding:12px 16px;font-size:0.81rem;color:#9a4848;margin-bottom:14px;display:flex;gap:10px;align-items:flex-start;line-height:1.55;';
+    errEl.innerHTML = `<span>⚠️</span><div>Something went wrong — please try again or email <strong>hello@alongsideyou.care</strong> directly.<br><small style="opacity:0.55;display:block;margin-top:3px;">${error.message}</small></div>`;
     btn.parentNode.insertBefore(errEl, btn);
     return;
   }
 
-  // Success — show confirmation
   document.getElementById('s-name').textContent  = fname + ' ' + lname;
   document.getElementById('s-email').textContent = email;
   document.getElementById('s-org').textContent   = org;
   document.getElementById('s-role').textContent  = roleLabels[role] || role;
-
   document.getElementById('form-state').style.display = 'none';
   document.getElementById('success-state').classList.add('show');
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -728,7 +537,7 @@ function clearErrors() {
 function showFieldError(el, msg) {
   const err = document.createElement('div');
   err.className = 'field-error';
-  err.style.cssText = 'font-size:0.74rem;color:#c08090;margin-top:4px;';
+  err.style.cssText = 'font-size:0.72rem;color:#c47a7a;margin-top:4px;';
   err.textContent = msg;
   el.parentNode.appendChild(err);
 }
@@ -745,7 +554,6 @@ function showToast() {
   setTimeout(() => { t.style.transform = 'translateY(80px)'; t.style.opacity = '0'; }, 3500);
 }
 
-// Clear errors on input
 document.querySelectorAll('input,select,textarea').forEach(el => {
   el.addEventListener('input', () => {
     el.style.borderColor = '';
@@ -756,15 +564,5 @@ document.getElementById('consent').addEventListener('change', function() {
   this.style.outline = '';
 });
 </script>
-
-<style>
-@keyframes shake{
-  0%,100%{transform:translateX(0);}
-  20%{transform:translateX(-6px);}
-  40%{transform:translateX(6px);}
-  60%{transform:translateX(-4px);}
-  80%{transform:translateX(4px);}
-}
-</style>
 </body>
 </html>
