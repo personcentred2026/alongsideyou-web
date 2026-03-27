@@ -96,7 +96,6 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
 }
 .nav-item:hover { background:rgba(0,0,0,0.05); }
 .nav-item.active { background:rgba(255,255,255,0.75); box-shadow:0 1px 4px rgba(0,0,0,0.07); }
-.nav-icon { font-size:1rem; width:20px; text-align:center; flex-shrink:0; }
 .nav-label { font-size:0.83rem; font-weight:500; color:var(--ink-m); }
 .nav-item.active .nav-label { color:var(--ink); }
 .nav-badge {
@@ -158,34 +157,48 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
 
 /* ── HOME VIEW ── */
 .welcome-banner {
-  background:linear-gradient(135deg,#3e5a4e 0%,#4a7066 100%);
-  border-radius:var(--r); padding:28px 32px; margin-bottom:24px;
+  background:#5a8a82;
+  border-radius:var(--r); margin-bottom:24px;
   position:relative; overflow:hidden;
 }
-.welcome-banner::before {
-  content:''; position:absolute;
-  width:300px; height:300px; border-radius:50%;
-  background:rgba(90,122,106,0.15);
-  top:-100px; right:-60px;
+.welcome-banner::before { display:none; }
+.welcome-banner-inner {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0;
+  position:relative;
 }
-.welcome-banner::after {
-  content:''; position:absolute;
-  width:180px; height:180px; border-radius:50%;
-  background:rgba(200,129,58,0.1);
-  bottom:-60px; right:120px;
+.welcome-banner-left {
+  padding:28px 32px;
+  background:#5a8a82;
 }
-.welcome-banner h2 { font-family:'Lora',serif; font-size:1.5rem; color:white; margin-bottom:6px; position:relative; }
-.welcome-banner p { font-size:0.88rem; color:rgba(255,255,255,0.6); max-width:420px; line-height:1.6; position:relative; }
-.welcome-banner .today-nudge {
-  margin-top:18px; display:inline-flex; align-items:center; gap:10px;
-  background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.15);
-  border-radius:100px; padding:8px 16px; position:relative; cursor:pointer;
-  transition:background 0.2s;
+.welcome-banner-left h2 { font-family:'Lora',serif; font-size:1.4rem; color:white; margin-bottom:8px; }
+.welcome-banner-left p { font-size:0.86rem; color:rgba(255,255,255,0.72); line-height:1.6; }
+.welcome-banner-right {
+  padding:28px 32px;
+  border-left:1px solid rgba(255,255,255,0.15);
+  background:#7aaa9e;
+  display:flex; flex-direction:column; justify-content:center;
 }
-.welcome-banner .today-nudge:hover { background:rgba(255,255,255,0.18); }
-.welcome-banner .today-nudge span { font-size:0.8rem; color:white; font-weight:500; }
-.nudge-dot { width:8px; height:8px; background:var(--amber); border-radius:50%; animation:pulse 2s infinite; }
-@keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.5;transform:scale(0.7);} }
+.banner-try-label {
+  font-size:0.68rem; font-weight:700; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--amber);
+  margin-bottom:8px;
+}
+.banner-try-tag {
+  font-size:0.72rem; font-weight:600;
+  color:rgba(255,255,255,0.55);
+  margin-bottom:8px;
+}
+.banner-try-text {
+  font-size:0.84rem; color:rgba(255,255,255,0.9);
+  line-height:1.6; font-style:italic;
+}
+
+@media(max-width:600px) {
+  .welcome-banner-inner { grid-template-columns:1fr; }
+  .welcome-banner-right { border-left:none; border-top:1px solid rgba(255,255,255,0.12); }
+}
 
 .stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:24px; }
 .stat-card {
@@ -318,6 +331,7 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
 }
 .intro-banner p { font-size:0.85rem; color:var(--ink); line-height:1.65; }
 .intro-banner .time-note { font-size:0.76rem; color:var(--ink-l); margin-top:8px; font-weight:500; }
+.prompt-card{background:var(--warm);border:1px solid var(--stone);border-radius:8px;padding:10px 12px;font-size:0.78rem;color:var(--ink-m);line-height:1.5;}
 
 .content-block { margin-bottom:24px; }
 .content-block h4 { font-family:'Lora',serif; font-size:1rem; font-weight:600; color:var(--ink); margin-bottom:10px; }
@@ -350,13 +364,129 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
 .reflection-area textarea:focus { outline:none; border-color:var(--sage-l); }
 .reflection-prompt { font-size:0.76rem; color:var(--ink-l); line-height:1.5; font-style:italic; margin-top:8px; }
 
-.try-this-box {
-  background:var(--amber-pale); border-radius:var(--r-sm);
-  padding:18px 20px; border:1px solid rgba(200,129,58,0.25); margin-bottom:16px;
+/* ── SETTINGS ── */
+.settings-header{margin-bottom:28px;}
+.settings-header h2{font-family:'Lora',serif;font-size:1.4rem;font-weight:600;color:var(--ink);margin-bottom:4px;}
+.settings-header p{font-size:0.84rem;color:var(--ink-m);}
+.settings-layout{display:flex;flex-direction:column;gap:20px;max-width:680px;}
+.settings-section-title{font-size:0.7rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(--ink-l);margin-bottom:10px;}
+.settings-card{background:white;border:1px solid var(--stone);border-radius:var(--r);padding:20px 22px;}
+.settings-profile-row{display:flex;align-items:center;gap:16px;margin-bottom:4px;}
+.settings-avatar{width:52px;height:52px;border-radius:50%;background:var(--sage);display:grid;place-items:center;font-size:0.9rem;font-weight:700;color:white;flex-shrink:0;}
+.settings-profile-name{font-size:0.92rem;font-weight:600;color:var(--ink);margin-bottom:2px;}
+.settings-profile-role{font-size:0.76rem;color:var(--ink-l);}
+.settings-divider{height:1px;background:var(--stone);margin:14px 0;}
+.settings-field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.settings-field{display:flex;flex-direction:column;gap:5px;}
+.settings-field label{font-size:0.73rem;font-weight:600;color:var(--ink-m);}
+.settings-field input,.settings-field select{padding:9px 12px;border:1.5px solid var(--stone);border-radius:9px;font-size:0.83rem;font-family:'DM Sans',sans-serif;color:var(--ink);background:white;transition:border-color 0.2s;appearance:none;}
+.settings-field input:focus,.settings-field select:focus{outline:none;border-color:var(--sage-l);box-shadow:0 0 0 3px rgba(193,225,189,0.25);}
+.settings-row-action{margin-top:16px;}
+/* Toggle */
+.settings-toggle-row{display:flex;align-items:center;gap:16px;padding:4px 0;}
+.settings-toggle-info{flex:1;}
+.settings-toggle-label{font-size:0.84rem;font-weight:600;color:var(--ink);margin-bottom:2px;}
+.settings-toggle-sub{font-size:0.75rem;color:var(--ink-l);line-height:1.4;}
+.settings-toggle{width:42px;height:24px;border-radius:12px;background:var(--stone);position:relative;cursor:pointer;flex-shrink:0;transition:background 0.2s;}
+.settings-toggle.on{background:var(--sage);}
+.settings-toggle-knob{width:18px;height:18px;border-radius:50%;background:white;position:absolute;top:3px;left:3px;transition:transform 0.2s;box-shadow:0 1px 4px rgba(0,0,0,0.15);}
+.settings-toggle.on .settings-toggle-knob{transform:translateX(18px);}
+/* Buttons */
+.settings-btn-primary{padding:9px 20px;border-radius:100px;background:var(--sage);color:white;border:none;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;}
+.settings-btn-primary:hover{background:var(--sage-dark);}
+.settings-btn-outline{padding:8px 16px;border-radius:100px;border:1.5px solid var(--stone);background:white;font-size:0.8rem;font-weight:500;color:var(--ink-m);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;}
+.settings-btn-outline:hover{border-color:var(--sage-l);color:var(--sage);}
+.settings-btn-danger{padding:8px 16px;border-radius:100px;border:1.5px solid #e8c0c0;background:white;font-size:0.8rem;font-weight:500;color:#c06060;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;}
+.settings-btn-danger:hover{background:#fdf0f0;border-color:#c06060;}
+@media(max-width:600px){.settings-field-grid{grid-template-columns:1fr;}}
+
+/* ── PCA PROGRAMMES ── */
+.pca-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+.pca-card{background:white;border:1px solid var(--stone);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;}
+.pca-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,0.08);}
+.pca-card-img{height:160px;overflow:hidden;background:var(--warm);}
+.pca-card-body{padding:18px 20px;}
+.pca-card-label{display:inline-block;font-size:0.65rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;padding:3px 9px;border-radius:100px;margin-bottom:9px;}
+.pca-card-title{font-size:0.9rem;font-weight:600;color:var(--ink);margin-bottom:6px;line-height:1.35;}
+.pca-card-desc{font-size:0.78rem;color:var(--ink-m);line-height:1.6;margin-bottom:12px;}
+.pca-card-link{font-size:0.78rem;font-weight:600;color:var(--sage);transition:color 0.15s;}
+.pca-card:hover .pca-card-link{color:var(--sage-dark);}
+
+/* ── PRACTICAL TOOLS ── */
+.tools-header{margin-bottom:24px;}
+.tools-header h2{font-family:'Lora',serif;font-size:1.4rem;font-weight:600;color:var(--ink);margin-bottom:4px;}
+.tools-header p{font-size:0.84rem;color:var(--ink-m);}
+.tools-grid{display:flex;flex-direction:column;gap:10px;}
+.tool-theme-card{background:white;border:1px solid var(--stone);border-radius:var(--r);overflow:hidden;}
+.tool-theme-head{display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;transition:background 0.15s;user-select:none;}
+.tool-theme-head:hover{background:var(--warm);}
+.tool-theme-accent{width:4px;height:32px;border-radius:2px;flex-shrink:0;}
+.tool-theme-name{font-size:0.88rem;font-weight:600;color:var(--ink);flex:1;}
+.tool-theme-count{font-size:0.72rem;color:var(--ink-l);font-weight:500;white-space:nowrap;}
+.tool-theme-chevron{font-size:1.1rem;color:var(--ink-l);transition:transform 0.2s;margin-left:6px;line-height:1;}
+.tool-theme-card.open .tool-theme-chevron{transform:rotate(90deg);}
+.tool-theme-body{display:none;border-top:1px solid var(--stone);padding:8px 0;}
+.tool-theme-card.open .tool-theme-body{display:block;}
+.tool-item{display:flex;align-items:center;gap:12px;padding:11px 18px;cursor:pointer;transition:background 0.15s;}
+.tool-item:hover{background:var(--sage-pale);}
+.tool-item-icon{width:30px;height:30px;border-radius:7px;background:var(--sage-pale);display:grid;place-items:center;font-size:0.75rem;color:var(--sage);flex-shrink:0;font-weight:700;}
+.tool-item:hover .tool-item-icon{background:var(--sage);color:white;}
+.tool-item-info{flex:1;}
+.tool-item-name{font-size:0.83rem;font-weight:600;color:var(--ink);margin-bottom:2px;}
+.tool-item-desc{font-size:0.74rem;color:var(--ink-l);line-height:1.4;}
+.tool-item-type{font-size:0.65rem;font-weight:700;background:#f0eef8;color:#6a649a;padding:3px 8px;border-radius:100px;flex-shrink:0;}
+
+/* ── COMMUNITY ── */
+.community-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;gap:16px;}
+.community-header h2{font-family:'Lora',serif;font-size:1.4rem;font-weight:600;color:var(--ink);margin-bottom:4px;}
+.community-header p{font-size:0.84rem;color:var(--ink-m);}
+.community-post-btn{background:var(--sage);color:white;border:none;border-radius:100px;padding:9px 20px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;flex-shrink:0;transition:background 0.2s;}
+.community-post-btn:hover{background:var(--sage-dark);}
+.forum-sections{display:flex;flex-direction:column;gap:16px;}
+.forum-section{background:white;border:1px solid var(--stone);border-radius:var(--r);overflow:hidden;}
+.forum-section-head{display:flex;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid var(--stone);cursor:pointer;}
+.forum-section-icon{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;font-size:0.9rem;font-weight:700;flex-shrink:0;}
+.forum-section-title{font-size:0.9rem;font-weight:600;color:var(--ink);margin-bottom:2px;}
+.forum-section-sub{font-size:0.75rem;color:var(--ink-l);line-height:1.4;}
+.forum-section-count{margin-left:auto;font-size:0.72rem;color:var(--ink-l);white-space:nowrap;font-weight:500;}
+.forum-threads{display:flex;flex-direction:column;}
+.forum-thread{padding:14px 20px;border-bottom:1px solid var(--stone);cursor:pointer;transition:background 0.15s;}
+.forum-thread:last-child{border-bottom:none;}
+.forum-thread:hover{background:var(--warm);}
+.thread-meta{display:flex;gap:10px;align-items:center;margin-bottom:5px;}
+.thread-author{font-size:0.72rem;font-weight:600;color:var(--ink-m);}
+.thread-time{font-size:0.7rem;color:var(--ink-l);}
+.thread-title{font-size:0.86rem;font-weight:600;color:var(--ink);margin-bottom:4px;line-height:1.4;}
+.thread-preview{font-size:0.78rem;color:var(--ink-m);line-height:1.55;margin-bottom:9px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.thread-footer{display:flex;align-items:center;gap:8px;}
+.thread-replies{font-size:0.7rem;color:var(--ink-l);font-weight:500;}
+.thread-tag{font-size:0.65rem;font-weight:700;padding:2px 8px;border-radius:100px;letter-spacing:0.02em;}
+.thread-new-badge{font-size:0.65rem;font-weight:700;background:#e8f4f1;color:#4a8a7e;padding:2px 8px;border-radius:100px;}
+/* Community modal */
+.community-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:200;align-items:center;justify-content:center;padding:20px;}
+.community-modal.open{display:flex;}
+.community-modal-inner{background:white;border-radius:var(--r-lg);padding:28px;width:100%;max-width:480px;max-height:90vh;overflow-y:auto;}
+.community-modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+.community-modal-title{font-size:1rem;font-weight:600;color:var(--ink);}
+.community-modal-close{background:none;border:none;font-size:1rem;cursor:pointer;color:var(--ink-l);padding:4px;}
+.try-this-daily{
+  background:var(--amber-pale);border:1px solid rgba(200,129,58,0.2);
+  border-radius:var(--r);padding:28px 28px 22px;margin-bottom:16px;
+  animation:fadeIn 0.4s ease;
 }
-.try-this-box .tt-label { font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; color:var(--amber); margin-bottom:8px; display:flex; align-items:center; gap:6px; }
-.try-this-box h5 { font-size:0.88rem; font-weight:600; color:var(--ink); margin-bottom:6px; }
-.try-this-box p { font-size:0.82rem; color:var(--ink-m); line-height:1.6; }
+.ttd-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+.ttd-label{font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--amber);}
+.ttd-date{font-size:0.72rem;color:var(--ink-l);}
+.ttd-title{font-family:'Lora',serif;font-size:1.15rem;font-weight:600;color:var(--ink);margin-bottom:10px;line-height:1.3;}
+.ttd-body{font-size:0.86rem;color:var(--ink-m);line-height:1.7;margin-bottom:16px;}
+.ttd-footer{display:flex;align-items:center;gap:8px;padding-top:14px;border-top:1px solid rgba(200,129,58,0.15);}
+.ttd-when{font-size:0.72rem;font-weight:600;color:var(--amber);text-transform:uppercase;letter-spacing:0.05em;}
+.ttd-next-btn{
+  background:none;border:1.5px solid var(--stone);border-radius:100px;
+  padding:8px 18px;font-size:0.78rem;font-weight:500;color:var(--ink-m);
+  cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;
+}
+.ttd-next-btn:hover{border-color:var(--amber);color:var(--amber);}
 
 .key-things { display:flex; flex-direction:column; gap:8px; }
 .key-thing {
@@ -661,41 +791,33 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
     <nav class="sidebar-nav">
       <div class="nav-section-label">Main</div>
       <div class="nav-item active" onclick="showView('home',this)">
-        <div class="nav-icon">🏠</div>
         <div class="nav-label">Home</div>
       </div>
       <div class="nav-item" onclick="showView('companion',this)">
-        <div class="nav-icon">🗺️</div>
-        <div class="nav-label">Companion Areas</div>
+        <div class="nav-label">Companion Themes</div>
         <div class="nav-badge">9</div>
       </div>
       <div class="nav-item" onclick="showView('reflection',this)">
-        <div class="nav-icon">🪞</div>
         <div class="nav-label">Reflect</div>
       </div>
       <div class="nav-item" onclick="showView('journey',this)">
-        <div class="nav-icon">📈</div>
         <div class="nav-label">My Journey</div>
       </div>
 
       <div class="nav-section-label">Resources</div>
-      <div class="nav-item">
-        <div class="nav-icon">🧰</div>
+      <div class="nav-item" onclick="showView('tools',this)">
         <div class="nav-label">Practical Tools</div>
       </div>
-      <div class="nav-item">
-        <div class="nav-icon">👥</div>
+      <div class="nav-item" onclick="showView('community',this)">
         <div class="nav-label">Community</div>
         <div class="nav-badge">3</div>
       </div>
-      <div class="nav-item">
-        <div class="nav-icon">🔗</div>
+      <div class="nav-item" onclick="showView('pca',this)">
         <div class="nav-label">PCA Programmes</div>
       </div>
 
       <div class="nav-section-label">Account</div>
-      <div class="nav-item">
-        <div class="nav-icon">⚙️</div>
+      <div class="nav-item" onclick="showView('settings',this)">
         <div class="nav-label">Settings</div>
       </div>
     </nav>
@@ -732,11 +854,16 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
       <!-- HOME VIEW -->
       <div class="view active" id="view-home">
         <div class="welcome-banner">
-          <h2>Welcome back, Sarah</h2>
-          <p>You're making steady progress. You have 3 modules in progress and your next reflection is overdue — pick up where you left off.</p>
-          <div class="today-nudge" onclick="showTryThisModal()">
-            <div class="nudge-dot"></div>
-            <span>✨ Today's nudge: <em>Start with curiosity, not a question list.</em></span>
+          <div class="welcome-banner-inner">
+            <div class="welcome-banner-left">
+              <h2>Welcome back, Sarah</h2>
+              <p>You're making steady progress. You have 3 modules in progress and your next reflection is overdue — pick up where you left off.</p>
+            </div>
+            <div class="welcome-banner-right">
+              <div class="banner-try-label">✦ Try This Today</div>
+              <div class="banner-try-tag">Person-Centred Conversations</div>
+              <p class="banner-try-text">"Before your next appointment, take 30 seconds to set aside your agenda. Ask yourself: what might matter most to them today?"</p>
+            </div>
           </div>
         </div>
 
@@ -801,14 +928,6 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
           </div>
 
           <div class="right-panel">
-            <div class="panel-card">
-              <h4>✨ Try This Today</h4>
-              <div class="try-this-card">
-                <div class="try-this-tag">Person-Centred Conversations</div>
-                <p>"Before your next appointment, take 30 seconds to set aside your agenda. Ask yourself: what might matter most to them today?"</p>
-              </div>
-              <div style="font-size:0.75rem;color:var(--ink-l);text-align:right;">Refreshes daily</div>
-            </div>
 
             <div class="panel-card">
               <h4>Recent Activity</h4>
@@ -850,183 +969,176 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
       <!-- COMPANION AREAS VIEW -->
       <div class="view" id="view-companion">
         <div class="companion-intro">
-          <h2>Companion Areas</h2>
+          <h2>Companion Themes</h2>
           <p>Support for different moments in practice. Each area contains structured reflection, micro-learning, practical tools, and Try This prompts.</p>
         </div>
 
         <div class="filter-bar">
           <button class="filter-btn active" onclick="filterAreas('all',this)">All Areas</button>
           <button class="filter-btn" onclick="filterAreas('in-progress',this)">In Progress</button>
-          <button class="filter-btn" onclick="filterAreas('conversations',this)">Conversations</button>
-          <button class="filter-btn" onclick="filterAreas('systems',this)">Systems & Complexity</button>
-          <button class="filter-btn" onclick="filterAreas('change',this)">Change & Support</button>
         </div>
 
         <div class="areas-grid" id="areas-grid">
 
           <div class="area-card" data-tags="in-progress conversations" onclick="openLesson('pcc')">
-            <div class="area-card-accent" style="background:linear-gradient(90deg,#9aafcc,#6a82a0)"></div>
+            <div class="area-card-accent" style="background:#7aaa9e"></div>
             <div class="area-card-top">
               <div class="area-badge-row">
-                <span class="area-badge" style="background:var(--blue-pale);color:var(--blue)">In Progress</span>
-                <span class="area-badge" style="background:var(--sage-pale);color:var(--sage)">Conversations</span>
+                <span class="area-badge" style="background:#e8f4f1;color:#4a8a7e">In Progress</span>
               </div>
               <h3>Person-Centred Conversations</h3>
               <p class="area-q">How do I really listen and respond, without rushing to fix things?</p>
             </div>
             <div class="area-card-footer">
               <div class="area-meta">
-                <span class="area-meta-item">📚 5 modules</span>
-                <span class="area-meta-item">⏱ 25 min</span>
+                <span class="area-meta-item">5 modules</span>
+                <span class="area-meta-item">25 min</span>
               </div>
-              <div class="area-go" style="background:var(--blue-pale);color:var(--blue)">→</div>
+              <div class="area-go" style="background:#e8f4f1;color:#4a8a7e">→</div>
             </div>
           </div>
 
-          <div class="area-card" data-tags="conversations" onclick="openLesson('wtm')">
-            <div class="area-card-accent" style="background:linear-gradient(90deg,#7ab5a0,#5a7a6a)"></div>
+          <div class="area-card" data-tags="in-progress conversations" onclick="openLesson('wtm')">
+            <div class="area-card-accent" style="background:#8aaa82"></div>
             <div class="area-card-top">
               <div class="area-badge-row">
-                <span class="area-badge" style="background:var(--amber-pale);color:var(--amber)">In Progress</span>
-                <span class="area-badge" style="background:var(--sage-pale);color:var(--sage)">Conversations</span>
+                <span class="area-badge" style="background:#eef4ea;color:#5a8a52">In Progress</span>
               </div>
               <h3>Understanding What Matters</h3>
-              <p class="area-q">What's really important to this person right now?</p>
+              <p class="area-q">What's really important to this person right now — and how do I find out?</p>
             </div>
             <div class="area-card-footer">
               <div class="area-meta">
-                <span class="area-meta-item">📚 4 modules</span>
-                <span class="area-meta-item">⏱ 20 min</span>
+                <span class="area-meta-item">4 modules</span>
+                <span class="area-meta-item">20 min</span>
               </div>
-              <div class="area-go" style="background:var(--sage-pale);color:var(--sage)">→</div>
+              <div class="area-go" style="background:#eef4ea;color:#5a8a52">→</div>
             </div>
           </div>
 
           <div class="area-card" data-tags="conversations" onclick="openLesson('ncla')">
-            <div class="area-card-accent" style="background:linear-gradient(90deg,#e8b87a,#c8813a)"></div>
+            <div class="area-card-accent" style="background:#c8a882"></div>
             <div class="area-card-top">
               <div class="area-badge-row">
-                <span class="area-badge" style="background:var(--sage-pale);color:var(--sage)">New</span>
-                <span class="area-badge" style="background:var(--amber-pale);color:var(--amber)">Conversations</span>
+                <span class="area-badge" style="background:#f4eeea;color:#8a6842">New</span>
               </div>
               <h3>When There's No Clear Answer</h3>
-              <p class="area-q">Call out a feature, benefit, or value that can stand on its own.</p>
+              <p class="area-q">How do I hold uncertainty well, without retreating into solutions?</p>
             </div>
             <div class="area-card-footer">
               <div class="area-meta">
-                <span class="area-meta-item">📚 3 modules</span>
-                <span class="area-meta-item">⏱ 15 min</span>
+                <span class="area-meta-item">3 modules</span>
+                <span class="area-meta-item">15 min</span>
               </div>
-              <div class="area-go" style="background:var(--amber-pale);color:var(--amber)">→</div>
+              <div class="area-go" style="background:#f4eeea;color:#8a6842">→</div>
             </div>
           </div>
 
-          <div class="area-card" data-tags="in-progress conversations" onclick="openLesson('sdm')">
-            <div class="area-card-accent" style="background:linear-gradient(90deg,#a0c8b8,#70a890)"></div>
+          <div class="area-card" data-tags="conversations" onclick="openLesson('sdm')">
+            <div class="area-card-accent" style="background:#82a8aa"></div>
             <div class="area-card-top">
               <div class="area-badge-row">
-                <span class="area-badge" style="background:var(--teal-l);color:var(--teal)">In Progress</span>
-                <span class="area-badge" style="background:var(--sage-pale);color:var(--sage)">Conversations</span>
+                <span class="area-badge" style="background:#eaf2f4;color:#4a7a7e">New</span>
               </div>
               <h3>Shared Decision Making</h3>
-              <p class="area-q">How do we decide together, not for?</p>
+              <p class="area-q">How do we decide together, not for — even when time is short?</p>
             </div>
             <div class="area-card-footer">
               <div class="area-meta">
-                <span class="area-meta-item">📚 4 modules</span>
-                <span class="area-meta-item">⏱ 22 min</span>
+                <span class="area-meta-item">4 modules</span>
+                <span class="area-meta-item">22 min</span>
               </div>
-              <div class="area-go" style="background:var(--teal-l);color:var(--teal)">→</div>
+              <div class="area-go" style="background:#eaf2f4;color:#4a7a7e">→</div>
             </div>
           </div>
 
-          <div class="area-card" data-tags="change conversations" onclick="openLesson('conf')">
-            <div class="area-card-accent" style="background:linear-gradient(90deg,#d4a8c8,#a878a0)"></div>
+          <div class="area-card" data-tags="conversations" onclick="openLesson('conf')">
+            <div class="area-card-accent" style="background:#a8a0c8"></div>
             <div class="area-card-top">
               <div class="area-badge-row">
-                <span class="area-badge" style="background:var(--lav-pale);color:var(--lav)">Change & Support</span>
+                <span class="area-badge" style="background:#f0eef8;color:#6a649a">New</span>
               </div>
               <h3>Supporting Confidence & Self-Management</h3>
-              <p class="area-q">How do I really listen and respond?</p>
+              <p class="area-q">How do I build on what someone already knows and can do?</p>
             </div>
             <div class="area-card-footer">
               <div class="area-meta">
-                <span class="area-meta-item">📚 6 modules</span>
-                <span class="area-meta-item">⏱ 30 min</span>
+                <span class="area-meta-item">6 modules</span>
+                <span class="area-meta-item">30 min</span>
               </div>
-              <div class="area-go" style="background:var(--lav-pale);color:var(--lav)">→</div>
+              <div class="area-go" style="background:#f0eef8;color:#6a649a">→</div>
             </div>
           </div>
 
           <div class="area-card" data-tags="conversations" onclick="openLesson('pvc')">
-            <div class="area-card-accent" style="background:linear-gradient(90deg,#f0c878,#d8a050)"></div>
+            <div class="area-card-accent" style="background:#c8aa7a"></div>
             <div class="area-card-top">
               <div class="area-badge-row">
-                <span class="area-badge" style="background:var(--amber-pale);color:var(--amber)">Conversations</span>
+                <span class="area-badge" style="background:#f8f0e4;color:#8a6832">New</span>
               </div>
               <h3>Power, Voice, and Choice</h3>
-              <p class="area-q">Person Centred Conversations</p>
+              <p class="area-q">How do I make sure the person feels genuinely heard and in control?</p>
             </div>
             <div class="area-card-footer">
               <div class="area-meta">
-                <span class="area-meta-item">📚 4 modules</span>
-                <span class="area-meta-item">⏱ 20 min</span>
+                <span class="area-meta-item">4 modules</span>
+                <span class="area-meta-item">20 min</span>
               </div>
-              <div class="area-go" style="background:var(--amber-pale);color:var(--amber)">→</div>
+              <div class="area-go" style="background:#f8f0e4;color:#8a6832">→</div>
             </div>
           </div>
 
           <div class="area-card" data-tags="conversations" onclick="openLesson('hmec')">
-            <div class="area-card-accent" style="background:linear-gradient(90deg,#90c8a8,#5a9878)"></div>
+            <div class="area-card-accent" style="background:#7aaa90"></div>
             <div class="area-card-top">
               <div class="area-badge-row">
-                <span class="area-badge" style="background:var(--sage-pale);color:var(--sage)">Conversations</span>
+                <span class="area-badge" style="background:#e8f4ee;color:#3a7a54">New</span>
               </div>
               <h3>How to Make Every Contact Count</h3>
-              <p class="area-q">What's really important to this person right now?</p>
+              <p class="area-q">How do I make even a brief interaction feel purposeful and connected?</p>
             </div>
             <div class="area-card-footer">
               <div class="area-meta">
-                <span class="area-meta-item">📚 3 modules</span>
-                <span class="area-meta-item">⏱ 15 min</span>
+                <span class="area-meta-item">3 modules</span>
+                <span class="area-meta-item">15 min</span>
               </div>
-              <div class="area-go" style="background:var(--sage-pale);color:var(--sage)">→</div>
+              <div class="area-go" style="background:#e8f4ee;color:#3a7a54">→</div>
             </div>
           </div>
 
           <div class="area-card" data-tags="conversations" onclick="openLesson('wcfc')">
-            <div class="area-card-accent" style="background:linear-gradient(90deg,#c8a8e8,#9878c0)"></div>
+            <div class="area-card-accent" style="background:#aa8ab0"></div>
             <div class="area-card-top">
               <div class="area-badge-row">
-                <span class="area-badge" style="background:var(--rose-pale);color:var(--rose)">Conversations</span>
+                <span class="area-badge" style="background:#f4eef8;color:#6a4a7a">New</span>
               </div>
               <h3>When Conversations Feel Charged</h3>
-              <p class="area-q">Call out a feature, benefit, or value that can stand on its own.</p>
+              <p class="area-q">How do I stay present and helpful when things feel difficult or tense?</p>
             </div>
             <div class="area-card-footer">
               <div class="area-meta">
-                <span class="area-meta-item">📚 4 modules</span>
-                <span class="area-meta-item">⏱ 20 min</span>
+                <span class="area-meta-item">4 modules</span>
+                <span class="area-meta-item">20 min</span>
               </div>
-              <div class="area-go" style="background:var(--rose-pale);color:var(--rose)">→</div>
+              <div class="area-go" style="background:#f4eef8;color:#6a4a7a">→</div>
             </div>
           </div>
 
-          <div class="area-card" data-tags="systems" onclick="openLesson('nav')">
-            <div class="area-card-accent" style="background:linear-gradient(90deg,#78a8d0,#4878a8)"></div>
+          <div class="area-card" data-tags="conversations" onclick="openLesson('nav')">
+            <div class="area-card-accent" style="background:#82a0c8"></div>
             <div class="area-card-top">
               <div class="area-badge-row">
-                <span class="area-badge" style="background:var(--blue-pale);color:var(--blue)">Systems & Complexity</span>
+                <span class="area-badge" style="background:#eaf0f8;color:#4a6082">New</span>
               </div>
               <h3>Navigating Systems and Services</h3>
-              <p class="area-q">What am I learning from this work?</p>
+              <p class="area-q">How do I help someone find their way without losing sight of what they need?</p>
             </div>
             <div class="area-card-footer">
               <div class="area-meta">
-                <span class="area-meta-item">📚 5 modules</span>
-                <span class="area-meta-item">⏱ 25 min</span>
+                <span class="area-meta-item">5 modules</span>
+                <span class="area-meta-item">25 min</span>
               </div>
-              <div class="area-go" style="background:var(--blue-pale);color:var(--blue)">→</div>
+              <div class="area-go" style="background:#eaf0f8;color:#4a6082">→</div>
             </div>
           </div>
 
@@ -1037,7 +1149,7 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
       <div class="view" id="view-lesson">
         <div class="lesson-header">
           <div class="breadcrumb" onclick="showView('companion', document.querySelector('[onclick*=companion]'))">
-            ← Back to <span id="lesson-breadcrumb">Companion Areas</span>
+            ← Back to <span id="lesson-breadcrumb">Companion Themes</span>
           </div>
         </div>
 
@@ -1056,11 +1168,20 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
               <!-- REFLECT -->
               <div class="lesson-section active" id="tab-reflect">
                 <div class="intro-banner">
-                  <p>Listening without fixing: this space is here to help you pause, notice what happened, and reflect without judgement.</p>
+                  <p>This is Listening without fixing: this space is here to help you pause, notice what happened, and reflect without judgement.</p>
                   <div class="time-note">5–10 minutes. No preparation needed.</div>
                 </div>
                 <div class="reflection-area">
                   <label>What happened in a recent conversation that's stayed with you?</label>
+                  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
+                    <div style="font-size:0.75rem;font-weight:600;color:var(--ink-m);margin-bottom:2px;">Some things to consider</div>
+                    <div class="prompt-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                      <div class="prompt-card">What was the moment that stuck with you?</div>
+                      <div class="prompt-card">What do you think the person was feeling?</div>
+                      <div class="prompt-card">What did you find yourself doing or saying?</div>
+                      <div class="prompt-card">What would you do differently next time?</div>
+                    </div>
+                  </div>
                   <textarea placeholder="Describe the situation briefly — no need to include names or identifying details…"></textarea>
                   <div class="reflection-prompt">Try to focus on what you noticed, rather than what you did or didn't do right.</div>
                 </div>
@@ -1076,40 +1197,21 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
                 <div class="intro-banner">
                   <p><strong>Foundations of Person-Centred Conversations</strong></p>
                   <p style="margin-top:6px">A short overview of listening, curiosity, and responding in ways that keep the person at the centre of the conversation.</p>
-                  <div class="time-note">5–8 minutes read</div>
+                  <div class="time-note">5–8 minutes</div>
                 </div>
                 <div class="content-block">
-                  <h4>What does person-centred really mean?</h4>
-                  <p>Person-centred practice is often described as putting the individual first — but in the day-to-day reality of care coordination, it's more than a phrase. It's a set of habits and dispositions that take practice to develop.</p>
-                  <p>At its heart, person-centred practice means being genuinely curious about what matters to the person in front of you — not just ticking boxes about their condition or circumstances.</p>
+                  <h4 class="micro-h">What does person-centred really mean?</h4>
+                  <p class="micro-p">Person-centred practice is often described as putting the individual first — but in the day-to-day reality of care coordination, it's more than a phrase. It's a set of habits and dispositions that take practice to develop. At its heart, it means being genuinely curious about what matters to the person in front of you — not just ticking boxes about their condition or circumstances.</p>
                 </div>
                 <div class="content-block">
                   <h4>Three foundations to come back to</h4>
                   <div class="principle-list">
-                    <div class="principle-item">
-                      <div class="principle-num">1</div>
-                      <div>
-                        <h5>Curiosity before conclusions</h5>
-                        <p>Before explaining, advising, or signposting — pause and ask. What does this person already know? What have they already tried? What feels most urgent to them?</p>
-                      </div>
-                    </div>
-                    <div class="principle-item">
-                      <div class="principle-num">2</div>
-                      <div>
-                        <h5>Listen for the whole picture</h5>
-                        <p>People rarely lead with what matters most. The real concern often emerges in the second half of a conversation, or when you reflect something back.</p>
-                      </div>
-                    </div>
-                    <div class="principle-item">
-                      <div class="principle-num">3</div>
-                      <div>
-                        <h5>Hold back the fix</h5>
-                        <p>The urge to help by solving is natural. But responding too quickly with a solution can close down a conversation before the person feels heard.</p>
-                      </div>
-                    </div>
+                    <div class="principle-item"><div class="principle-num">1</div><div><h5>Curiosity before conclusions</h5><p>Before explaining, advising, or signposting — pause and ask. What does this person already know? What have they already tried?</p></div></div>
+                    <div class="principle-item"><div class="principle-num">2</div><div><h5>Listen for the whole picture</h5><p>People rarely lead with what matters most. The real concern often emerges in the second half of a conversation.</p></div></div>
+                    <div class="principle-item"><div class="principle-num">3</div><div><h5>Hold back the fix</h5><p>The urge to help by solving is natural. But responding too quickly can close down a conversation before the person feels heard.</p></div></div>
                   </div>
                 </div>
-                <button class="lesson-complete-btn" onclick="markComplete('Micro-training: Foundations')">Mark as Complete ✓</button>
+                <button class="lesson-complete-btn" onclick="markComplete('Micro-training')">Mark as Complete ✓</button>
               </div>
 
               <!-- PRACTICAL TOOLS -->
@@ -1155,21 +1257,23 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
                 <div class="intro-banner">
                   <p>Something you might try, if it feels helpful. A small shift that can sometimes open up a conversation in a different way.</p>
                 </div>
-                <div class="try-this-box">
-                  <div class="tt-label">✨ Try This — This Week</div>
-                  <h5>The 30-second reset</h5>
-                  <p>Before your next appointment, take 30 seconds to set aside your own agenda. Ask yourself: "What might matter most to this person today?" — and notice whether it changes how you open the conversation.</p>
+
+                <div class="try-this-daily" id="try-this-daily">
+                  <div class="ttd-header">
+                    <div class="ttd-label" id="ttd-label">✦ Today's suggestion</div>
+                    <div class="ttd-date" id="ttd-date"></div>
+                  </div>
+                  <h3 class="ttd-title" id="ttd-title"></h3>
+                  <p class="ttd-body" id="ttd-body"></p>
+                  <div class="ttd-footer">
+                    <span class="ttd-when" id="ttd-when"></span>
+                  </div>
                 </div>
-                <div class="try-this-box">
-                  <div class="tt-label">✨ Try This — In the Moment</div>
-                  <h5>Pause before the plan</h5>
-                  <p>When you feel the urge to offer a solution or signpost, wait one more question. "Is there anything else on your mind about this?" can surface what's really going on.</p>
+
+                <div style="text-align:center;margin-top:16px;">
+                  <button class="ttd-next-btn" onclick="nextSuggestion()">Show me a different one</button>
                 </div>
-                <div class="try-this-box">
-                  <div class="tt-label">✨ Try This — To Reflect On</div>
-                  <h5>Notice your fixing reflex</h5>
-                  <p>At the end of a difficult conversation, ask yourself: did I try to fix before I'd really understood? What would I do differently next time?</p>
-                </div>
+
                 <button class="lesson-complete-btn" onclick="markComplete('Try This prompts')">I'll Try This ✓</button>
               </div>
 
@@ -1178,7 +1282,7 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
                 <div class="intro-banner">
                   <p>Things that often stay true, even when situations change.</p>
                 </div>
-                <div class="key-things">
+                <div class="key-things" id="key-things-list">
                   <div class="key-thing"><p>People know themselves best. Your role is to help them access and articulate that knowledge, not to add to it.</p></div>
                   <div class="key-thing"><p>Silence is not awkward — it's often where the most important things are being worked out. Get comfortable with a pause.</p></div>
                   <div class="key-thing"><p>Being heard is, for many people, genuinely rare. The experience of being listened to well can itself be therapeutic.</p></div>
@@ -1186,7 +1290,14 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
                   <div class="key-thing"><p>Every conversation is different. The frameworks are starting points — your judgement and attunement matter more.</p></div>
                   <div class="key-thing"><p>Personalised care is not a technique. It's an orientation — a way of seeing the person first, the problem second.</p></div>
                 </div>
-                <button class="lesson-complete-btn" onclick="markComplete('Key Things to Hold Onto')">Save These ✓</button>
+
+                <div class="key-thing-add" style="margin-top:16px;">
+                  <div style="font-size:0.78rem;font-weight:600;color:var(--ink-m);margin-bottom:8px;">Add your own</div>
+                  <div style="display:flex;gap:8px;align-items:flex-start;">
+                    <textarea id="key-thing-input" placeholder="Something that feels true to you from your own practice…" style="flex:1;min-height:70px;border:1.5px solid var(--stone);border-radius:10px;padding:10px 12px;font-size:0.84rem;font-family:'Lora',serif;color:var(--ink);line-height:1.6;resize:none;background:white;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--sage-l)'" onblur="this.style.borderColor='var(--stone)'"></textarea>
+                    <button onclick="addKeyThing()" style="padding:10px 18px;background:var(--sage);color:white;border:none;border-radius:10px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;transition:background 0.2s;" onmouseover="this.style.background='var(--sage-dark)'" onmouseout="this.style.background='var(--sage)'">Add ✦</button>
+                  </div>
+                </div>
               </div>
 
             </div>
@@ -1220,26 +1331,6 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
               </div>
             </div>
 
-            <div class="framework-card">
-              <h4>🧰 OARS at a Glance</h4>
-              <div class="oars-item">
-                <div><span class="oars-letter">O</span> <span class="oars-word">Open Questions</span></div>
-                <div class="oars-desc">Invite the person to share more. Avoid yes/no questions.</div>
-              </div>
-              <div class="oars-item">
-                <div><span class="oars-letter">A</span> <span class="oars-word">Affirmations</span></div>
-                <div class="oars-desc">Acknowledge strengths and efforts genuinely.</div>
-              </div>
-              <div class="oars-item">
-                <div><span class="oars-letter">R</span> <span class="oars-word">Reflections</span></div>
-                <div class="oars-desc">Mirror back what you hear to show understanding.</div>
-              </div>
-              <div class="oars-item" style="margin-bottom:0">
-                <div><span class="oars-letter">S</span> <span class="oars-word">Summaries</span></div>
-                <div class="oars-desc">Bring together key themes and check understanding.</div>
-              </div>
-            </div>
-
             <div class="panel-card" style="background:white;border:1px solid var(--stone);border-radius:var(--r);padding:18px">
               <h4>Your Progress</h4>
               <div style="margin-top:8px">
@@ -1266,7 +1357,7 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
           <div class="reflection-card">
             <h4>About this reflection</h4>
             <div class="r-field">
-              <label>Companion Area (optional)</label>
+              <label>Companion Theme (optional)</label>
               <select>
                 <option value="">— Select an area —</option>
                 <option>Person-Centred Conversations</option>
@@ -1311,11 +1402,924 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
         </div>
       </div>
 
+      <!-- PCA PROGRAMMES VIEW -->
+      <div class="view" id="view-pca">
+        <div class="tools-header">
+          <h2>PCA Programmes</h2>
+          <p>Learning and development opportunities from the Person Centred Academy — aligned to your practice.</p>
+        </div>
+
+        <div class="pca-grid">
+
+          <!-- TRAINING -->
+          <div class="pca-card" onclick="showToast('🎓','Training programmes — coming soon')">
+            <div class="pca-card-img">
+              <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                <rect width="320" height="180" fill="#eef6f2"/>
+                <!-- Desk -->
+                <rect x="60" y="118" width="200" height="8" rx="3" fill="#b8d4c8"/>
+                <rect x="90" y="126" width="12" height="30" rx="2" fill="#b8d4c8"/>
+                <rect x="218" y="126" width="12" height="30" rx="2" fill="#b8d4c8"/>
+                <!-- Laptop screen -->
+                <rect x="110" y="72" width="100" height="52" rx="5" fill="#4a8a7e"/>
+                <rect x="116" y="78" width="88" height="40" rx="3" fill="#5aaa9a"/>
+                <!-- Screen lines -->
+                <rect x="122" y="85" width="50" height="4" rx="2" fill="rgba(255,255,255,0.5)"/>
+                <rect x="122" y="93" width="35" height="4" rx="2" fill="rgba(255,255,255,0.35)"/>
+                <rect x="122" y="101" width="42" height="4" rx="2" fill="rgba(255,255,255,0.35)"/>
+                <!-- Laptop base -->
+                <rect x="100" y="124" width="120" height="6" rx="3" fill="#7aaa9e"/>
+                <!-- Person sitting -->
+                <!-- Head -->
+                <circle cx="160" cy="52" r="18" fill="#f5d5b0"/>
+                <!-- Hair -->
+                <ellipse cx="160" cy="38" rx="18" ry="12" fill="#5a3a1a"/>
+                <!-- Body -->
+                <rect x="140" y="70" width="40" height="36" rx="8" fill="#6a8a7e"/>
+                <!-- Arms -->
+                <rect x="118" y="78" width="28" height="10" rx="5" fill="#6a8a7e"/>
+                <rect x="174" y="78" width="28" height="10" rx="5" fill="#6a8a7e"/>
+                <!-- Whiteboard in background -->
+                <rect x="218" y="55" width="72" height="55" rx="4" fill="white" opacity="0.7"/>
+                <rect x="224" y="62" width="45" height="3" rx="1" fill="#7aaa9e" opacity="0.7"/>
+                <rect x="224" y="70" width="38" height="3" rx="1" fill="#7aaa9e" opacity="0.5"/>
+                <rect x="224" y="78" width="42" height="3" rx="1" fill="#7aaa9e" opacity="0.5"/>
+                <rect x="224" y="86" width="30" height="3" rx="1" fill="#7aaa9e" opacity="0.4"/>
+                <!-- Second person (learner) -->
+                <circle cx="80" cy="68" r="14" fill="#e8c4a0"/>
+                <ellipse cx="80" cy="56" rx="14" ry="9" fill="#3a2a12"/>
+                <rect x="62" y="82" width="36" height="30" rx="7" fill="#8aaa9e"/>
+              </svg>
+            </div>
+            <div class="pca-card-body">
+              <div class="pca-card-label" style="color:#4a8a7e;background:#eef6f2">Training</div>
+              <div class="pca-card-title">Accredited Training Programmes</div>
+              <div class="pca-card-desc">Face-to-face and blended learning programmes for the personalised care workforce — from foundations to advanced practice.</div>
+              <div class="pca-card-link">Browse programmes →</div>
+            </div>
+          </div>
+
+          <!-- WEBINARS -->
+          <div class="pca-card" onclick="showToast('💻','Webinars — coming soon')">
+            <div class="pca-card-img">
+              <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                <rect width="320" height="180" fill="#f0eef8"/>
+                <!-- Monitor -->
+                <rect x="70" y="30" width="180" height="110" rx="8" fill="#6a649a"/>
+                <rect x="78" y="38" width="164" height="90" rx="5" fill="#f0eef8"/>
+                <!-- Monitor stand -->
+                <rect x="145" y="140" width="30" height="16" rx="2" fill="#8a84b8"/>
+                <rect x="125" y="154" width="70" height="6" rx="3" fill="#8a84b8"/>
+                <!-- Video grid inside screen -->
+                <!-- Top-left tile -->
+                <rect x="84" y="44" width="74" height="50" rx="3" fill="#c8c0e8"/>
+                <circle cx="121" cy="60" r="10" fill="#8a84b8"/>
+                <ellipse cx="121" cy="82" rx="16" ry="8" fill="#8a84b8"/>
+                <!-- Top-right tile -->
+                <rect x="164" y="44" width="72" height="50" rx="3" fill="#d4eae4"/>
+                <circle cx="200" cy="60" r="10" fill="#5a8a7e"/>
+                <ellipse cx="200" cy="82" rx="16" ry="8" fill="#5a8a7e"/>
+                <!-- Bottom-left tile -->
+                <rect x="84" y="100" width="74" height="22" rx="3" fill="#ead4c0"/>
+                <circle cx="106" cy="109" r="7" fill="#c8906a"/>
+                <!-- Bottom-right tile with speaker badge -->
+                <rect x="164" y="100" width="72" height="22" rx="3" fill="#4a8a7e"/>
+                <rect x="169" y="106" width="30" height="3" rx="1" fill="rgba(255,255,255,0.7)"/>
+                <rect x="169" y="112" width="22" height="3" rx="1" fill="rgba(255,255,255,0.4)"/>
+                <!-- Live badge -->
+                <rect x="198" y="100" width="34" height="12" rx="6" fill="#e85a5a"/>
+                <text x="215" y="109" font-size="7" fill="white" text-anchor="middle" font-family="sans-serif" font-weight="600">LIVE</text>
+              </svg>
+            </div>
+            <div class="pca-card-body">
+              <div class="pca-card-label" style="color:#6a649a;background:#f0eef8">Webinars</div>
+              <div class="pca-card-title">Live & On-Demand Webinars</div>
+              <div class="pca-card-desc">Regular online sessions with expert speakers covering emerging topics, practice questions, and updates from across the sector.</div>
+              <div class="pca-card-link">View schedule →</div>
+            </div>
+          </div>
+
+          <!-- EVENTS -->
+          <div class="pca-card" onclick="showToast('📅','Events — coming soon')">
+            <div class="pca-card-img">
+              <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                <rect width="320" height="180" fill="#eaf2f4"/>
+                <!-- Calendar body -->
+                <rect x="80" y="35" width="160" height="130" rx="10" fill="white"/>
+                <rect x="80" y="35" width="160" height="44" rx="10" fill="#4a7a7e"/>
+                <rect x="80" y="61" width="160" height="18" fill="#4a7a7e"/>
+                <!-- Calendar rings -->
+                <rect x="115" y="26" width="10" height="22" rx="5" fill="#82a8aa"/>
+                <rect x="195" y="26" width="10" height="22" rx="5" fill="#82a8aa"/>
+                <!-- Month label -->
+                <text x="160" y="54" font-size="13" fill="white" text-anchor="middle" font-family="sans-serif" font-weight="600">April 2026</text>
+                <!-- Day headers -->
+                <text x="103" y="75" font-size="7" fill="rgba(255,255,255,0.7)" text-anchor="middle" font-family="sans-serif">M</text>
+                <text x="126" y="75" font-size="7" fill="rgba(255,255,255,0.7)" text-anchor="middle" font-family="sans-serif">T</text>
+                <text x="149" y="75" font-size="7" fill="rgba(255,255,255,0.7)" text-anchor="middle" font-family="sans-serif">W</text>
+                <text x="172" y="75" font-size="7" fill="rgba(255,255,255,0.7)" text-anchor="middle" font-family="sans-serif">T</text>
+                <text x="195" y="75" font-size="7" fill="rgba(255,255,255,0.7)" text-anchor="middle" font-family="sans-serif">F</text>
+                <text x="218" y="75" font-size="7" fill="rgba(255,255,255,0.7)" text-anchor="middle" font-family="sans-serif">S</text>
+                <!-- Date numbers -->
+                <text x="103" y="100" font-size="10" fill="#3a5a5e" text-anchor="middle" font-family="sans-serif">1</text>
+                <text x="126" y="100" font-size="10" fill="#3a5a5e" text-anchor="middle" font-family="sans-serif">2</text>
+                <text x="149" y="100" font-size="10" fill="#3a5a5e" text-anchor="middle" font-family="sans-serif">3</text>
+                <text x="172" y="100" font-size="10" fill="#3a5a5e" text-anchor="middle" font-family="sans-serif">4</text>
+                <text x="195" y="100" font-size="10" fill="#3a5a5e" text-anchor="middle" font-family="sans-serif">5</text>
+                <!-- Highlighted event date -->
+                <circle cx="218" cy="96" r="11" fill="#4a7a7e"/>
+                <text x="218" y="100" font-size="10" fill="white" text-anchor="middle" font-family="sans-serif" font-weight="700">6</text>
+                <text x="103" y="122" font-size="10" fill="#3a5a5e" text-anchor="middle" font-family="sans-serif">8</text>
+                <text x="126" y="122" font-size="10" fill="#3a5a5e" text-anchor="middle" font-family="sans-serif">9</text>
+                <!-- Another event dot -->
+                <circle cx="149" cy="118" r="11" fill="#c8aa7a"/>
+                <text x="149" y="122" font-size="10" fill="white" text-anchor="middle" font-family="sans-serif" font-weight="700">10</text>
+                <text x="172" y="122" font-size="10" fill="#3a5a5e" text-anchor="middle" font-family="sans-serif">11</text>
+                <text x="195" y="122" font-size="10" fill="#3a5a5e" text-anchor="middle" font-family="sans-serif">12</text>
+                <text x="218" y="122" font-size="10" fill="#3a5a5e" text-anchor="middle" font-family="sans-serif">13</text>
+                <text x="103" y="144" font-size="10" fill="#3a5a5e" text-anchor="middle" font-family="sans-serif">15</text>
+                <text x="126" y="144" font-size="10" fill="#3a5a5e" text-anchor="middle" font-family="sans-serif">16</text>
+                <text x="149" y="144" font-size="10" fill="#3a5a5e" text-anchor="middle" font-family="sans-serif">17</text>
+                <text x="172" y="144" font-size="10" fill="#3a5a5e" text-anchor="middle" font-family="sans-serif">18</text>
+                <text x="195" y="144" font-size="10" fill="#3a5a5e" text-anchor="middle" font-family="sans-serif">19</text>
+                <text x="218" y="144" font-size="10" fill="#3a5a5e" text-anchor="middle" font-family="sans-serif">20</text>
+                <!-- Event label -->
+                <rect x="88" y="150" width="144" height="6" rx="3" fill="#e8f2f4"/>
+              </svg>
+            </div>
+            <div class="pca-card-body">
+              <div class="pca-card-label" style="color:#4a7a7e;background:#eaf2f4">Events</div>
+              <div class="pca-card-title">Conferences & Network Events</div>
+              <div class="pca-card-desc">In-person and hybrid events bringing together practitioners, commissioners, and leaders from across the personalised care sector.</div>
+              <div class="pca-card-link">See upcoming events →</div>
+            </div>
+          </div>
+
+          <!-- PUBLICATIONS -->
+          <div class="pca-card" onclick="showToast('📖','Publications — coming soon')">
+            <div class="pca-card-img">
+              <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                <rect width="320" height="180" fill="#f8f0e4"/>
+                <!-- Back book -->
+                <rect x="140" y="28" width="88" height="125" rx="5" fill="#c8906a"/>
+                <rect x="140" y="28" width="10" height="125" rx="2" fill="#a87050"/>
+                <!-- Middle book -->
+                <rect x="105" y="38" width="88" height="118" rx="5" fill="#8aaa9e"/>
+                <rect x="105" y="38" width="10" height="118" rx="2" fill="#6a8a7e"/>
+                <!-- Front book (main) -->
+                <rect x="68" y="48" width="88" height="112" rx="5" fill="#4a7a7e"/>
+                <rect x="68" y="48" width="10" height="112" rx="2" fill="#3a6060"/>
+                <!-- Book lines (content) -->
+                <rect x="84" y="68" width="56" height="4" rx="2" fill="rgba(255,255,255,0.6)"/>
+                <rect x="84" y="78" width="48" height="3" rx="1" fill="rgba(255,255,255,0.35)"/>
+                <rect x="84" y="86" width="52" height="3" rx="1" fill="rgba(255,255,255,0.35)"/>
+                <rect x="84" y="94" width="40" height="3" rx="1" fill="rgba(255,255,255,0.35)"/>
+                <rect x="84" y="110" width="56" height="3" rx="1" fill="rgba(255,255,255,0.25)"/>
+                <rect x="84" y="118" width="44" height="3" rx="1" fill="rgba(255,255,255,0.25)"/>
+                <rect x="84" y="126" width="50" height="3" rx="1" fill="rgba(255,255,255,0.25)"/>
+                <!-- Document / article in front -->
+                <rect x="195" y="55" width="62" height="80" rx="4" fill="white" opacity="0.9"/>
+                <rect x="202" y="65" width="40" height="3" rx="1" fill="#c8906a" opacity="0.8"/>
+                <rect x="202" y="74" width="44" height="2" rx="1" fill="#aaa" opacity="0.5"/>
+                <rect x="202" y="80" width="38" height="2" rx="1" fill="#aaa" opacity="0.4"/>
+                <rect x="202" y="86" width="42" height="2" rx="1" fill="#aaa" opacity="0.4"/>
+                <rect x="202" y="94" width="44" height="2" rx="1" fill="#aaa" opacity="0.35"/>
+                <rect x="202" y="100" width="35" height="2" rx="1" fill="#aaa" opacity="0.35"/>
+                <rect x="202" y="108" width="40" height="2" rx="1" fill="#aaa" opacity="0.3"/>
+                <rect x="202" y="114" width="30" height="2" rx="1" fill="#aaa" opacity="0.3"/>
+                <!-- Shadow beneath books -->
+                <ellipse cx="175" cy="165" rx="100" ry="8" fill="rgba(0,0,0,0.06)"/>
+              </svg>
+            </div>
+            <div class="pca-card-body">
+              <div class="pca-card-label" style="color:#8a6842;background:#f8f0e4">Publications</div>
+              <div class="pca-card-title">Research, Guides & Reports</div>
+              <div class="pca-card-desc">Evidence-based guides, practice frameworks, and research reports from the personalised care field — freely available to download.</div>
+              <div class="pca-card-link">Browse publications →</div>
+            </div>
+          </div>
+
+          <!-- CONSULTANCY -->
+          <div class="pca-card" onclick="showToast('🤝','Consultancy — coming soon')">
+            <div class="pca-card-img">
+              <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                <rect width="320" height="180" fill="#eef6f2"/>
+                <!-- Background circle accent -->
+                <circle cx="240" cy="80" r="60" fill="#c8e0d8" opacity="0.4"/>
+                <!-- Person 1 (consultant) -->
+                <circle cx="130" cy="60" r="26" fill="#f5d5b0"/>
+                <ellipse cx="130" cy="38" rx="26" ry="18" fill="#3a2a12"/>
+                <rect x="98" y="86" width="64" height="55" rx="14" fill="#4a8a7e"/>
+                <!-- Arms extended -->
+                <rect x="64" y="96" width="38" height="12" rx="6" fill="#4a8a7e"/>
+                <rect x="160" y="96" width="38" height="12" rx="6" fill="#4a8a7e"/>
+                <!-- Person 2 (client) -->
+                <circle cx="218" cy="68" r="22" fill="#e8c4a0"/>
+                <ellipse cx="218" cy="50" rx="22" ry="14" fill="#5a3a1a"/>
+                <rect x="190" y="90" width="56" height="48" rx="12" fill="#8aaa9e"/>
+                <!-- Arms -->
+                <rect x="162" y="98" width="32" height="10" rx="5" fill="#8aaa9e"/>
+                <rect x="246" y="98" width="32" height="10" rx="5" fill="#8aaa9e"/>
+                <!-- Connecting element - hands/handshake area -->
+                <circle cx="174" cy="102" r="8" fill="#f0d0b0"/>
+                <circle cx="192" cy="102" r="8" fill="#e0c0a0"/>
+                <!-- Speech bubble from consultant -->
+                <rect x="60" y="28" width="60" height="28" rx="8" fill="white" opacity="0.9"/>
+                <polygon points="88,56 82,66 96,56" fill="white" opacity="0.9"/>
+                <rect x="66" y="35" width="36" height="3" rx="1" fill="#4a8a7e" opacity="0.6"/>
+                <rect x="66" y="42" width="28" height="3" rx="1" fill="#4a8a7e" opacity="0.4"/>
+                <!-- Shadow -->
+                <ellipse cx="175" cy="148" rx="110" ry="9" fill="rgba(0,0,0,0.05)"/>
+              </svg>
+            </div>
+            <div class="pca-card-body">
+              <div class="pca-card-label" style="color:#3a7a54;background:#e8f4ee">Consultancy</div>
+              <div class="pca-card-title">Expert Consultancy & Support</div>
+              <div class="pca-card-desc">Tailored consultancy for organisations and systems looking to embed personalised care — from workforce design to commissioning strategy.</div>
+              <div class="pca-card-link">Find out more →</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PRACTICAL TOOLS VIEW -->
+      <div class="view" id="view-tools">
+
+        <div class="tools-header">
+          <h2>Practical Tools</h2>
+          <p>Select a Companion Theme to see its tools. Click any tool to download.</p>
+        </div>
+
+        <div class="tools-grid" id="tools-grid">
+
+          <div class="tool-theme-card" onclick="toggleTools(this)">
+            <div class="tool-theme-head">
+              <div class="tool-theme-accent" style="background:#7aaa9e"></div>
+              <div class="tool-theme-name">Person-Centred Conversations</div>
+              <div class="tool-theme-count">3 tools</div>
+              <div class="tool-theme-chevron">›</div>
+            </div>
+            <div class="tool-theme-body">
+              <div class="tool-item" onclick="downloadTool(event,'Reflective Listening Starters')">
+                <div class="tool-item-icon">⬇</div>
+                <div class="tool-item-info">
+                  <div class="tool-item-name">Reflective Listening Starters</div>
+                  <div class="tool-item-desc">Phrases and prompts for reflecting back what you hear</div>
+                </div>
+                <div class="tool-item-type">PDF</div>
+              </div>
+              <div class="tool-item" onclick="downloadTool(event,'OARS Quick Reference')">
+                <div class="tool-item-icon">⬇</div>
+                <div class="tool-item-info">
+                  <div class="tool-item-name">OARS Quick Reference</div>
+                  <div class="tool-item-desc">Open questions, affirmations, reflections, summaries</div>
+                </div>
+                <div class="tool-item-type">PDF</div>
+              </div>
+              <div class="tool-item" onclick="downloadTool(event,'Conversation Preparation Prompt Card')">
+                <div class="tool-item-icon">⬇</div>
+                <div class="tool-item-info">
+                  <div class="tool-item-name">Conversation Preparation Prompt Card</div>
+                  <div class="tool-item-desc">A short checklist for before difficult conversations</div>
+                </div>
+                <div class="tool-item-type">PDF</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tool-theme-card" onclick="toggleTools(this)">
+            <div class="tool-theme-head">
+              <div class="tool-theme-accent" style="background:#8aaa82"></div>
+              <div class="tool-theme-name">Understanding What Matters</div>
+              <div class="tool-theme-count">3 tools</div>
+              <div class="tool-theme-chevron">›</div>
+            </div>
+            <div class="tool-theme-body">
+              <div class="tool-item" onclick="downloadTool(event,'What Matters to Me — Conversation Guide')">
+                <div class="tool-item-icon">⬇</div>
+                <div class="tool-item-info">
+                  <div class="tool-item-name">What Matters to Me — Conversation Guide</div>
+                  <div class="tool-item-desc">Questions to help uncover what matters most to someone</div>
+                </div>
+                <div class="tool-item-type">PDF</div>
+              </div>
+              <div class="tool-item" onclick="downloadTool(event,'Values & Priorities Card Sort')">
+                <div class="tool-item-icon">⬇</div>
+                <div class="tool-item-info">
+                  <div class="tool-item-name">Values & Priorities Card Sort</div>
+                  <div class="tool-item-desc">A simple tool to help people identify what matters most right now</div>
+                </div>
+                <div class="tool-item-type">PDF</div>
+              </div>
+              <div class="tool-item" onclick="downloadTool(event,'Good Day / Hard Day Template')">
+                <div class="tool-item-icon">⬇</div>
+                <div class="tool-item-info">
+                  <div class="tool-item-name">Good Day / Hard Day Template</div>
+                  <div class="tool-item-desc">A one-page sheet for exploring what a good life looks like</div>
+                </div>
+                <div class="tool-item-type">PDF</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tool-theme-card" onclick="toggleTools(this)">
+            <div class="tool-theme-head">
+              <div class="tool-theme-accent" style="background:#c8a882"></div>
+              <div class="tool-theme-name">When There's No Clear Answer</div>
+              <div class="tool-theme-count">2 tools</div>
+              <div class="tool-theme-chevron">›</div>
+            </div>
+            <div class="tool-theme-body">
+              <div class="tool-item" onclick="downloadTool(event,'Holding Uncertainty — Practitioner Guide')">
+                <div class="tool-item-icon">⬇</div>
+                <div class="tool-item-info">
+                  <div class="tool-item-name">Holding Uncertainty — Practitioner Guide</div>
+                  <div class="tool-item-desc">How to stay present and helpful when there's no obvious path forward</div>
+                </div>
+                <div class="tool-item-type">PDF</div>
+              </div>
+              <div class="tool-item" onclick="downloadTool(event,'Breaking It Down Worksheet')">
+                <div class="tool-item-icon">⬇</div>
+                <div class="tool-item-info">
+                  <div class="tool-item-name">Breaking It Down Worksheet</div>
+                  <div class="tool-item-desc">Turning a complex situation into manageable next steps</div>
+                </div>
+                <div class="tool-item-type">PDF</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tool-theme-card" onclick="toggleTools(this)">
+            <div class="tool-theme-head">
+              <div class="tool-theme-accent" style="background:#82a8aa"></div>
+              <div class="tool-theme-name">Shared Decision Making</div>
+              <div class="tool-theme-count">3 tools</div>
+              <div class="tool-theme-chevron">›</div>
+            </div>
+            <div class="tool-theme-body">
+              <div class="tool-item" onclick="downloadTool(event,'Options & Considerations Framework')">
+                <div class="tool-item-icon">⬇</div>
+                <div class="tool-item-info">
+                  <div class="tool-item-name">Options & Considerations Framework</div>
+                  <div class="tool-item-desc">Presenting choices in a way that puts the person in control</div>
+                </div>
+                <div class="tool-item-type">PDF</div>
+              </div>
+              <div class="tool-item" onclick="downloadTool(event,'Decision Support Prompt Sheet')">
+                <div class="tool-item-icon">⬇</div>
+                <div class="tool-item-info">
+                  <div class="tool-item-name">Decision Support Prompt Sheet</div>
+                  <div class="tool-item-desc">Questions to help someone reach a decision that reflects their values</div>
+                </div>
+                <div class="tool-item-type">PDF</div>
+              </div>
+              <div class="tool-item" onclick="downloadTool(event,'Checking the Decision — Quick Card')">
+                <div class="tool-item-icon">⬇</div>
+                <div class="tool-item-info">
+                  <div class="tool-item-name">Checking the Decision — Quick Card</div>
+                  <div class="tool-item-desc">Simple prompts to check the person genuinely owns the outcome</div>
+                </div>
+                <div class="tool-item-type">PDF</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tool-theme-card" onclick="toggleTools(this)">
+            <div class="tool-theme-head">
+              <div class="tool-theme-accent" style="background:#a8a0c8"></div>
+              <div class="tool-theme-name">Supporting Confidence & Self-Management</div>
+              <div class="tool-theme-count">3 tools</div>
+              <div class="tool-theme-chevron">›</div>
+            </div>
+            <div class="tool-theme-body">
+              <div class="tool-item" onclick="downloadTool(event,'Strengths & Resources Map')">
+                <div class="tool-item-icon">⬇</div>
+                <div class="tool-item-info">
+                  <div class="tool-item-name">Strengths & Resources Map</div>
+                  <div class="tool-item-desc">Helping someone identify what they already have to draw on</div>
+                </div>
+                <div class="tool-item-type">PDF</div>
+              </div>
+              <div class="tool-item" onclick="downloadTool(event,'Goal Setting — Person-Led Template')">
+                <div class="tool-item-icon">⬇</div>
+                <div class="tool-item-info">
+                  <div class="tool-item-name">Goal Setting — Person-Led Template</div>
+                  <div class="tool-item-desc">A simple one-page goal framework owned by the person, not the plan</div>
+                </div>
+                <div class="tool-item-type">PDF</div>
+              </div>
+              <div class="tool-item" onclick="downloadTool(event,'Confidence Ruler Conversation Guide')">
+                <div class="tool-item-icon">⬇</div>
+                <div class="tool-item-info">
+                  <div class="tool-item-name">Confidence Ruler Conversation Guide</div>
+                  <div class="tool-item-desc">Using a simple 1–10 scale to explore readiness and build motivation</div>
+                </div>
+                <div class="tool-item-type">PDF</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tool-theme-card" onclick="toggleTools(this)">
+            <div class="tool-theme-head">
+              <div class="tool-theme-accent" style="background:#c8aa7a"></div>
+              <div class="tool-theme-name">Power, Voice, and Choice</div>
+              <div class="tool-theme-count">2 tools</div>
+              <div class="tool-theme-chevron">›</div>
+            </div>
+            <div class="tool-theme-body">
+              <div class="tool-item" onclick="downloadTool(event,'Creating Space for Voice — Facilitation Guide')">
+                <div class="tool-item-icon">⬇</div>
+                <div class="tool-item-info">
+                  <div class="tool-item-name">Creating Space for Voice — Facilitation Guide</div>
+                  <div class="tool-item-desc">How to make conversations feel genuinely safe for the person</div>
+                </div>
+                <div class="tool-item-type">PDF</div>
+              </div>
+              <div class="tool-item" onclick="downloadTool(event,'Real Choices Checklist')">
+                <div class="tool-item-icon">⬇</div>
+                <div class="tool-item-info">
+                  <div class="tool-item-name">Real Choices Checklist</div>
+                  <div class="tool-item-desc">Checking whether the choices you're offering are genuine ones</div>
+                </div>
+                <div class="tool-item-type">PDF</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tool-theme-card" onclick="toggleTools(this)">
+            <div class="tool-theme-head">
+              <div class="tool-theme-accent" style="background:#7aaa90"></div>
+              <div class="tool-theme-name">How to Make Every Contact Count</div>
+              <div class="tool-theme-count">2 tools</div>
+              <div class="tool-theme-chevron">›</div>
+            </div>
+            <div class="tool-theme-body">
+              <div class="tool-item" onclick="downloadTool(event,'Every Contact Counts — Pocket Prompt')">
+                <div class="tool-item-icon">⬇</div>
+                <div class="tool-item-info">
+                  <div class="tool-item-name">Every Contact Counts — Pocket Prompt</div>
+                  <div class="tool-item-desc">A quick reference for bringing presence to any interaction</div>
+                </div>
+                <div class="tool-item-type">PDF</div>
+              </div>
+              <div class="tool-item" onclick="downloadTool(event,'Closing Well — Conversation Endings Guide')">
+                <div class="tool-item-icon">⬇</div>
+                <div class="tool-item-info">
+                  <div class="tool-item-name">Closing Well — Conversation Endings Guide</div>
+                  <div class="tool-item-desc">How to end contacts in a way that leaves people feeling seen</div>
+                </div>
+                <div class="tool-item-type">PDF</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tool-theme-card" onclick="toggleTools(this)">
+            <div class="tool-theme-head">
+              <div class="tool-theme-accent" style="background:#aa8ab0"></div>
+              <div class="tool-theme-name">When Conversations Feel Charged</div>
+              <div class="tool-theme-count">3 tools</div>
+              <div class="tool-theme-chevron">›</div>
+            </div>
+            <div class="tool-theme-body">
+              <div class="tool-item" onclick="downloadTool(event,'Staying Grounded — Practitioner Self-Check')">
+                <div class="tool-item-icon">⬇</div>
+                <div class="tool-item-info">
+                  <div class="tool-item-name">Staying Grounded — Practitioner Self-Check</div>
+                  <div class="tool-item-desc">Noticing your own reactions before and after difficult conversations</div>
+                </div>
+                <div class="tool-item-type">PDF</div>
+              </div>
+              <div class="tool-item" onclick="downloadTool(event,'De-escalation Prompt Card')">
+                <div class="tool-item-icon">⬇</div>
+                <div class="tool-item-info">
+                  <div class="tool-item-name">De-escalation Prompt Card</div>
+                  <div class="tool-item-desc">Language and approaches for tense or emotionally charged moments</div>
+                </div>
+                <div class="tool-item-type">PDF</div>
+              </div>
+              <div class="tool-item" onclick="downloadTool(event,'After a Hard Conversation — Reflection Sheet')">
+                <div class="tool-item-icon">⬇</div>
+                <div class="tool-item-info">
+                  <div class="tool-item-name">After a Hard Conversation — Reflection Sheet</div>
+                  <div class="tool-item-desc">A short structured debrief for yourself after something difficult</div>
+                </div>
+                <div class="tool-item-type">PDF</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tool-theme-card" onclick="toggleTools(this)">
+            <div class="tool-theme-head">
+              <div class="tool-theme-accent" style="background:#82a0c8"></div>
+              <div class="tool-theme-name">Navigating Systems and Services</div>
+              <div class="tool-theme-count">3 tools</div>
+              <div class="tool-theme-chevron">›</div>
+            </div>
+            <div class="tool-theme-body">
+              <div class="tool-item" onclick="downloadTool(event,'Service Navigator — Local Mapping Template')">
+                <div class="tool-item-icon">⬇</div>
+                <div class="tool-item-info">
+                  <div class="tool-item-name">Service Navigator — Local Mapping Template</div>
+                  <div class="tool-item-desc">A simple template for mapping your local services and referral routes</div>
+                </div>
+                <div class="tool-item-type">PDF</div>
+              </div>
+              <div class="tool-item" onclick="downloadTool(event,'Advocacy Conversation Guide')">
+                <div class="tool-item-icon">⬇</div>
+                <div class="tool-item-info">
+                  <div class="tool-item-name">Advocacy Conversation Guide</div>
+                  <div class="tool-item-desc">How to push back on a system on someone's behalf, clearly and confidently</div>
+                </div>
+                <div class="tool-item-type">PDF</div>
+              </div>
+              <div class="tool-item" onclick="downloadTool(event,'Navigating With Someone — Step-by-Step Guide')">
+                <div class="tool-item-icon">⬇</div>
+                <div class="tool-item-info">
+                  <div class="tool-item-name">Navigating With Someone — Step-by-Step Guide</div>
+                  <div class="tool-item-desc">Supporting someone to find their way without creating dependency</div>
+                </div>
+                <div class="tool-item-type">PDF</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- COMMUNITY VIEW -->
+      <div class="view" id="view-community">
+
+        <div class="community-header">
+          <div>
+            <h2>Community</h2>
+            <p>A space to share what's working, ask questions, and learn from others doing the same work.</p>
+          </div>
+          <button class="community-post-btn" onclick="showPostModal()">+ New Post</button>
+        </div>
+
+        <!-- FORUM SECTIONS -->
+        <div class="forum-sections">
+
+          <!-- WHAT'S WORKING -->
+          <div class="forum-section">
+            <div class="forum-section-head">
+              <div class="forum-section-icon" style="background:#e8f4f1;color:#4a8a7e">✦</div>
+              <div>
+                <div class="forum-section-title">What's Working</div>
+                <div class="forum-section-sub">Share approaches, moments, and small wins from your practice</div>
+              </div>
+              <div class="forum-section-count">12 posts</div>
+            </div>
+            <div class="forum-threads">
+              <div class="forum-thread">
+                <div class="thread-meta">
+                  <span class="thread-author">Care Coordinator, South London</span>
+                  <span class="thread-time">2 hours ago</span>
+                </div>
+                <div class="thread-title">Ending with an open question has changed how my conversations close</div>
+                <div class="thread-preview">Started doing this last month — just asking "is there anything we haven't covered that feels important?" It's surprising how often something new comes up...</div>
+                <div class="thread-footer">
+                  <span class="thread-replies">8 replies</span>
+                  <span class="thread-tag" style="background:#e8f4f1;color:#4a8a7e">Person-Centred Conversations</span>
+                </div>
+              </div>
+              <div class="forum-thread">
+                <div class="thread-meta">
+                  <span class="thread-author">Social Prescriber, Manchester</span>
+                  <span class="thread-time">Yesterday</span>
+                </div>
+                <div class="thread-title">The 30-second reset before appointments — does it work for you?</div>
+                <div class="thread-preview">I've been doing this for three weeks now. Some days it feels like it genuinely shifts something, other days I forget entirely. Curious whether others...</div>
+                <div class="thread-footer">
+                  <span class="thread-replies">5 replies</span>
+                  <span class="thread-tag" style="background:#e8f4f1;color:#4a8a7e">Try This</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- QUESTIONS & ADVICE -->
+          <div class="forum-section">
+            <div class="forum-section-head">
+              <div class="forum-section-icon" style="background:#f4eeea;color:#8a6842">?</div>
+              <div>
+                <div class="forum-section-title">Questions & Advice</div>
+                <div class="forum-section-sub">Ask something you're unsure about — no question is too small</div>
+              </div>
+              <div class="forum-section-count">7 posts</div>
+            </div>
+            <div class="forum-threads">
+              <div class="forum-thread new-indicator">
+                <div class="thread-meta">
+                  <span class="thread-author">Health & Wellbeing Coach, Leeds</span>
+                  <span class="thread-time">3 hours ago</span>
+                </div>
+                <div class="thread-title">How do you handle it when someone just wants you to fix things?</div>
+                <div class="thread-preview">I had a conversation this week where the person kept asking me to just tell them what to do. I kept reflecting it back, but they got frustrated. Anyone else had this?</div>
+                <div class="thread-footer">
+                  <span class="thread-replies">3 replies</span>
+                  <span class="thread-new-badge">New</span>
+                </div>
+              </div>
+              <div class="forum-thread">
+                <div class="thread-meta">
+                  <span class="thread-author">Care Coordinator, Bristol</span>
+                  <span class="thread-time">3 days ago</span>
+                </div>
+                <div class="thread-title">When is it ok to just give someone a straight answer?</div>
+                <div class="thread-preview">I sometimes feel like I'm being unhelpfully non-directive. There must be a line somewhere between person-centred and just being vague. How do others...</div>
+                <div class="thread-footer">
+                  <span class="thread-replies">11 replies</span>
+                  <span class="thread-tag" style="background:#f4eeea;color:#8a6842">Shared Decision Making</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DIFFICULT MOMENTS -->
+          <div class="forum-section">
+            <div class="forum-section-head">
+              <div class="forum-section-icon" style="background:#f0eef8;color:#6a649a">◆</div>
+              <div>
+                <div class="forum-section-title">Difficult Moments</div>
+                <div class="forum-section-sub">Conversations that stayed with you — and what you took from them</div>
+              </div>
+              <div class="forum-section-count">9 posts</div>
+            </div>
+            <div class="forum-threads">
+              <div class="forum-thread">
+                <div class="thread-meta">
+                  <span class="thread-author">Social Prescriber, Birmingham</span>
+                  <span class="thread-time">1 week ago</span>
+                </div>
+                <div class="thread-title">A conversation I've been thinking about for days</div>
+                <div class="thread-preview">Someone came to me in a lot of distress. I don't think I got it wrong exactly, but I've been replaying it. I think I moved too fast to problem-solving...</div>
+                <div class="thread-footer">
+                  <span class="thread-replies">14 replies</span>
+                  <span class="thread-tag" style="background:#f0eef8;color:#6a649a">When Conversations Feel Charged</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CPD & TRAINING -->
+          <div class="forum-section">
+            <div class="forum-section-head">
+              <div class="forum-section-icon" style="background:#eaf0f8;color:#4a6082">★</div>
+              <div>
+                <div class="forum-section-title">CPD & Training</div>
+                <div class="forum-section-sub">Recommendations, courses, and what's worth your time</div>
+              </div>
+              <div class="forum-section-count">4 posts</div>
+            </div>
+            <div class="forum-threads">
+              <div class="forum-thread">
+                <div class="thread-meta">
+                  <span class="thread-author">PCN Manager, Sheffield</span>
+                  <span class="thread-time">4 days ago</span>
+                </div>
+                <div class="thread-title">Anyone done the PCA motivational interviewing module?</div>
+                <div class="thread-preview">We're looking at CPD options for the team. Has anyone done the PCA's MI training? Was it practical or more theoretical? Would love to hear from people who...</div>
+                <div class="thread-footer">
+                  <span class="thread-replies">6 replies</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- NEW POST MODAL -->
+      <div class="community-modal" id="community-modal" onclick="if(event.target===this)closePostModal()">
+        <div class="community-modal-inner">
+          <div class="community-modal-head">
+            <div class="community-modal-title">New Post</div>
+            <button class="community-modal-close" onclick="closePostModal()">✕</button>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div>
+              <label style="font-size:0.76rem;font-weight:600;color:var(--ink-m);display:block;margin-bottom:6px;">Section</label>
+              <select style="width:100%;padding:10px 12px;border:1.5px solid var(--stone);border-radius:9px;font-size:0.84rem;font-family:'DM Sans',sans-serif;color:var(--ink);background:white;appearance:none;">
+                <option>What's Working</option>
+                <option>Questions & Advice</option>
+                <option>Difficult Moments</option>
+                <option>CPD & Training</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:0.76rem;font-weight:600;color:var(--ink-m);display:block;margin-bottom:6px;">Title</label>
+              <input type="text" placeholder="What's on your mind?" style="width:100%;padding:10px 12px;border:1.5px solid var(--stone);border-radius:9px;font-size:0.84rem;font-family:'DM Sans',sans-serif;color:var(--ink);">
+            </div>
+            <div>
+              <label style="font-size:0.76rem;font-weight:600;color:var(--ink-m);display:block;margin-bottom:6px;">Your post</label>
+              <textarea placeholder="Share what happened, what you noticed, or what you're wondering about…" style="width:100%;min-height:120px;padding:10px 12px;border:1.5px solid var(--stone);border-radius:9px;font-size:0.84rem;font-family:'DM Sans',sans-serif;color:var(--ink);line-height:1.6;resize:none;"></textarea>
+            </div>
+            <div style="font-size:0.75rem;color:var(--ink-l);line-height:1.6;">Posts are visible to other practitioners using AlongsideYou. Please don't include identifying details about the people you work with.</div>
+            <button onclick="closePostModal();showToast('✦','Your post has been shared with the community')" style="background:var(--sage);color:white;border:none;border-radius:100px;padding:12px;font-size:0.86rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;">Post to Community</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SETTINGS VIEW -->
+      <div class="view" id="view-settings">
+
+        <div class="settings-header">
+          <h2>Settings</h2>
+          <p>Manage your account, preferences, and notifications.</p>
+        </div>
+
+        <div class="settings-layout">
+
+          <!-- PROFILE -->
+          <div class="settings-section">
+            <div class="settings-section-title">Your Profile</div>
+            <div class="settings-card">
+              <div class="settings-profile-row">
+                <div class="settings-avatar">SC</div>
+                <div class="settings-profile-info">
+                  <div class="settings-profile-name">Sarah Clarke</div>
+                  <div class="settings-profile-role">Care Coordinator · Southwark PCN</div>
+                </div>
+                <button class="settings-btn-outline" onclick="showToast('✦','Profile photo — coming soon')">Change photo</button>
+              </div>
+              <div class="settings-divider"></div>
+              <div class="settings-field-grid">
+                <div class="settings-field">
+                  <label>First name</label>
+                  <input type="text" value="Sarah">
+                </div>
+                <div class="settings-field">
+                  <label>Last name</label>
+                  <input type="text" value="Clarke">
+                </div>
+                <div class="settings-field">
+                  <label>Work email</label>
+                  <input type="email" value="sarah.clarke@southwarkpcn.nhs.uk">
+                </div>
+                <div class="settings-field">
+                  <label>Job title</label>
+                  <input type="text" value="Care Coordinator">
+                </div>
+                <div class="settings-field">
+                  <label>Organisation</label>
+                  <input type="text" value="Southwark PCN">
+                </div>
+                <div class="settings-field">
+                  <label>Role type</label>
+                  <select>
+                    <option selected>Care Coordinator</option>
+                    <option>Social Prescribing Link Worker</option>
+                    <option>Health & Wellbeing Coach</option>
+                    <option>PCN Manager / Lead</option>
+                    <option>Training / Workforce Lead</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+              </div>
+              <div class="settings-row-action">
+                <button class="settings-btn-primary" onclick="showToast('✓','Profile saved')">Save changes</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- LEARNING PREFERENCES -->
+          <div class="settings-section">
+            <div class="settings-section-title">Learning Preferences</div>
+            <div class="settings-card">
+              <div class="settings-toggle-row">
+                <div class="settings-toggle-info">
+                  <div class="settings-toggle-label">Daily Try This nudge</div>
+                  <div class="settings-toggle-sub">Show a daily practice suggestion on your home screen</div>
+                </div>
+                <div class="settings-toggle on" onclick="this.classList.toggle('on')"><div class="settings-toggle-knob"></div></div>
+              </div>
+              <div class="settings-divider"></div>
+              <div class="settings-toggle-row">
+                <div class="settings-toggle-info">
+                  <div class="settings-toggle-label">Reflection reminders</div>
+                  <div class="settings-toggle-sub">Remind me to write a reflection after completing a module</div>
+                </div>
+                <div class="settings-toggle on" onclick="this.classList.toggle('on')"><div class="settings-toggle-knob"></div></div>
+              </div>
+              <div class="settings-divider"></div>
+              <div class="settings-toggle-row">
+                <div class="settings-toggle-info">
+                  <div class="settings-toggle-label">Auto-log CPD</div>
+                  <div class="settings-toggle-sub">Automatically record CPD hours for every completed activity</div>
+                </div>
+                <div class="settings-toggle on" onclick="this.classList.toggle('on')"><div class="settings-toggle-knob"></div></div>
+              </div>
+              <div class="settings-divider"></div>
+              <div class="settings-field" style="margin-top:14px;">
+                <label>CPD monthly goal (hours)</label>
+                <select>
+                  <option>5 hours</option>
+                  <option selected>10 hours</option>
+                  <option>15 hours</option>
+                  <option>20 hours</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- NOTIFICATIONS -->
+          <div class="settings-section">
+            <div class="settings-section-title">Notifications</div>
+            <div class="settings-card">
+              <div class="settings-toggle-row">
+                <div class="settings-toggle-info">
+                  <div class="settings-toggle-label">Email notifications</div>
+                  <div class="settings-toggle-sub">Receive a weekly summary of your learning and CPD</div>
+                </div>
+                <div class="settings-toggle on" onclick="this.classList.toggle('on')"><div class="settings-toggle-knob"></div></div>
+              </div>
+              <div class="settings-divider"></div>
+              <div class="settings-toggle-row">
+                <div class="settings-toggle-info">
+                  <div class="settings-toggle-label">Community replies</div>
+                  <div class="settings-toggle-sub">Notify me when someone replies to my community posts</div>
+                </div>
+                <div class="settings-toggle on" onclick="this.classList.toggle('on')"><div class="settings-toggle-knob"></div></div>
+              </div>
+              <div class="settings-divider"></div>
+              <div class="settings-toggle-row">
+                <div class="settings-toggle-info">
+                  <div class="settings-toggle-label">New tools & content</div>
+                  <div class="settings-toggle-sub">Let me know when new Companion Theme content is added</div>
+                </div>
+                <div class="settings-toggle" onclick="this.classList.toggle('on')"><div class="settings-toggle-knob"></div></div>
+              </div>
+              <div class="settings-divider"></div>
+              <div class="settings-toggle-row">
+                <div class="settings-toggle-info">
+                  <div class="settings-toggle-label">PCA events & webinars</div>
+                  <div class="settings-toggle-sub">Updates about upcoming PCA learning opportunities</div>
+                </div>
+                <div class="settings-toggle" onclick="this.classList.toggle('on')"><div class="settings-toggle-knob"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PRIVACY & DATA -->
+          <div class="settings-section">
+            <div class="settings-section-title">Privacy & Data</div>
+            <div class="settings-card">
+              <div class="settings-toggle-row">
+                <div class="settings-toggle-info">
+                  <div class="settings-toggle-label">Share anonymous usage data</div>
+                  <div class="settings-toggle-sub">Help us improve the platform — no personally identifiable data is shared</div>
+                </div>
+                <div class="settings-toggle on" onclick="this.classList.toggle('on')"><div class="settings-toggle-knob"></div></div>
+              </div>
+              <div class="settings-divider"></div>
+              <div class="settings-toggle-row">
+                <div class="settings-toggle-info">
+                  <div class="settings-toggle-label">Visible in community</div>
+                  <div class="settings-toggle-sub">Show your role and region (not your name) on community posts</div>
+                </div>
+                <div class="settings-toggle on" onclick="this.classList.toggle('on')"><div class="settings-toggle-knob"></div></div>
+              </div>
+              <div class="settings-divider"></div>
+              <div style="padding:14px 0 4px;">
+                <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                  <button class="settings-btn-outline" onclick="showToast('⬇','Exporting your data…')">Download my data</button>
+                  <a href="privacy.html" style="display:inline-flex;align-items:center;padding:8px 16px;border-radius:100px;border:1.5px solid var(--stone);font-size:0.8rem;font-weight:500;color:var(--ink-m);text-decoration:none;background:white;transition:all 0.2s;">View Privacy Policy</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ACCOUNT -->
+          <div class="settings-section">
+            <div class="settings-section-title">Account</div>
+            <div class="settings-card">
+              <div class="settings-field-grid">
+                <div class="settings-field">
+                  <label>Password</label>
+                  <input type="password" value="••••••••••••">
+                </div>
+              </div>
+              <div style="padding-top:14px;">
+                <button class="settings-btn-outline" onclick="showToast('✦','Password reset email sent')">Change password</button>
+              </div>
+              <div class="settings-divider" style="margin-top:20px;"></div>
+              <div style="padding-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
+                <button class="settings-btn-outline" onclick="showToast('✦','Signed out')">Sign out</button>
+                <button class="settings-btn-danger" onclick="showToast('⚠','To delete your account please contact hello@alongsideyou.care')">Delete account</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
       <!-- JOURNEY VIEW -->
       <div class="view" id="view-journey">
         <div style="margin-bottom:24px">
           <h2 style="font-family:'Lora',serif;font-size:1.4rem;font-weight:600;color:var(--ink);margin-bottom:6px">My Journey</h2>
-          <p style="font-size:0.87rem;color:var(--ink-m)">Your CPD log, badges, and progress across all Companion Areas.</p>
+          <p style="font-size:0.87rem;color:var(--ink-m)">Your CPD log, badges, and progress across all Companion Themes.</p>
         </div>
 
         <div class="journey-grid">
@@ -1463,8 +2467,12 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
 <script>
 const topbarTitles = {
   home: ['Good morning, Sarah 👋', 'Thursday · Your practice companion is ready'],
-  companion: ['Companion Areas', 'Support for different moments in practice'],
-  lesson: ['Person-Centred Conversations', 'Companion Area · 5 modules'],
+  companion: ['Companion Themes', 'Support for different moments in practice'],
+  settings: ['Settings', 'Manage your account and preferences'],
+  pca: ['PCA Programmes', 'Learning and development from the Person Centred Academy'],
+  tools: ['Practical Tools', 'Download tools for your practice'],
+  community: ['Community', 'Share, ask, and learn with other practitioners'],
+  lesson: ['Person-Centred Conversations', 'Companion Theme · 5 modules'],
   reflection: ['Reflect on Practice', 'A space to pause and notice'],
   journey: ['My Journey', 'Your CPD log, badges, and progress']
 };
@@ -1495,26 +2503,160 @@ function showView(id, clickedEl, tabId) {
   if (content) content.scrollTop = 0;
 }
 
+const themeData = {
+  pcc: {
+    title: 'Person-Centred Conversations',
+    reflectIntro: 'This is Listening without fixing: this space is here to help you pause, notice what happened, and reflect without judgement.',
+    reflectPrompts: ['What was the moment that stuck with you?', 'What do you think the person was feeling?', 'What did you find yourself doing or saying?', 'What would you do differently next time?'],
+    reflectHint: 'Try to focus on what you noticed, rather than what you did or didn\'t do right.',
+    aiPrompt: '"What do you think the person most needed from you in that moment — and how close did you get to meeting that?"',
+    microTitle: 'Foundations of Person-Centred Conversations',
+    microSub: 'A short overview of listening, curiosity, and responding in ways that keep the person at the centre.',
+    microH: 'What does person-centred really mean?',
+    microP: 'Person-centred practice is often described as putting the individual first — but in the day-to-day reality of care coordination, it\'s more than a phrase. It\'s a set of habits and dispositions that take practice to develop. At its heart, it means being genuinely curious about what matters to the person in front of you — not just ticking boxes about their condition or circumstances.',
+    principles: [['Curiosity before conclusions', 'Before explaining, advising, or signposting — pause and ask. What does this person already know? What have they already tried?'], ['Listen for the whole picture', 'People rarely lead with what matters most. The real concern often emerges in the second half of a conversation.'], ['Hold back the fix', 'The urge to help by solving is natural. But responding too quickly with a solution can close down a conversation before the person feels heard.']],
+    keyThings: ['People know themselves best. Your role is to help them access and articulate that knowledge, not to add to it.', 'Silence is not awkward — it\'s often where the most important things are being worked out.', 'Being heard is, for many people, genuinely rare. The experience of being listened to well can itself be therapeutic.', 'You don\'t have to have the answer. "I\'m not sure, but let\'s think about this together" is a valid and powerful response.', 'Every conversation is different. The frameworks are starting points — your judgement matters more.', 'Personalised care is not a technique. It\'s an orientation — seeing the person first, the problem second.']
+  },
+  wtm: {
+    title: 'Understanding What Matters',
+    reflectIntro: 'This space is for sitting with a conversation where you weren\'t sure what really mattered to someone — or where you found out only partway through.',
+    reflectPrompts: ['What did they say that surprised you?', 'What do you think was most important to them?', 'Did their agenda match what you expected?', 'What would you ask differently next time?'],
+    reflectHint: 'Try not to second-guess yourself. Focus on what you actually heard, not what you think you should have heard.',
+    aiPrompt: '"If you had to name the one thing that mattered most to that person — what would it be, and how confident are you?"',
+    microTitle: 'Getting to What Matters',
+    microSub: 'How to have conversations that go beyond the presenting issue to what\'s really going on for someone.',
+    microH: 'Why people don\'t always say what matters',
+    microP: 'People often don\'t lead with what\'s most important to them. They might start with a practical request, or describe a symptom, when the deeper concern is something quite different — fear, loss, isolation, or a sense of losing control. Getting to what matters takes patience, curiosity, and the willingness to go a little slower.',
+    principles: [['Ask about life, not just conditions', 'Questions like "What does a good day look like for you?" open up a different kind of conversation than "How are your symptoms?"'], ['Follow their thread', 'When someone mentions something in passing, follow it. The things people almost say are often the most important.'], ['Check your assumptions', 'What you think matters and what the person thinks matters are often different. Build in a check — "Is that right? Have I understood you?"']],
+    keyThings: ['What matters to someone is not always the same as their presenting need — and it often changes over time.', 'People are experts in their own lives. Your job is to help them access that expertise, not to define it for them.', 'A single question — "What\'s most important to you right now?" — can change the whole direction of a conversation.', 'Sometimes what matters most is something they haven\'t said yet. Make space for it.', 'Understanding what matters is not a one-time event. It\'s a thread you return to across a relationship.']
+  },
+  ncla: {
+    title: 'When There\'s No Clear Answer',
+    reflectIntro: 'This space is for moments where you didn\'t know what the right answer was — and had to find a way forward anyway.',
+    reflectPrompts: ['What made this situation feel uncertain?', 'What did you do when you didn\'t know what to do?', 'How did the person respond to the uncertainty?', 'What helped you think it through?'],
+    reflectHint: 'Uncertainty is not a failure. Reflecting on how you held it is a form of learning.',
+    aiPrompt: '"What would it have meant for this person if you\'d had a clear answer — and what did it mean that you didn\'t?"',
+    microTitle: 'Sitting with Uncertainty',
+    microSub: 'How to stay present and useful when there\'s no obvious path forward.',
+    microH: 'Why uncertainty is part of the work',
+    microP: 'Much of personalised care work involves situations where there\'s no clear right answer — complex family dynamics, competing needs, limited resources, or simply not knowing what will help. The skill isn\'t in having answers. It\'s in being able to stay with uncertainty without retreating into false reassurance or premature solutions.',
+    principles: [['Name it honestly', '"I\'m not sure" is often more helpful than a confident answer that turns out to be wrong. People can tolerate uncertainty better when they feel they\'re navigating it together.'], ['Break it into smaller questions', 'When the big picture is unclear, ask what the next step might look like — not the whole solution.'], ['Stay curious, not anxious', 'Uncertainty can feel threatening. But curiosity — "I wonder what would help here?" — keeps the conversation open and collaborative.']],
+    keyThings: ['Not knowing is not the same as not helping. Being present with uncertainty is itself a form of support.', 'People often find comfort in knowing that someone is thinking carefully alongside them, even without answers.', 'Premature closure — jumping to a solution before the situation is understood — can do more harm than staying in the uncertainty.', '"I don\'t know, but let\'s think about it together" is a powerful response.', 'Some situations don\'t resolve. Sitting with that alongside someone is real work.']
+  },
+  sdm: {
+    title: 'Shared Decision Making',
+    reflectIntro: 'This space is for reflecting on a moment where a decision needed to be made — and thinking about how that decision was reached.',
+    reflectPrompts: ['Whose agenda shaped the decision most?', 'Did the person feel genuinely involved?', 'What options were offered — or not?', 'What would "deciding together" have looked like?'],
+    reflectHint: 'Shared decision making is a practice, not a single moment. Even partial steps matter.',
+    aiPrompt: '"If you imagine this person telling someone else about that conversation — would they say they felt in control of the decision?"',
+    microTitle: 'Deciding Together',
+    microSub: 'What shared decision making actually looks like in practice — and why it\'s harder than it sounds.',
+    microH: 'More than information giving',
+    microP: 'Shared decision making is often reduced to giving people information and then asking what they want. But real shared decision making is more demanding — it involves helping someone understand their options, exploring what matters to them, and reaching a decision that genuinely reflects their values and circumstances, not just their compliance.',
+    principles: [['Present options, not recommendations', 'Wherever possible, share what\'s possible before suggesting what you think they should do.'], ['Explore values, not just preferences', 'Ask not just "what do you want?" but "what matters most to you?" — the answers are often different.'], ['Check the decision is theirs', '"Does this feel right for you?" is a simple question that can change whether someone owns a decision or just accepts it.']],
+    keyThings: ['Shared decision making is not the same as giving someone a choice. It involves helping them make a decision that reflects their values.', 'A decision someone feels was imposed on them — even if it was the "right" one — is less likely to stick.', 'People often need time to think. The best decision-making conversations sometimes happen across more than one interaction.', '"What would you want if all the options were equally possible?" can unlock what someone really values.', 'Your role is not to be neutral — it\'s to help the person reach a decision that works for them.']
+  },
+  conf: {
+    title: 'Supporting Confidence & Self-Management',
+    reflectIntro: 'This space is for reflecting on a conversation where someone was trying to manage something themselves — and you were trying to support that, not take over.',
+    reflectPrompts: ['What was the person already doing well?', 'Where did they seem most confident or least?', 'Did you find yourself wanting to step in? What held you back?', 'What did you do to build on their own knowledge?'],
+    reflectHint: 'Supporting self-management is about stepping alongside, not in front. Reflect on where you found that balance.',
+    aiPrompt: '"What did this person already know how to do — and how much of the conversation was about that, rather than what they couldn\'t do?"',
+    microTitle: 'Building on What People Already Have',
+    microSub: 'How to support confidence and self-management without undermining it.',
+    microH: 'Starting from strength',
+    microP: 'Self-management support is most effective when it starts from what someone already knows and does, rather than what they\'re not doing. People come to us with experience, resourcefulness, and often a lot of knowledge about their own situation. The question is how to help them access and build on that, rather than inadvertently signalling that they need to be fixed.',
+    principles: [['Ask about what\'s working first', '"What have you tried already?" and "What\'s helped in the past?" position the person as the expert.'], ['Affirm specifically', 'Vague encouragement ("well done") is less powerful than specific affirmation ("it sounds like you\'ve been managing that really well, especially given how much else is going on").'], ['Set small, owned goals', 'Goals that come from the person — not from a care plan template — are the ones people actually work towards.']],
+    keyThings: ['Confidence is built through small, successful experiences — not through encouragement alone.', 'People who feel managed tend to become dependent. People who feel supported tend to become more capable.', 'The most important goal is often not the one on the care plan.', '"What would it mean for you to feel more in control of this?" opens up a completely different kind of conversation.', 'Your confidence in someone\'s ability to manage is contagious — as is your doubt.']
+  },
+  pvc: {
+    title: 'Power, Voice, and Choice',
+    reflectIntro: 'This space is for reflecting on a conversation where power, voice, or choice was part of what was happening — even if it wasn\'t named.',
+    reflectPrompts: ['Who had the most power in that conversation?', 'Did the person feel able to say what they thought?', 'Were there things they couldn\'t choose, even if they wanted to?', 'What would it have looked like if they\'d had more voice?'],
+    reflectHint: 'Power in conversations is rarely discussed openly. But it shapes almost everything. Try to notice it without judgement.',
+    aiPrompt: '"If the person in that conversation had felt completely free to say anything — what do you think they might have said differently?"',
+    microTitle: 'Who Has the Power Here?',
+    microSub: 'Understanding how power, voice, and choice shape every personalised care conversation.',
+    microH: 'Power is always in the room',
+    microP: 'In every care conversation, there is a power dynamic. The practitioner often holds more institutional power — access to services, professional authority, the ability to write things down. The person may feel that disagreeing or pushing back has consequences. Understanding this isn\'t about guilt — it\'s about being thoughtful about how to create the conditions where someone can genuinely express their preferences and exercise real choice.',
+    principles: [['Create psychological safety', 'People need to feel safe to disagree, to say "actually that doesn\'t work for me", or to change their mind. Make it easy to do that.'], ['Offer real choices, not token ones', 'Choice only means something when the options are real and when the person understands what\'s actually available.'], ['Notice whose voice is loudest', 'In conversations involving families or carers, the person most directly affected is sometimes the quietest. Make deliberate space for them.']],
+    keyThings: ['People often say what they think we want to hear, especially if they feel dependent on us for support.', 'Real choice requires real options. Offering a choice between two things you\'ve already decided isn\'t shared decision making.', 'Some people have spent years not being listened to. Trust takes time to build.', '"Is there anything you\'d want to say that you haven\'t felt able to?" is a question worth asking more often.', 'Equity means recognising that some people have to work harder to have their voice heard — and doing something about that.']
+  },
+  hmec: {
+    title: 'How to Make Every Contact Count',
+    reflectIntro: 'This space is for reflecting on a brief or incidental contact — and whether it counted for something.',
+    reflectPrompts: ['What was the nature of the contact — planned or unplanned?', 'Was there a moment where you could have gone deeper but didn\'t?', 'What would have needed to be different to make more of it?', 'Did the person leave the interaction feeling better or the same?'],
+    reflectHint: 'Not every contact needs to be a full conversation. But every contact is an opportunity to notice, connect, or affirm.',
+    aiPrompt: '"What was the one thing that contact gave this person — even if it was small?"',
+    microTitle: 'Every Contact as an Opportunity',
+    microSub: 'How to bring presence and intention to even the briefest interactions.',
+    microH: 'Brief doesn\'t mean insignificant',
+    microP: 'Making every contact count doesn\'t mean turning every conversation into a therapeutic encounter. It means bringing genuine presence and attention to whatever interaction you have — a phone call, a waiting room chat, a handover note. Small moments of being seen and heard can have disproportionate impact, especially for people who feel isolated or overlooked.',
+    principles: [['Be fully present for the time you have', 'Putting your phone away, making eye contact, and giving someone your full attention for two minutes is more valuable than a distracted ten-minute conversation.'], ['Ask one good question', '"How are you really doing?" asked with genuine curiosity is sometimes enough to open something important.'], ['End well', 'How you close a contact matters as much as how you open it. "It was good to see you" or "I\'ll be thinking about what you said" can stay with someone.']],
+    keyThings: ['People remember how you made them feel long after they\'ve forgotten what you said.', 'A single moment of genuine connection can shift how someone feels about seeking help.', 'Attention is a form of care. Giving someone your full presence — even briefly — is not nothing.', 'Every contact is a chance to either build or erode trust. Most of the time, we don\'t notice which one we\'re doing.', 'You don\'t have to have a long conversation to make a difference. You have to be present in the one you have.']
+  },
+  wcfc: {
+    title: 'When Conversations Feel Charged',
+    reflectIntro: 'This space is for sitting with a conversation that felt difficult, tense, or emotionally demanding — and making sense of what happened.',
+    reflectPrompts: ['What made the conversation feel charged for you?', 'How did you respond in the moment — and how do you feel about that now?', 'What do you think the person was carrying into that conversation?', 'What would have helped you stay more grounded?'],
+    reflectHint: 'Difficult conversations affect practitioners too. This space is for you as much as for thinking about the person.',
+    aiPrompt: '"What did that conversation stir up for you — and what does that tell you about what you might need?"',
+    microTitle: 'Staying Present When It\'s Hard',
+    microSub: 'How to hold difficult, charged, or emotionally intense conversations without losing yourself in them.',
+    microH: 'Why some conversations feel different',
+    microP: 'Some conversations are straightforward. Others carry a charge — high emotion, conflict, grief, frustration, or complexity that touches something in us too. Staying present in these conversations — curious, calm, and genuinely helpful — is one of the most demanding skills in personalised care work. It requires knowing yourself as well as knowing the person you\'re talking with.',
+    principles: [['Notice your own reaction first', 'If you feel defensive, anxious, or shut down, that\'s information. Acknowledge it internally before responding.'], ['Stay curious, not defensive', 'When someone is angry or upset, the question isn\'t "how do I manage this?" but "what\'s this person carrying right now?"'], ['Use pace and silence deliberately', 'Slowing down — speaking more quietly, pausing more — often de-escalates tension without it being named.']],
+    keyThings: ['Difficult conversations are not a sign that something has gone wrong. They\'re often where the most important things are said.', 'Your nervous system responds to charged conversations the same way it responds to threat. That\'s normal — and you can work with it.', 'Staying calm doesn\'t mean feeling calm. It means not letting how you feel determine how you respond.', 'People in distress need to feel felt before they feel heard. Acknowledgement comes before problem-solving.', 'You\'re allowed to find this work hard. Pretending otherwise doesn\'t make you more resilient — it makes you more alone.']
+  },
+  nav: {
+    title: 'Navigating Systems and Services',
+    reflectIntro: 'This space is for reflecting on a time when the system got in the way — or when finding the right support felt harder than it should have.',
+    reflectPrompts: ['What was the person trying to access or navigate?', 'What got in the way — practically or emotionally?', 'What did you do to help, and what felt beyond your reach?', 'What would have made this easier for the person?'],
+    reflectHint: 'System navigation is emotionally as well as practically demanding. Reflect on both — for you and for the person.',
+    aiPrompt: '"If this person had to navigate that same system alone — what do you think would have happened?"',
+    microTitle: 'Helping People Find Their Way',
+    microSub: 'How to support someone through systems and services without losing sight of what they actually need.',
+    microH: 'The system is not designed around the person',
+    microP: 'Most health and care systems were not designed with the person at the centre. They were designed around conditions, specialties, and organisational boundaries. For many people — especially those with complex needs, low confidence, or multiple services involved — navigating these systems is genuinely difficult, disempowering, and sometimes harmful. Your role as a connector and navigator is not a small one.',
+    principles: [['Start with what the person wants, not what\'s available', 'Understanding what someone is hoping for — before diving into what services exist — keeps their needs at the centre.'], ['Be honest about what the system can and can\'t do', 'Managing expectations kindly is more helpful than overpromising. People can handle "it\'s complicated" better than a broken promise.'], ['Build their capacity, not just their access', 'Where possible, help people understand how to navigate — not just do it for them. Dependency on a navigator is still dependency.']],
+    keyThings: ['The gaps between services are often where people fall. Your job is sometimes just to make sure that doesn\'t happen.', 'Advocacy is part of the work. Sometimes the most person-centred thing you can do is push back on a system on someone\'s behalf.', 'People who\'ve had bad experiences with services don\'t trust them. That\'s rational, not resistant.', 'Knowing what you don\'t know — and being honest about it — is more helpful than bluffing.', 'Even one person who knows the system and is on their side can change a person\'s experience entirely.']
+  }
+};
+
 function openLesson(areaId) {
-  const titles = {
-    pcc: 'Person-Centred Conversations',
-    wtm: 'Understanding What Matters',
-    sdm: 'Shared Decision Making',
-    ncla: 'When There\'s No Clear Answer',
-    conf: 'Supporting Confidence & Self-Management',
-    pvc: 'Power, Voice, and Choice',
-    hmec: 'How to Make Every Contact Count',
-    wcfc: 'When Conversations Feel Charged',
-    nav: 'Navigating Systems and Services'
-  };
-  const title = titles[areaId] || 'Companion Area';
-  document.getElementById('lesson-title').textContent = title;
-  document.getElementById('lesson-breadcrumb').textContent = 'Companion Areas';
-  document.getElementById('topbar-title').textContent = title;
-  document.getElementById('topbar-sub').textContent = 'Companion Area · Learning journey';
+  const d = themeData[areaId];
+  if (!d) return;
+
+  // Update title
+  document.getElementById('lesson-title').textContent = d.title;
+  document.getElementById('lesson-breadcrumb').textContent = 'Companion Themes';
+  document.getElementById('topbar-title').textContent = d.title;
+  document.getElementById('topbar-sub').textContent = 'Companion Theme · Learning journey';
+
+  // Update Reflect tab
+  document.querySelector('#tab-reflect .intro-banner p').textContent = d.reflectIntro;
+  const promptGrid = document.querySelector('#tab-reflect .prompt-grid');
+  promptGrid.innerHTML = d.reflectPrompts.map(p => `<div class="prompt-card">${p}</div>`).join('');
+  document.querySelector('#tab-reflect .reflection-prompt').textContent = d.reflectHint;
+  document.querySelector('#tab-reflect .ai-prompt-box p').textContent = d.aiPrompt;
+
+  // Update Micro-training tab
+  document.querySelector('#tab-microtraining .intro-banner').innerHTML =
+    `<p><strong>${d.microTitle}</strong></p><p style="margin-top:6px">${d.microSub}</p><div class="time-note">5–8 minutes</div>`;
+  document.querySelector('#tab-microtraining .micro-h').textContent = d.microH;
+  document.querySelector('#tab-microtraining .micro-p').textContent = d.microP;
+  const princList = document.querySelector('#tab-microtraining .principle-list');
+  princList.innerHTML = d.principles.map((p,i) =>
+    `<div class="principle-item"><div class="principle-num">${i+1}</div><div><h5>${p[0]}</h5><p>${p[1]}</p></div></div>`
+  ).join('');
+
+  // Update Key Things tab
+  const ktList = document.getElementById('key-things-list');
+  ktList.innerHTML = d.keyThings.map(k => `<div class="key-thing"><p>${k}</p></div>`).join('');
+
+  // Show lesson view
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById('view-lesson').classList.add('active');
-  // Keep companion tab active on mobile when in a lesson
   document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
   const tab = document.getElementById('tab-companion');
   if (tab) tab.classList.add('active');
@@ -1529,6 +2671,80 @@ function switchTab(id, el) {
   else document.querySelectorAll('.lesson-tab')[0].classList.add('active');
   document.querySelectorAll('.lesson-section').forEach(s => s.classList.remove('active'));
   document.getElementById('tab-' + id)?.classList.add('active');
+}
+
+// ── TRY THIS — daily rotating suggestion ──────────────────
+const tryThisSuggestions = [
+  { when:'Before your next appointment', title:'The 30-second reset', body:'Take 30 seconds before you go in to set aside your own agenda. Ask yourself: what might matter most to this person today? Notice whether it changes how you open the conversation.' },
+  { when:'In the moment', title:'Pause before the plan', body:'When you feel the urge to offer a solution or signpost, wait one more question. "Is there anything else on your mind about this?" can surface what\'s really going on.' },
+  { when:'Something to notice', title:'Watch your fixing reflex', body:'At the end of a difficult conversation, ask yourself: did I try to fix before I\'d really understood? What would you do differently next time?' },
+  { when:'To try this week', title:'Start with curiosity, not a list', body:'Go into your next appointment without a prepared list of questions. Let the first thing they say guide where you go. See what opens up.' },
+  { when:'In the moment', title:'Name what you notice', body:'If something feels unspoken, try: "I get the sense there might be more to this — is that right?" You don\'t have to have the answer. You just have to notice.' },
+  { when:'Something to reflect on', title:'Whose agenda was it?', body:'After your next appointment, ask yourself: whose agenda drove that conversation — yours or theirs? What would it have looked like if it had been fully theirs?' },
+  { when:'To try this week', title:'End with an open question', body:'Try closing your next conversation with: "Is there anything we haven\'t talked about that feels important?" It takes 10 seconds and can change everything.' },
+];
+
+let currentSuggestionIndex = Math.floor(Date.now() / 86400000) % tryThisSuggestions.length;
+
+function renderSuggestion() {
+  const s = tryThisSuggestions[currentSuggestionIndex];
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'long' });
+  document.getElementById('ttd-title').textContent = s.title;
+  document.getElementById('ttd-body').textContent = s.body;
+  document.getElementById('ttd-when').textContent = s.when;
+  document.getElementById('ttd-date').textContent = dateStr;
+}
+
+function nextSuggestion() {
+  currentSuggestionIndex = (currentSuggestionIndex + 1) % tryThisSuggestions.length;
+  const card = document.getElementById('try-this-daily');
+  card.style.opacity = '0';
+  card.style.transform = 'translateY(6px)';
+  card.style.transition = 'opacity 0.2s, transform 0.2s';
+  setTimeout(() => {
+    renderSuggestion();
+    card.style.opacity = '1';
+    card.style.transform = 'none';
+  }, 200);
+}
+
+renderSuggestion();
+
+function addKeyThing() {
+  const input = document.getElementById('key-thing-input');
+  const text = input.value.trim();
+  if (!text) return;
+  const list = document.getElementById('key-things-list');
+  const item = document.createElement('div');
+  item.className = 'key-thing';
+  item.style.animation = 'fadeIn 0.3s ease';
+  item.innerHTML = `<p>${text}</p><button onclick="this.parentNode.remove()" style="background:none;border:none;cursor:pointer;font-size:0.7rem;color:var(--ink-l);margin-left:auto;padding:0 4px;flex-shrink:0;" title="Remove">✕</button>`;
+  item.style.display = 'flex';
+  item.style.justifyContent = 'space-between';
+  item.style.alignItems = 'flex-start';
+  list.appendChild(item);
+  input.value = '';
+  input.style.borderColor = 'var(--stone)';
+  showToast('✦', 'Added to your key things');
+}
+
+function toggleTools(card) {
+  const isOpen = card.classList.contains('open');
+  document.querySelectorAll('.tool-theme-card').forEach(c => c.classList.remove('open'));
+  if (!isOpen) card.classList.add('open');
+}
+
+function downloadTool(e, name) {
+  e.stopPropagation();
+  showToast('⬇', `"${name}" — coming soon`);
+}
+
+function showPostModal() {
+  document.getElementById('community-modal').classList.add('open');
+}
+function closePostModal() {
+  document.getElementById('community-modal').classList.remove('open');
 }
 
 function filterAreas(filter, btn) {
