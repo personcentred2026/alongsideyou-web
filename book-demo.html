@@ -484,5 +484,17 @@ document.getElementById('consent').addEventListener('change', function() {
   this.style.outline = '';
 });
 </script>
+
+<!-- COOKIE BANNER -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:999;width:calc(100% - 40px);max-width:680px;background:white;border:1px solid #dce8dc;border-radius:14px;padding:16px 20px;box-shadow:0 8px 32px rgba(0,0,0,0.1);font-family:'DM Sans',sans-serif;">
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+    <p style="flex:1;font-size:0.8rem;color:#5a7a5e;line-height:1.6;margin:0;min-width:200px;">This site uses essential cookies to function. We do not use advertising or tracking cookies. <a href="privacy.html" style="color:#6a9e66;font-weight:600;text-decoration:none;border-bottom:1px solid #d8efd5;">Privacy Policy</a></p>
+    <button onclick="acceptCookies()" style="background:#6a9e66;color:white;border:none;border-radius:100px;padding:8px 20px;font-size:0.8rem;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0;">Got it</button>
+  </div>
+</div>
+<script>
+function acceptCookies(){localStorage.setItem("cookies_accepted","1");document.getElementById("cookie-banner").style.display="none";}
+window.addEventListener("DOMContentLoaded",function(){if(!localStorage.getItem("cookies_accepted")){document.getElementById("cookie-banner").style.display="block";}});
+</script>
 </body>
 </html>
