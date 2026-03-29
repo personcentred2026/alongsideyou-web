@@ -2566,11 +2566,13 @@ function closeMoreMenu(){
 function showView(id, clickedEl, tabId) {
   // Switch view
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById('view-' + id)?.classList.add('active');
+  const target = document.getElementById('view-' + id);
+  if (target) target.classList.add('active');
 
   // Sync desktop sidebar nav items
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  if (clickedEl && clickedEl.classList.contains('nav-item')) clickedEl.classList.add('active');
+  const matchingNav = document.querySelector('.nav-item[onclick*="showView(\'' + id + '\'"]');
+  if (matchingNav) matchingNav.classList.add('active');
 
   // Sync mobile bottom tab bar
   document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
@@ -2584,7 +2586,7 @@ function showView(id, clickedEl, tabId) {
   document.getElementById('topbar-title').textContent = t[0];
   document.getElementById('topbar-sub').textContent = t[1];
 
-  // Scroll content to top on mobile
+  // Scroll content to top
   const content = document.querySelector('.content');
   if (content) content.scrollTop = 0;
 }
