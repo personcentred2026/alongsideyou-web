@@ -685,12 +685,13 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
   /* Content scrolls, leaves room for tab bar */
   .content { padding:14px 14px 76px; flex:1; overflow-y:auto; }
 
-  /* Welcome banner */
-  .welcome-banner { padding:18px 18px 20px; margin-bottom:14px; }
-  .welcome-banner h2 { font-size:1.15rem; }
-  .welcome-banner p { font-size:0.8rem; max-width:100%; }
-  .welcome-banner .today-nudge { padding:7px 12px; margin-top:14px; }
-  .welcome-banner .today-nudge span { font-size:0.75rem; }
+  /* Welcome banner - stack on mobile */
+  .welcome-banner-inner { grid-template-columns:1fr !important; }
+  .welcome-banner-left { padding:20px 18px 12px; }
+  .welcome-banner-right { padding:14px 18px 18px; border-left:none !important; border-top:1px solid rgba(255,255,255,0.15); }
+  .welcome-banner-left h2 { font-size:1.15rem; }
+  .welcome-banner-left p { font-size:0.8rem; }
+  .banner-try-text { font-size:0.8rem; }
 
   /* Stats */
   .stats-row { grid-template-columns:repeat(2,1fr); gap:10px; margin-bottom:14px; }
@@ -714,6 +715,7 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
   .companion-intro { margin-bottom:14px; }
   .companion-intro h2 { font-size:1.15rem; }
   .companion-intro p { font-size:0.82rem; }
+  .companion-head { flex-direction:column; align-items:flex-start; gap:10px; }
   .areas-grid { grid-template-columns:1fr; gap:10px; }
   .area-card-top { padding:16px 16px 0; }
   .area-card-footer { padding:12px 16px; }
@@ -733,11 +735,65 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
   .lesson-body { padding:16px; }
   .principle-item { padding:12px; }
   .lesson-complete-btn { padding:12px; font-size:0.85rem; }
+  .prompt-grid { grid-template-columns:1fr !important; }
+
+  /* Micro topics */
+  .micro-topic-head { padding:13px 14px; gap:10px; }
+  .micro-topic-title { font-size:0.82rem; }
+  .micro-topic-duration { display:none; }
+
+  /* Lesson tools */
+  .lesson-tool-head { padding:12px 14px; gap:10px; }
+  .lesson-tool-name { font-size:0.82rem; }
+  .lesson-tool-type { display:none; }
+
+  /* Try This daily */
+  .try-this-daily { padding:20px 18px 16px; }
+  .ttd-title { font-size:1rem; }
+  .ttd-body { font-size:0.82rem; }
+  .ttd-date { display:none; }
+
+  /* Key Things */
+  .key-thing { padding:10px 12px; }
+  .key-thing-add textarea { min-height:60px; }
 
   /* Reflection */
   .reflection-view { max-width:100%; }
   .reflection-card { padding:16px; }
   .r-field textarea { min-height:80px; }
+  .ai-prompt-box { padding:14px; }
+
+  /* Settings */
+  .settings-layout { gap:14px; }
+  .settings-card { padding:16px 18px; }
+  .settings-profile-row { flex-wrap:wrap; gap:12px; }
+  .settings-profile-row button { width:100%; }
+  .settings-field-grid { grid-template-columns:1fr; gap:10px; }
+  .settings-toggle-row { gap:12px; }
+
+  /* Community */
+  .community-header { flex-direction:column; align-items:flex-start; gap:10px; }
+  .community-post-btn { width:100%; text-align:center; }
+  .forum-section-head { padding:14px 16px; gap:10px; }
+  .forum-section-count { display:none; }
+  .forum-thread { padding:12px 14px; }
+  .thread-title { font-size:0.82rem; }
+  .community-modal { padding:12px; }
+  .community-modal-inner { padding:22px 18px; max-height:85vh; }
+
+  /* Tools */
+  .tools-header { margin-bottom:16px; }
+  .tool-theme-head { padding:13px 14px; gap:10px; }
+  .tool-theme-name { font-size:0.84rem; }
+  .tool-theme-count { display:none; }
+  .tool-item { padding:10px 14px; }
+  .tool-item-name { font-size:0.8rem; }
+  .tool-item-desc { font-size:0.7rem; }
+
+  /* PCA */
+  .pca-grid { grid-template-columns:1fr; gap:12px; }
+  .pca-card-img { height:120px; }
+  .pca-card-body { padding:14px 16px; }
 
   /* Journey */
   .journey-grid { grid-template-columns:1fr; }
