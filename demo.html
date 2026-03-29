@@ -961,7 +961,7 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
         <div class="stats-row">
           <div class="stat-card c1">
             <div class="stat-num">3</div>
-            <div class="stat-label">Areas in Progress</div>
+            <div class="stat-label">Themes in Progress</div>
             <div class="stat-delta">↑ 1 this week</div>
           </div>
           <div class="stat-card c2">
@@ -985,7 +985,7 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
           <div>
             <div class="section-head">
               <h3>Continue Learning</h3>
-              <a onclick="showView('companion', document.querySelector('[onclick*=companion]'))">View all areas →</a>
+              <a onclick="showView('companion', document.querySelector('[onclick*=companion]'))">View all themes →</a>
             </div>
             <div class="continue-list">
               <div class="continue-card" onclick="openLesson('pcc')">
@@ -2376,7 +2376,7 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
             <h4>CPD Log — March 2025</h4>
             <div class="cpd-entries">
               <div class="cpd-entry">
-                <div class="cpd-entry-icon" style="background:var(--sage-pale)">🪞</div>
+                <div class="cpd-entry-icon" style="background:var(--sage-pale)">🤔</div>
                 <div class="cpd-entry-info"><strong>Open Reflection — Person-Centred Conversations</strong><span>Completed · 18 Mar 2025</span></div>
                 <div class="cpd-entry-hrs">0.25h</div>
               </div>
@@ -2396,7 +2396,7 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
                 <div class="cpd-entry-hrs">0.5h</div>
               </div>
               <div class="cpd-entry">
-                <div class="cpd-entry-icon" style="background:var(--lav-pale)">🪞</div>
+                <div class="cpd-entry-icon" style="background:var(--lav-pale)">🤔</div>
                 <div class="cpd-entry-info"><strong>3× Open Reflections (various areas)</strong><span>Completed · Mar 2025</span></div>
                 <div class="cpd-entry-hrs">3.5h</div>
               </div>
@@ -2480,19 +2480,40 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
     <div class="tab-label">Home</div>
   </div>
   <div class="tab-item" id="tab-companion" onclick="showView('companion',this,'tab-companion')">
-    <div class="tab-icon">🗺️</div>
-    <div class="tab-label">Areas</div>
+    <div class="tab-icon">🧭</div>
+    <div class="tab-label">Themes</div>
     <div class="tab-badge">9</div>
   </div>
   <div class="tab-item" id="tab-reflection" onclick="showView('reflection',this,'tab-reflection')">
-    <div class="tab-icon">🪞</div>
+    <div class="tab-icon">🤔</div>
     <div class="tab-label">Reflect</div>
   </div>
   <div class="tab-item" id="tab-journey" onclick="showView('journey',this,'tab-journey')">
     <div class="tab-icon">📈</div>
     <div class="tab-label">Journey</div>
   </div>
+  <div class="tab-item" id="tab-more" onclick="toggleMoreMenu()">
+    <div class="tab-icon">☰</div>
+    <div class="tab-label">More</div>
+  </div>
 </nav>
+
+<!-- MORE MENU (mobile) -->
+<div id="more-menu" style="display:none;position:fixed;bottom:60px;left:0;right:0;z-index:200;background:white;border-top:1px solid var(--stone);box-shadow:0 -8px 24px rgba(0,0,0,0.1);padding:8px 0 8px;">
+  <div onclick="showView('community',this,'tab-more');closeMoreMenu()" style="display:flex;align-items:center;gap:14px;padding:13px 22px;cursor:pointer;font-size:0.88rem;font-weight:500;color:var(--ink);">
+    <span style="font-size:1.1rem;">💬</span> Community
+  </div>
+  <div onclick="showView('tools',this,'tab-more');closeMoreMenu()" style="display:flex;align-items:center;gap:14px;padding:13px 22px;cursor:pointer;font-size:0.88rem;font-weight:500;color:var(--ink);">
+    <span style="font-size:1.1rem;">🧰</span> Practical Tools
+  </div>
+  <div onclick="showView('pca',this,'tab-more');closeMoreMenu()" style="display:flex;align-items:center;gap:14px;padding:13px 22px;cursor:pointer;font-size:0.88rem;font-weight:500;color:var(--ink);">
+    <span style="font-size:1.1rem;">🎓</span> PCA Programmes
+  </div>
+  <div onclick="showView('settings',this,'tab-more');closeMoreMenu()" style="display:flex;align-items:center;gap:14px;padding:13px 22px;cursor:pointer;font-size:0.88rem;font-weight:500;color:var(--ink);">
+    <span style="font-size:1.1rem;">⚙️</span> Settings
+  </div>
+</div>
+<div id="more-overlay" onclick="closeMoreMenu()" style="display:none;position:fixed;inset:0;z-index:199;background:rgba(0,0,0,0.15);"></div>
 
 <!-- MODAL -->
 <div class="modal-overlay" id="modal" onclick="closeModal(event)">
@@ -2525,6 +2546,20 @@ const topbarTitles = {
   reflection: ['Reflect on Practice', 'A space to pause and notice'],
   journey: ['My Journey', 'Your CPD log, badges, and progress']
 };
+
+function toggleMoreMenu(){
+  const menu = document.getElementById('more-menu');
+  const overlay = document.getElementById('more-overlay');
+  const isOpen = menu.style.display !== 'none';
+  menu.style.display = isOpen ? 'none' : 'block';
+  overlay.style.display = isOpen ? 'none' : 'block';
+  document.getElementById('tab-more').classList.toggle('active', !isOpen);
+}
+function closeMoreMenu(){
+  document.getElementById('more-menu').style.display = 'none';
+  document.getElementById('more-overlay').style.display = 'none';
+  document.getElementById('tab-more').classList.remove('active');
+}
 
 function showView(id, clickedEl, tabId) {
   // Switch view
