@@ -1235,6 +1235,24 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
             </div>
           </div>
 
+          <div class="area-card" data-tags="conversations" onclick="openLesson('nbs')">
+            <div class="area-card-accent" style="background:#7aaa8e"></div>
+            <div class="area-card-top">
+              <div class="area-badge-row">
+                <span class="area-badge" style="background:#eaf5f0;color:#2a7a5a">New</span>
+              </div>
+              <h3>The Neighbourhood Shift</h3>
+              <p class="area-q">How do I find my footing when the way we work is changing around me?</p>
+            </div>
+            <div class="area-card-footer">
+              <div class="area-meta">
+                <span class="area-meta-item">5 modules</span>
+                <span class="area-meta-item">25 min</span>
+              </div>
+              <div class="area-go" style="background:#eaf5f0;color:#2a7a5a">→</div>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -2484,7 +2502,7 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
   <div class="tab-item" id="tab-companion" onclick="showView('companion',this,'tab-companion')">
     <div class="tab-icon">🧭</div>
     <div class="tab-label">Themes</div>
-    <div class="tab-badge">9</div>
+    <div class="tab-badge">10</div>
   </div>
   <div class="tab-item" id="tab-reflection" onclick="showView('reflection',this,'tab-reflection')">
     <div class="tab-icon">🤔</div>
@@ -2812,6 +2830,52 @@ themeData.nav.tools = [
   { name: 'Service Navigator — Local Mapping Template', desc: 'A simple template for mapping your local services, referral routes, and community assets — and keeping that knowledge up to date.' },
   { name: 'Advocacy Conversation Guide', desc: 'How to push back on a system on someone\'s behalf — clearly, confidently, and without burning bridges.' },
   { name: 'Navigating With Someone — Step-by-Step Guide', desc: 'Supporting someone to find their way through a system without doing it all for them. Includes how to build capability gradually.' }
+];
+
+// ── THE NEIGHBOURHOOD SHIFT ──
+themeData.nbs = {
+  title: 'The Neighbourhood Shift',
+  reflectIntro: 'This space is for sitting with what it actually feels like to work in a neighbourhood setting — the freedom, the isolation, the uncertainty, and the moments that remind you why this work matters.',
+  reflectPrompts: [
+    'What has felt different about working this way?',
+    'Where do you feel most supported — and least?',
+    'What do you find yourself missing from how you used to work?',
+    'What has surprised you about neighbourhood working?'
+  ],
+  reflectHint: 'There are no right answers here. The shift to neighbourhood working is genuinely new for most people. What you are feeling is worth noticing.',
+  aiPrompt: '"What would it mean for the people you work with if you felt fully confident and settled in this neighbourhood role — and what is getting in the way of that right now?"',
+  microTitle: 'Understanding the Neighbourhood Shift',
+  microSub: 'What has actually changed, why it matters, and how to find your footing in a way of working that is still taking shape.',
+  microH: 'Something has genuinely changed',
+  microP: 'The shift to neighbourhood and place-based working is not just a structural reorganisation. It changes where you work, who you work with, how you are supervised, and how you make sense of your professional identity. For many practitioners this is both an opportunity and a genuine challenge — and it is worth taking both seriously.',
+  principles: [
+    ['You are not alone in finding this hard', 'Neighbourhood working asks practitioners to be more independent, more visible, and more professionally confident all at once. Most people find at least one of those things genuinely difficult.'],
+    ['Your professional identity is still yours', 'Working across organisational boundaries does not mean losing your professional grounding. Knowing what you stand for matters more, not less, when you are part of a team that did not choose each other.'],
+    ['The informal support has changed', 'Many practitioners miss the corridor conversations, the easy peer check-ins, the background hum of a shared office. Replacing that deliberately is part of the job now.']
+  ],
+  keyThings: [
+    'Neighbourhood working asks you to be more professionally independent than most training prepares you for. That gap is real and worth naming.',
+    'Being embedded in a community is a privilege. It also means you carry more of what you see and hear without the natural debrief that comes with an office.',
+    'Multi-agency working is harder than it looks. Different organisations have different cultures, risk tolerances, and definitions of what helping means.',
+    'You do not have to understand the whole system to work well within your part of it. Start with what you can see and build from there.',
+    'The practitioners who thrive in neighbourhood roles tend to be intentional about their own support — they seek it out rather than waiting for it.',
+    'The neighbourhood health agenda is still being defined. Your experience of working in it is shaping what it becomes. That is worth something.'
+  ]
+};
+
+themeData.nbs.topics = [
+  { title: 'What the neighbourhood health shift actually means', overview: 'Cuts through the policy language to explain what Integrated Neighbourhood Teams are, why they exist, and what has genuinely changed for practitioners on the ground. Includes the context from the NHS 10 Year Plan and what it means for your role.' },
+  { title: 'Working across organisational boundaries', overview: 'How to build effective working relationships with colleagues from different organisations, cultures, and professional backgrounds. Why assumptions get in the way and how to work with difference rather than around it.' },
+  { title: 'Professional identity in a neighbourhood role', overview: 'What happens to your sense of professional self when you are no longer clearly attached to one team or setting. How to stay grounded in your values and practice when the context keeps shifting.' },
+  { title: 'Managing isolation and staying connected', overview: 'The informal support that came with office-based working has largely disappeared for neighbourhood practitioners. Practical approaches for staying connected, finding peer support, and avoiding the cumulative weight of working alone.' },
+  { title: 'Making the most of neighbourhood working', overview: 'The real opportunities that neighbourhood working creates — for the people you work with and for your own practice development. How to lean into what is distinctive and valuable about this way of working rather than just surviving it.' }
+];
+
+themeData.nbs.tools = [
+  { name: 'My Neighbourhood Role — Clarity Card', desc: 'A one-page tool for getting clear on your role, your boundaries, and your key relationships within your neighbourhood team. Useful when starting a new role or when things feel unclear.' },
+  { name: 'Multi-Agency Relationship Map', desc: 'A simple template for mapping your key working relationships across organisations — who you need to know, what they do, and how to build those connections deliberately.' },
+  { name: 'Peer Support Planning Guide', desc: 'How to identify and build your own informal support network when formal supervision is limited or infrequent. Includes questions to help you work out what you most need and who can provide it.' },
+  { name: 'Neighbourhood Working Reflection Journal', desc: 'A structured weekly prompt sheet for practitioners new to neighbourhood working — helping you notice what is changing, what you are learning, and what you need.' }
 ];
 
 function renderLessonTools(tools) {
