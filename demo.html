@@ -660,7 +660,33 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
 @media(max-width:900px) { .lesson-layout { grid-template-columns:1fr; } .home-grid { grid-template-columns:1fr; } }
 @media(max-width:700px) { .areas-grid { grid-template-columns:1fr; } .stats-row { grid-template-columns:repeat(2,1fr); } .journey-grid { grid-template-columns:1fr; } }
 
-/* ── BOTTOM TAB BAR (mobile only) ── */
+/* ── INT TEAM SECTION ── */
+.int-section{margin-top:28px;margin-bottom:8px;}
+.int-header{margin-bottom:16px;}
+.int-header h3{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:5px;}
+.int-header p{font-size:0.82rem;color:var(--ink-m);line-height:1.6;}
+.int-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.int-tile{background:white;border:1px solid var(--stone);border-radius:var(--r);padding:14px 16px;cursor:pointer;transition:all 0.18s;position:relative;}
+.int-tile:hover{border-color:var(--sage-l);transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,0.06);}
+.int-tile.open{border-color:var(--sage-l);box-shadow:0 4px 16px rgba(106,158,102,0.12);}
+.int-tile.you{background:var(--sage-pale);border-color:var(--sage-l);}
+.int-tile-label{font-size:0.62rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--sage);margin-bottom:4px;}
+.int-tile.you .int-tile-label{color:var(--sage-d);}
+.int-tile-name{font-size:0.84rem;font-weight:600;color:var(--ink);line-height:1.3;padding-right:20px;}
+.int-tile-chevron{position:absolute;top:14px;right:14px;font-size:1rem;color:var(--ink-l);transition:transform 0.2s;}
+.int-tile.open .int-tile-chevron{transform:rotate(90deg);}
+.int-tile-body{display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--stone);}
+.int-tile.open .int-tile-body{display:block;}
+.int-tile-body p{font-size:0.78rem;color:var(--ink-m);line-height:1.65;margin-bottom:8px;}
+.int-tile-body p:last-child{margin-bottom:0;}
+.int-connect{font-size:0.75rem !important;color:var(--sage-d) !important;font-weight:500;}
+
+@media(max-width:600px){
+  .int-grid{grid-template-columns:1fr 1fr;}
+  .int-tile.you{grid-column:span 2;}
+}
+
+/* ── END INT ── */
 .bottom-tab-bar { display:none; }
 
 /* ── MOBILE ── */
@@ -1057,9 +1083,109 @@ html, body { height:100%; overflow:hidden; font-family:'DM Sans',sans-serif; }
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- COMPANION AREAS VIEW -->
+        <!-- INT TEAM SECTION -->
+        <div class="int-section">
+          <div class="int-header">
+            <h3>Your integrated neighbourhood team</h3>
+            <p>INTs bring together people from across health, care, and the community. Tap any role to find out what they do and how you connect with them.</p>
+          </div>
+          <div class="int-grid" id="int-grid">
+
+            <div class="int-tile you" onclick="toggleIntTile(this,'you')">
+              <div class="int-tile-label">That's you</div>
+              <div class="int-tile-name">Care Coordinator / Social Prescriber / HWB Coach</div>
+              <div class="int-tile-chevron">›</div>
+              <div class="int-tile-body">
+                <p>You are the person-centred core of the neighbourhood team. Your role is to understand what matters most to the people you work with and connect them to the right support — clinical, community, or personal.</p>
+                <p class="int-connect">AlongsideYou is built specifically for you.</p>
+              </div>
+            </div>
+
+            <div class="int-tile" onclick="toggleIntTile(this,'gp')">
+              <div class="int-tile-label">Clinical Lead</div>
+              <div class="int-tile-name">GP</div>
+              <div class="int-tile-chevron">›</div>
+              <div class="int-tile-body">
+                <p>Your clinical lead provides medical oversight and direction for the neighbourhood team. They are the bridge between primary care and the wider INT.</p>
+                <p class="int-connect">How you connect: regular case discussions, shared care planning, and knowing when to escalate clinical concerns.</p>
+              </div>
+            </div>
+
+            <div class="int-tile" onclick="toggleIntTile(this,'dn')">
+              <div class="int-tile-label">Community Health</div>
+              <div class="int-tile-name">District Nurse</div>
+              <div class="int-tile-chevron">›</div>
+              <div class="int-tile-body">
+                <p>District nurses provide community nursing care for people with complex health needs at home. They often know the people you support better than anyone.</p>
+                <p class="int-connect">How you connect: shared caseloads, joint home visits, and coordinating care around what the person needs at home.</p>
+              </div>
+            </div>
+
+            <div class="int-tile" onclick="toggleIntTile(this,'sw')">
+              <div class="int-tile-label">Social Care</div>
+              <div class="int-tile-name">Social Worker</div>
+              <div class="int-tile-chevron">›</div>
+              <div class="int-tile-body">
+                <p>Social workers focus on safeguarding, care assessments, and connecting people to statutory and community support. They bring a rights-based, whole-person perspective.</p>
+                <p class="int-connect">How you connect: joint assessment, safeguarding referrals, and working together on people with complex social and health needs.</p>
+              </div>
+            </div>
+
+            <div class="int-tile" onclick="toggleIntTile(this,'mh')">
+              <div class="int-tile-label">Mental Health</div>
+              <div class="int-tile-name">Mental Health Practitioner</div>
+              <div class="int-tile-chevron">›</div>
+              <div class="int-tile-body">
+                <p>Mental health practitioners support people with mental health needs in the community. They are increasingly embedded within primary care and neighbourhood teams.</p>
+                <p class="int-connect">How you connect: shared referrals, joint working on people presenting with mental and physical health needs, and knowing your local pathways.</p>
+              </div>
+            </div>
+
+            <div class="int-tile" onclick="toggleIntTile(this,'vcse')">
+              <div class="int-tile-label">Community</div>
+              <div class="int-tile-name">Voluntary and Third Sector</div>
+              <div class="int-tile-chevron">›</div>
+              <div class="int-tile-body">
+                <p>VCSE organisations provide community assets, peer support, and services that statutory teams cannot. They are an essential part of the neighbourhood health offer.</p>
+                <p class="int-connect">How you connect: social prescribing referrals, community asset mapping, and building relationships with local organisations your patients and clients can access.</p>
+              </div>
+            </div>
+
+            <div class="int-tile" onclick="toggleIntTile(this,'intc')">
+              <div class="int-tile-label">Coordination</div>
+              <div class="int-tile-name">INT Coordinator</div>
+              <div class="int-tile-chevron">›</div>
+              <div class="int-tile-body">
+                <p>The INT coordinator keeps the neighbourhood team connected and functioning. They manage governance, communications, and the day-to-day running of the team.</p>
+                <p class="int-connect">How you connect: team meetings, shared caseload reviews, and understanding the wider INT structure you are part of.</p>
+              </div>
+            </div>
+
+            <div class="int-tile" onclick="toggleIntTile(this,'lim')">
+              <div class="int-tile-label">Leadership</div>
+              <div class="int-tile-name">Locality Integration Manager</div>
+              <div class="int-tile-chevron">›</div>
+              <div class="int-tile-body">
+                <p>Locality integration managers provide strategic leadership for neighbourhood working across a defined area. They are accountable for how the INT functions as a whole.</p>
+                <p class="int-connect">How you connect: understanding what they need from your role, feeding in your experience from practice, and knowing who to escalate to.</p>
+              </div>
+            </div>
+
+            <div class="int-tile" onclick="toggleIntTile(this,'ahp')">
+              <div class="int-tile-label">Allied Health</div>
+              <div class="int-tile-name">Therapist / AHP</div>
+              <div class="int-tile-chevron">›</div>
+              <div class="int-tile-body">
+                <p>Allied health professionals including physiotherapists, occupational therapists, and others bring specialist rehabilitation and enablement skills to the neighbourhood team.</p>
+                <p class="int-connect">How you connect: shared referrals for people with physical or functional needs, and understanding what each AHP can and cannot offer in your area.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
       <div class="view" id="view-companion">
         <div class="companion-intro">
           <h2>Companion Themes</h2>
@@ -2566,6 +2692,12 @@ const topbarTitles = {
   reflection: ['Reflect on Practice', 'A space to pause and notice'],
   journey: ['My Journey', 'Your CPD log, badges, and progress']
 };
+
+function toggleIntTile(tile, id) {
+  const isOpen = tile.classList.contains('open');
+  document.querySelectorAll('.int-tile').forEach(t => t.classList.remove('open'));
+  if (!isOpen) tile.classList.add('open');
+}
 
 function toggleMoreMenu(){
   const menu = document.getElementById('more-menu');
