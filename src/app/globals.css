@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer components {
+  /* Small uppercase label above a heading */
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-eyebrow text-forest-light;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-full bg-forest px-7 py-3.5 text-sm font-medium text-cream transition hover:bg-forest-deep;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 rounded-full border border-forest/25 px-7 py-3.5 text-sm font-medium text-forest transition hover:bg-forest/5;
+  }
+
+  .display {
+    @apply font-display font-normal leading-[1.06] tracking-[-0.015em] text-forest;
+  }
+}
